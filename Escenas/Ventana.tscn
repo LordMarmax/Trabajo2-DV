@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://cbbh4kddfka0j"]
+
+[ext_resource type="PackedScene" uid="uid://cqx7e8hi72jcf" path="res://Modelos/ventana.fbx" id="1_k8vu7"]
+
+[node name="ventana" unique_id=1455591558 instance=ExtResource("1_k8vu7")]

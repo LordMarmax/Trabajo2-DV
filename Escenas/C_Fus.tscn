@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://b13mvia31fsv0"]
+
+[ext_resource type="PackedScene" uid="uid://6sel313grv2i" path="res://Modelos/caja_fusible.fbx" id="1_uoa1d"]
+[ext_resource type="PackedScene" uid="uid://bxvstjhe2rl47" path="res://Escenas/Fus.tscn" id="2_gy1xo"]
+
+[node name="caja_fusible" unique_id=1326158410 instance=ExtResource("1_uoa1d")]
+
+[node name="Fusible" parent="." index="1" unique_id=555573919 instance=ExtResource("2_gy1xo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.515136, 0.075247526, 0.16826063)
+
+[node name="Fusible2" parent="." index="2" unique_id=1757258885 instance=ExtResource("2_gy1xo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5917893, 0.077, 0.168)
+
+[node name="Fusible3" parent="." index="3" unique_id=31982475 instance=ExtResource("2_gy1xo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10932112, 0.075, 0.168)
+
+[node name="Fusible4" parent="." index="4" unique_id=11353843 instance=ExtResource("2_gy1xo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8213335, 0.075, 0.168)

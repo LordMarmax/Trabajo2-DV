@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://bxvstjhe2rl47"]
+
+[ext_resource type="PackedScene" uid="uid://b8e0c3kbj3wdq" path="res://Modelos/Fusible.fbx" id="1_rsdlw"]
+
+[node name="Fusible" unique_id=555573919 instance=ExtResource("1_rsdlw")]

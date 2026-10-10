@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://dul0shawb1nd5"]
+
+[ext_resource type="PackedScene" uid="uid://c78tv7u4lbcl6" path="res://Modelos/generador.fbx" id="1_m53kv"]
+
+[node name="generador" unique_id=229678892 instance=ExtResource("1_m53kv")]

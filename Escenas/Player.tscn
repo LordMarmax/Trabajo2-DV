@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://b55r1c0vwxgm5"]
+
+[ext_resource type="Script" uid="uid://cvnvd0evchgd7" path="res://scripts/Player.cs" id="1_83e7o"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ktotb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_83e7o"]
+albedo_color = Color(0, 0.39999986, 1, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wwpud"]
+
+[node name="CharacterBody3D" type="CharacterBody3D" unique_id=1124762868]
+script = ExtResource("1_83e7o")
+Speed = 4.0
+JumpVelocity = 2.5
+
+[node name="Torso" type="MeshInstance3D" parent="." unique_id=1730315614]
+mesh = SubResource("CapsuleMesh_ktotb")
+surface_material_override/0 = SubResource("StandardMaterial3D_83e7o")
+
+[node name="Colision_Torso" type="CollisionShape3D" parent="." unique_id=1051415699]
+shape = SubResource("CapsuleShape3D_wwpud")
+
+[node name="PivoteCamera" type="Node3D" parent="." unique_id=1130870056]
+transform = Transform3D(1, 0, 0, 0, 0.9999993, 0.0012080508, 0, -0.0012080508, 0.9999993, 0, 0.6672318, 0)
+
+[node name="Camera3D" type="Camera3D" parent="PivoteCamera" unique_id=1438740802]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01068759, -0.23429586)
+
+[node name="RayCastAtaque" type="RayCast3D" parent="PivoteCamera" unique_id=471006944]
+transform = Transform3D(1, 0, 0, 0, -0.086318605, -0.93107146, 0, 1.7022686, -0.04721275, 0, 0.00050604343, -0.41884875)
