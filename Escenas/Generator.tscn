@@ -134,7 +134,10 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_0a8p1")
 
-[node name="generador" type="Node3D" unique_id=229678892]
+[sub_resource type="BoxShape3D" id="BoxShape3D_aib85"]
+size = Vector3(2.863037, 1.8554077, 1.3716431)
+
+[node name="generador" type="StaticBody3D" unique_id=990095370]
 
 [node name="Cube" type="MeshInstance3D" parent="." unique_id=822617081]
 transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, 0, 0, 0)
@@ -147,3 +150,7 @@ mesh = SubResource("ArrayMesh_w1584")
 [node name="Cube_002" type="MeshInstance3D" parent="." unique_id=1976383680]
 transform = Transform3D(4.4754786, 0, 0, 0, -5.3351863e-07, 4.475478, 0, -4.475478, -5.3351863e-07, 0.47430742, -0.2822102, 0.7076102)
 mesh = SubResource("ArrayMesh_p5uf3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=767506467]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.002319336, 0.07119751, -0.002105713)
+shape = SubResource("BoxShape3D_aib85")
