@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b55r1c0vwxgm5"]
 
 [ext_resource type="Script" uid="uid://cvnvd0evchgd7" path="res://scripts/Player.cs" id="1_83e7o"]
+[ext_resource type="Script" uid="uid://dqitf004tjid6" path="res://scripts/ObjectGrabber.cs" id="2_wwpud"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ktotb"]
 
@@ -9,8 +10,9 @@ albedo_color = Color(0, 0.39999986, 1, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wwpud"]
 
-[node name="CharacterBody3D" type="CharacterBody3D" unique_id=1124762868]
+[node name="CharacterBody3D" type="CharacterBody3D" unique_id=1124762868 node_paths=PackedStringArray("Grabber")]
 script = ExtResource("1_83e7o")
+Grabber = NodePath("ObjectGrabber")
 Speed = 4.0
 JumpVelocity = 4.0
 
@@ -27,7 +29,8 @@ transform = Transform3D(1, 0, 0, 0, 0.9999993, 0.0012080508, 0, -0.0012080508, 0
 [node name="Camera3D" type="Camera3D" parent="PivoteCamera" unique_id=1438740802]
 
 [node name="RayCastAtaque" type="RayCast3D" parent="PivoteCamera" unique_id=471006944]
-transform = Transform3D(1, 0, 0, 0, -0.11014272, -0.87402236, 0, 2.1720982, -0.0443199, 0, 0, 0)
+transform = Transform3D(1.359, 0, 0, 0, -1.2995396e-07, -1.195, 0, 2.973, -5.2235112e-08, 0, 0, 0)
+collision_mask = 4
 
 [node name="SpotLight3D" type="SpotLight3D" parent="PivoteCamera" unique_id=207461778]
 visible = false
@@ -35,3 +38,11 @@ light_color = Color(0.9999985, 0.9986066, 0.46295452, 1)
 light_energy = 3.543
 spot_range = 16.38
 spot_angle = 28.540167
+
+[node name="HoldPoint" type="Marker3D" parent="PivoteCamera" unique_id=1838257318]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.001739502, -1.4400069)
+
+[node name="ObjectGrabber" type="Node" parent="." unique_id=287772818 node_paths=PackedStringArray("InteractionRay", "HoldPoint")]
+script = ExtResource("2_wwpud")
+InteractionRay = NodePath("../PivoteCamera/RayCastAtaque")
+HoldPoint = NodePath("../PivoteCamera/HoldPoint")

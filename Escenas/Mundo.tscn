@@ -75,17 +75,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1138427, 0.8581407, -28.13
 
 [node name="Fusibles" type="Node" parent="Objetos" unique_id=94591884]
 
-[node name="Fusible" parent="Objetos/Fusibles" unique_id=555573919 instance=ExtResource("7_pcg50")]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -26.244324, 0.1900742, 29.23254)
+[node name="FusiblePortable" parent="Objetos/Fusibles" unique_id=555573919 instance=ExtResource("7_pcg50")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.244324, 0.98399043, 29.23254)
 
 [node name="Fusible2" parent="Objetos/Fusibles" unique_id=418920354 instance=ExtResource("7_pcg50")]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -18.352667, 3.4044614, 29.435057)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.352667, 4.0819535, 29.435057)
 
 [node name="Fusible3" parent="Objetos/Fusibles" unique_id=1284011942 instance=ExtResource("7_pcg50")]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -21.961515, 0.1900742, 19.712307)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.961515, 0.1900742, 19.712307)
 
 [node name="Fusible4" parent="Objetos/Fusibles" unique_id=186890776 instance=ExtResource("7_pcg50")]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -16.547312, 0.1900742, 20.893661)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.547312, 1.1853434, 20.893661)
+
+[node name="FusiblePortable2" parent="Objetos/Fusibles" unique_id=1932762055 instance=ExtResource("7_pcg50")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.145578, 0.7315983, 28.364286)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Objetos" unique_id=967098662]
 

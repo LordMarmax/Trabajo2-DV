@@ -3,16 +3,17 @@ using System;
 
 public partial class Player : CharacterBody3D
 {
-    [Export] public float Speed = 5.0f;
+	[Export] public ObjectGrabber Grabber;
+	[Export] public float Speed = 5.0f;
 	[Export] public float MouseSensitivity = 0.003f;
 	[Export] public float JumpVelocity = 4.5f;
-	
+
 	private RayCast3D rayCastAtaque;
 	public float Gravity = ProjectSettings.GetSetting("physics/3d/default_gravity").AsSingle();
 
 	private Node3D _pivote;
 	private Camera3D _camera;
-    public override void _Ready()
+	public override void _Ready()
 	{
 		// Capturar el ratón en el centro de la pantalla
 		Input.MouseMode = Input.MouseModeEnum.Captured;
@@ -20,10 +21,10 @@ public partial class Player : CharacterBody3D
 		// Buscamos los nodos correspondientes
 		_pivote = GetNode<Node3D>("PivoteCamera");
 		_camera = GetNode<Camera3D>("PivoteCamera/Camera3D");
-		rayCastAtaque =GetNode<RayCast3D>("PivoteCamera/RayCastAtaque");
+		rayCastAtaque = GetNode<RayCast3D>("PivoteCamera/RayCastAtaque");
 		_camera.MakeCurrent();
 	}
-    public override void _PhysicsProcess(double delta)
+	public override void _PhysicsProcess(double delta)
 	{
 		Vector3 velocity = Velocity;
 
@@ -87,4 +88,21 @@ public partial class Player : CharacterBody3D
 		MoveAndSlide();
 
 	}
+
+	public override void _Input(InputEvent @event)
+	{
+		if (Input.IsActionJustPressed("interact"))
+		{
+			if (Grabber == null)
+			{
+				GD.PushError("ERROR: Grabber es NULL.");
+				return;
+			}
+
+			GD.Print("Grabber encontrado correctamente.");
+			Grabber.Interact();
+		}
+	}
+
+
 }
