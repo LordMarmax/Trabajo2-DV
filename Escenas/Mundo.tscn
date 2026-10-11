@@ -76,7 +76,7 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -25.
 [node name="Fusibles" type="Node" parent="Objetos" unique_id=94591884]
 
 [node name="Fusible" parent="Objetos/Fusibles" unique_id=555573919 instance=ExtResource("7_pcg50")]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -26.244324, 0.1900742, 29.23254)
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -18.083221, 1.7780876, 28.21991)
 
 [node name="Fusible2" parent="Objetos/Fusibles" unique_id=418920354 instance=ExtResource("7_pcg50")]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -18.352667, 3.4044614, 29.435057)
