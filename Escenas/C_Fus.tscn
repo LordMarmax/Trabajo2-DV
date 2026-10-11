@@ -2,34 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://bxvstjhe2rl47" path="res://Escenas/Fus.tscn" id="2_gy1xo"]
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_aib85"]
-top_radius = 0.20996094
-bottom_radius = 0.20996094
-height = 1.1442871
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4l30f"]
-transparency = 1
-albedo_color = Color(0.71000004, 1, 0.99516666, 0.2901961)
-emission_enabled = true
-emission = Color(0.38130003, 0.71051997, 0.93, 1)
-emission_energy_multiplier = 16.0
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_aib85"]
-height = 1.3825684
-radius = 0.24951172
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_4l30f"]
-top_radius = 0.26660156
-bottom_radius = 0.26660156
-height = 1.280365
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pfr8e"]
-transparency = 1
-albedo_color = Color(0, 0.8120027, 0.9078171, 0.11764706)
-emission_enabled = true
-emission = Color(0, 0.4666667, 1, 1)
-emission_energy_multiplier = 16.0
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_aib85"]
 size = Vector3(4.526642, 2.4030457, 1)
 
@@ -103,83 +75,35 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_xm3it")
 
+[sub_resource type="CylinderMesh" id="CylinderMesh_aib85"]
+top_radius = 0.20996094
+bottom_radius = 0.20996094
+height = 1.1442871
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4l30f"]
+transparency = 1
+albedo_color = Color(0.71000004, 1, 0.99516666, 0.2901961)
+emission_enabled = true
+emission = Color(0.38130003, 0.71051997, 0.93, 1)
+emission_energy_multiplier = 16.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_4l30f"]
+top_radius = 0.26660156
+bottom_radius = 0.26660156
+height = 1.280365
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pfr8e"]
+transparency = 1
+albedo_color = Color(0, 0.8120027, 0.9078171, 0.11764706)
+emission_enabled = true
+emission = Color(0, 0.4666667, 1, 1)
+emission_energy_multiplier = 16.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_aib85"]
+height = 1.3825684
+radius = 0.24951172
+
 [node name="caja_fusible" type="Node3D" unique_id=1326158410]
-
-[node name="Fusible" parent="." unique_id=555573919 instance=ExtResource("2_gy1xo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.515136, 0.075247526, 0.16826063)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Fusible" unique_id=850499613]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0015869141, 0)
-mesh = SubResource("CylinderMesh_aib85")
-surface_material_override/0 = SubResource("StandardMaterial3D_4l30f")
-
-[node name="Area3D2" type="Area3D" parent="Fusible" unique_id=2130052819]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Fusible/Area3D2" unique_id=586367619]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0513916, 0)
-shape = SubResource("CylinderShape3D_aib85")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Fusible" unique_id=1818098526]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0052865744, 0.004196167, 0)
-mesh = SubResource("CylinderMesh_4l30f")
-surface_material_override/0 = SubResource("StandardMaterial3D_pfr8e")
-
-[node name="Fusible2" parent="." unique_id=1757258885 instance=ExtResource("2_gy1xo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5917893, 0.077, 0.168)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Fusible2" unique_id=1061447595]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0015869141, 0)
-mesh = SubResource("CylinderMesh_aib85")
-surface_material_override/0 = SubResource("StandardMaterial3D_4l30f")
-
-[node name="Area3D2" type="Area3D" parent="Fusible2" unique_id=455662374]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Fusible2/Area3D2" unique_id=2039523916]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0513916, 0)
-shape = SubResource("CylinderShape3D_aib85")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Fusible2" unique_id=1936157857]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.005286455, 0.004196167, 0)
-mesh = SubResource("CylinderMesh_4l30f")
-surface_material_override/0 = SubResource("StandardMaterial3D_pfr8e")
-
-[node name="Fusible3" parent="." unique_id=31982475 instance=ExtResource("2_gy1xo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10932112, 0.075, 0.168)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Fusible3" unique_id=1580797030]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0015869141, 0)
-mesh = SubResource("CylinderMesh_aib85")
-surface_material_override/0 = SubResource("StandardMaterial3D_4l30f")
-
-[node name="Area3D2" type="Area3D" parent="Fusible3" unique_id=2139458398]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Fusible3/Area3D2" unique_id=1743628959]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0513916, 0)
-shape = SubResource("CylinderShape3D_aib85")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Fusible3" unique_id=1536754176]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.005286455, 0.004196167, 0)
-mesh = SubResource("CylinderMesh_4l30f")
-surface_material_override/0 = SubResource("StandardMaterial3D_pfr8e")
-
-[node name="Fusible4" parent="." unique_id=11353843 instance=ExtResource("2_gy1xo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8213335, 0.075, 0.168)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Fusible4" unique_id=2031333255]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0015869141, 0)
-mesh = SubResource("CylinderMesh_aib85")
-surface_material_override/0 = SubResource("StandardMaterial3D_4l30f")
-
-[node name="Area3D2" type="Area3D" parent="Fusible4" unique_id=1918312819]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Fusible4/Area3D2" unique_id=712310397]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0513916, 0)
-shape = SubResource("CylinderShape3D_aib85")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Fusible4" unique_id=1540130702]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.005286455, 0.004196167, 0)
-mesh = SubResource("CylinderMesh_4l30f")
-surface_material_override/0 = SubResource("StandardMaterial3D_pfr8e")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1656117066]
 
@@ -190,3 +114,91 @@ shape = SubResource("BoxShape3D_aib85")
 [node name="Cube_001" type="MeshInstance3D" parent="StaticBody3D" unique_id=305966545]
 transform = Transform3D(227.46594, 0, 0, 0, -5.184244e-06, 99.90823, 0, -43.488586, -1.19099905e-05, 0, 0, 0)
 mesh = SubResource("ArrayMesh_drl4r")
+
+[node name="Compartimiento1" type="Node3D" parent="." unique_id=2051637782]
+
+[node name="Fusible" parent="Compartimiento1" unique_id=555573919 instance=ExtResource("2_gy1xo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.515136, 0.075247526, 0.16826063)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Compartimiento1/Fusible" unique_id=850499613]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0015869141, 0)
+mesh = SubResource("CylinderMesh_aib85")
+surface_material_override/0 = SubResource("StandardMaterial3D_4l30f")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Compartimiento1/Fusible" unique_id=1818098526]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0052865744, 0.004196167, 0)
+mesh = SubResource("CylinderMesh_4l30f")
+surface_material_override/0 = SubResource("StandardMaterial3D_pfr8e")
+
+[node name="Area3D2" type="Area3D" parent="Compartimiento1" unique_id=2130052819]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.515136, 0.075247526, 0.16826063)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Compartimiento1/Area3D2" unique_id=586367619]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0513916, 0)
+shape = SubResource("CylinderShape3D_aib85")
+
+[node name="Compartimiento2" type="Node3D" parent="." unique_id=907610320]
+
+[node name="Area3D2" type="Area3D" parent="Compartimiento2" unique_id=455662374]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5917893, 0.077, 0.168)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Compartimiento2/Area3D2" unique_id=2039523916]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0513916, 0)
+shape = SubResource("CylinderShape3D_aib85")
+
+[node name="Fusible2" parent="Compartimiento2" unique_id=1757258885 instance=ExtResource("2_gy1xo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5917893, 0.077, 0.168)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Compartimiento2/Fusible2" unique_id=1061447595]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0015869141, 0)
+mesh = SubResource("CylinderMesh_aib85")
+surface_material_override/0 = SubResource("StandardMaterial3D_4l30f")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Compartimiento2/Fusible2" unique_id=1936157857]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.005286455, 0.004196167, 0)
+mesh = SubResource("CylinderMesh_4l30f")
+surface_material_override/0 = SubResource("StandardMaterial3D_pfr8e")
+
+[node name="Compartimiento3" type="Node3D" parent="." unique_id=191948214]
+
+[node name="Area3D2" type="Area3D" parent="Compartimiento3" unique_id=2139458398]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10932112, 0.075, 0.168)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Compartimiento3/Area3D2" unique_id=1743628959]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0513916, 0)
+shape = SubResource("CylinderShape3D_aib85")
+
+[node name="Fusible3" parent="Compartimiento3" unique_id=31982475 instance=ExtResource("2_gy1xo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10932112, 0.075, 0.168)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Compartimiento3/Fusible3" unique_id=1580797030]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0015869141, 0)
+mesh = SubResource("CylinderMesh_aib85")
+surface_material_override/0 = SubResource("StandardMaterial3D_4l30f")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Compartimiento3/Fusible3" unique_id=1536754176]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.005286455, 0.004196167, 0)
+mesh = SubResource("CylinderMesh_4l30f")
+surface_material_override/0 = SubResource("StandardMaterial3D_pfr8e")
+
+[node name="Compartimiento4" type="Node3D" parent="." unique_id=2118601925]
+
+[node name="Area3D2" type="Area3D" parent="Compartimiento4" unique_id=1918312819]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8213335, 0.075, 0.168)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Compartimiento4/Area3D2" unique_id=712310397]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0513916, 0)
+shape = SubResource("CylinderShape3D_aib85")
+
+[node name="Fusible4" parent="Compartimiento4" unique_id=11353843 instance=ExtResource("2_gy1xo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8213335, 0.075, 0.168)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Compartimiento4/Fusible4" unique_id=2031333255]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0015869141, 0)
+mesh = SubResource("CylinderMesh_aib85")
+surface_material_override/0 = SubResource("StandardMaterial3D_4l30f")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Compartimiento4/Fusible4" unique_id=1540130702]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.005286455, 0.004196167, 0)
+mesh = SubResource("CylinderMesh_4l30f")
+surface_material_override/0 = SubResource("StandardMaterial3D_pfr8e")
