@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bxvstjhe2rl47" path="res://Escenas/Fus.tscn" id="2_gy1xo"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_aib85"]
-size = Vector3(4.5518265, 2.450798, 0.8786316)
+size = Vector3(4.526642, 2.4030457, 0.93359375)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qlsgt"]
 resource_name = "caja_fusible_fondo"
@@ -109,15 +109,17 @@ radius = 0.24951172
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1656117066]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1716325791]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0.0014839172, -0.012126923, -0.0077972417)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -0.025894165, -0.00047302246, -0.03320313)
 shape = SubResource("BoxShape3D_aib85")
 
 [node name="Cube_001" type="MeshInstance3D" parent="StaticBody3D" unique_id=305966545]
 transform = Transform3D(227.46594, 0, 0, 0, -5.184244e-06, 99.90823, 0, -43.488586, -1.19099905e-05, 0, 0, 0)
 mesh = SubResource("ArrayMesh_drl4r")
 
-[node name="Compartimiento1" type="Node3D" parent="." unique_id=2051637782]
+[node name="Compartimiento1" type="Node3D" parent="." unique_id=2051637782 node_paths=PackedStringArray("DetectionArea", "FusibleInstalado")]
 script = ExtResource("1_gy1xo")
+DetectionArea = NodePath("Area3D2")
+FusibleInstalado = NodePath("Fusible")
 
 [node name="Fusible" parent="Compartimiento1" unique_id=555573919 instance=ExtResource("2_gy1xo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.515136, 0.075247526, 0.16826063)
@@ -134,17 +136,21 @@ mesh = SubResource("CylinderMesh_4l30f")
 surface_material_override/0 = SubResource("StandardMaterial3D_pfr8e")
 
 [node name="Area3D2" type="Area3D" parent="Compartimiento1" unique_id=2130052819]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.515136, 0.075247526, 0.16793263)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.515136, 0.075247526, 0.4383319)
+collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Compartimiento1/Area3D2" unique_id=586367619]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0513916, 0)
 shape = SubResource("CylinderShape3D_aib85")
 
-[node name="Compartimiento2" type="Node3D" parent="." unique_id=907610320]
+[node name="Compartimiento2" type="Node3D" parent="." unique_id=907610320 node_paths=PackedStringArray("DetectionArea", "FusibleInstalado")]
 script = ExtResource("1_gy1xo")
+DetectionArea = NodePath("Area3D2")
+FusibleInstalado = NodePath("Fusible2")
 
 [node name="Area3D2" type="Area3D" parent="Compartimiento2" unique_id=455662374]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5917893, 0.077, 0.168)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5917893, 0.077, 0.43807125)
+collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Compartimiento2/Area3D2" unique_id=2039523916]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0513916, 0)
@@ -164,11 +170,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.005286455, 0.004196167, 0)
 mesh = SubResource("CylinderMesh_4l30f")
 surface_material_override/0 = SubResource("StandardMaterial3D_pfr8e")
 
-[node name="Compartimiento3" type="Node3D" parent="." unique_id=191948214]
+[node name="Compartimiento3" type="Node3D" parent="." unique_id=191948214 node_paths=PackedStringArray("DetectionArea", "FusibleInstalado")]
 script = ExtResource("1_gy1xo")
+DetectionArea = NodePath("Area3D2")
+FusibleInstalado = NodePath("Fusible3")
 
 [node name="Area3D2" type="Area3D" parent="Compartimiento3" unique_id=2139458398]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10932112, 0.075, 0.168)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10932112, 0.075, 0.43807125)
+collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Compartimiento3/Area3D2" unique_id=1743628959]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0513916, 0)
@@ -188,11 +197,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.005286455, 0.004196167, 0)
 mesh = SubResource("CylinderMesh_4l30f")
 surface_material_override/0 = SubResource("StandardMaterial3D_pfr8e")
 
-[node name="Compartimiento4" type="Node3D" parent="." unique_id=2118601925]
+[node name="Compartimiento4" type="Node3D" parent="." unique_id=2118601925 node_paths=PackedStringArray("DetectionArea", "FusibleInstalado")]
 script = ExtResource("1_gy1xo")
+DetectionArea = NodePath("Area3D2")
+FusibleInstalado = NodePath("Fusible4")
 
 [node name="Area3D2" type="Area3D" parent="Compartimiento4" unique_id=1918312819]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8213335, 0.075, 0.168)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8213335, 0.075, 0.43807125)
+collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Compartimiento4/Area3D2" unique_id=712310397]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0513916, 0)
