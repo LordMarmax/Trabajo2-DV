@@ -1,12 +1,22 @@
 [gd_scene format=3 uid="uid://cfdism053ixll"]
 
 [ext_resource type="Script" uid="uid://xqwssf3admvm" path="res://scripts/Ui.cs" id="1_mpwfm"]
+[ext_resource type="Texture2D" uid="uid://m83xp3wj78iq" path="res://Texturas/cruceta.png" id="2_434li"]
 
 [node name="Control" type="Control" unique_id=593959270]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = 1.0
+offset_right = -4.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mpwfm")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1751043513]
+position = Vector2(576, 324)
+scale = Vector2(1.0172838, 1.0104351)
+texture = ExtResource("2_434li")

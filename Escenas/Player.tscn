@@ -12,7 +12,7 @@ albedo_color = Color(0, 0.39999986, 1, 1)
 [node name="CharacterBody3D" type="CharacterBody3D" unique_id=1124762868]
 script = ExtResource("1_83e7o")
 Speed = 4.0
-JumpVelocity = 2.5
+JumpVelocity = 4.0
 
 [node name="Torso" type="MeshInstance3D" parent="." unique_id=1730315614]
 mesh = SubResource("CapsuleMesh_ktotb")
@@ -22,10 +22,16 @@ surface_material_override/0 = SubResource("StandardMaterial3D_83e7o")
 shape = SubResource("CapsuleShape3D_wwpud")
 
 [node name="PivoteCamera" type="Node3D" parent="." unique_id=1130870056]
-transform = Transform3D(1, 0, 0, 0, 0.9999993, 0.0012080508, 0, -0.0012080508, 0.9999993, 0, 0.6672318, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9999993, 0.0012080508, 0, -0.0012080508, 0.9999993, 0, 0.7093971, -0.17059231)
 
 [node name="Camera3D" type="Camera3D" parent="PivoteCamera" unique_id=1438740802]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01068759, -0.23429586)
 
 [node name="RayCastAtaque" type="RayCast3D" parent="PivoteCamera" unique_id=471006944]
-transform = Transform3D(1, 0, 0, 0, -0.086318605, -0.93107146, 0, 1.7022686, -0.04721275, 0, 0.00050604343, -0.41884875)
+transform = Transform3D(1, 0, 0, 0, -0.11014272, -0.87402236, 0, 2.1720982, -0.0443199, 0, 0, 0)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="PivoteCamera" unique_id=207461778]
+visible = false
+light_color = Color(0.9999985, 0.9986066, 0.46295452, 1)
+light_energy = 3.543
+spot_range = 16.38
+spot_angle = 28.540167

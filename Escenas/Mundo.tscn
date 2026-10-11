@@ -5,9 +5,11 @@
 [ext_resource type="PackedScene" uid="uid://cfdism053ixll" path="res://Escenas/Ui.tscn" id="2_4hew7"]
 [ext_resource type="Texture2D" uid="uid://cjqdvd7mvoubb" path="res://Texturas/2c64d0a0-6575-4b65-9629-49b9e1e3a175.png" id="3_u2u0v"]
 [ext_resource type="PackedScene" uid="uid://b13mvia31fsv0" path="res://Escenas/C_Fus.tscn" id="5_5hai3"]
-[ext_resource type="PackedScene" uid="uid://bxvstjhe2rl47" path="res://Escenas/Fus.tscn" id="6_pcg50"]
 [ext_resource type="PackedScene" uid="uid://cbbh4kddfka0j" path="res://Escenas/Ventana.tscn" id="7_kjdtq"]
+[ext_resource type="PackedScene" uid="uid://c853m25khv0kp" path="res://Escenas/Fus_interactuable.tscn" id="7_pcg50"]
+[ext_resource type="PackedScene" uid="uid://d155x60sgpdeh" path="res://Escenas/bombilla.tscn" id="8_kjdtq"]
 [ext_resource type="PackedScene" uid="uid://dul0shawb1nd5" path="res://Escenas/Generator.tscn" id="8_yg05w"]
+[ext_resource type="PackedScene" uid="uid://prkcv4afgenk" path="res://Escenas/casita_v_3.tscn" id="9_pcg50"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_aib85"]
 
@@ -21,7 +23,7 @@ point_size = 96.0
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_pfr8e"]
 panorama = ExtResource("3_u2u0v")
-energy_multiplier = 0.25
+energy_multiplier = 0.1
 
 [sub_resource type="Sky" id="Sky_4l30f"]
 sky_material = SubResource("PanoramaSkyMaterial_pfr8e")
@@ -30,7 +32,16 @@ sky_material = SubResource("PanoramaSkyMaterial_pfr8e")
 background_mode = 2
 background_energy_multiplier = 4.3
 sky = SubResource("Sky_4l30f")
+sky_rotation = Vector3(0, -0.95644045, 0)
 ambient_light_source = 3
+ambient_light_sky_contribution = 0.02
+
+[sub_resource type="BoxMesh" id="BoxMesh_aib85"]
+uv2_padding = 2.87
+size = Vector3(0.43089294, 0.4492874, 0.5542259)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4l30f"]
+size = Vector3(0.37704468, 0.40363312, 0.5446625)
 
 [node name="Node3D" type="Node3D" unique_id=758181822]
 
@@ -46,27 +57,105 @@ transform = Transform3D(1.9876698, 0, 0, 0, 0.99999946, 0, 0, 0, 1.9672669, 0, 0
 shape = SubResource("HeightMapShape3D_g3dvk")
 
 [node name="CharacterBody3D" parent="." unique_id=1124762868 instance=ExtResource("1_g3dvk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0468314, 7.758747)
-
-[node name="Control" parent="." unique_id=593959270 instance=ExtResource("2_4hew7")]
-offset_left = 1358.4226
-offset_top = -21.467743
-offset_right = 1358.4226
-offset_bottom = -21.467773
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.373644, 1.0468314, 26.56872)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=822756842]
 environment = SubResource("Environment_aib85")
 
-[node name="Node" type="Node" parent="." unique_id=99485184]
+[node name="Objetos" type="Node" parent="." unique_id=99485184]
 
-[node name="caja_fusible" parent="Node" unique_id=1326158410 instance=ExtResource("5_5hai3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0062728, -27.064089)
+[node name="caja_fusible" parent="Objetos" unique_id=1326158410 instance=ExtResource("5_5hai3")]
+transform = Transform3D(-1.0927846e-08, 0, 0.24999999, 0, 0.25, 0, -0.24999999, 0, -1.0927846e-08, -18.245924, 1.7568343, 27.847355)
 
-[node name="Fusible" parent="Node" unique_id=555573919 instance=ExtResource("6_pcg50")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.600581, 3.097315)
+[node name="ventana" parent="Objetos" unique_id=1455591558 instance=ExtResource("7_kjdtq")]
+transform = Transform3D(-0.0037211902, 0, 2.5077672, 0, 1.1231133, 0, -1.0660527, 0, -0.008753675, -26.684206, 2.532208, 24.706938)
 
-[node name="ventana" parent="Node" unique_id=1455591558 instance=ExtResource("7_kjdtq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7433434, 2.3199348, 0)
+[node name="generador" parent="Objetos" unique_id=229678892 instance=ExtResource("8_yg05w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1138427, 0.8581407, -28.13384)
 
-[node name="generador" parent="Node" unique_id=229678892 instance=ExtResource("8_yg05w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.257919, 1.7680533, 0)
+[node name="Fusibles" type="Node" parent="Objetos" unique_id=94591884]
+
+[node name="Fusible" parent="Objetos/Fusibles" unique_id=555573919 instance=ExtResource("7_pcg50")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -26.244324, 0.1900742, 29.23254)
+
+[node name="Fusible2" parent="Objetos/Fusibles" unique_id=418920354 instance=ExtResource("7_pcg50")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -18.352667, 3.4044614, 29.435057)
+
+[node name="Fusible3" parent="Objetos/Fusibles" unique_id=1284011942 instance=ExtResource("7_pcg50")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -21.961515, 0.1900742, 19.712307)
+
+[node name="Fusible4" parent="Objetos/Fusibles" unique_id=186890776 instance=ExtResource("7_pcg50")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -16.547312, 0.1900742, 20.893661)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Objetos" unique_id=967098662]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Objetos/StaticBody3D" unique_id=36633946]
+transform = Transform3D(3.0518906, 0, 0, 0, 7.9827776, 0, 0, 0, 5.6146517, -18.957773, 1.4238207, 27.99605)
+mesh = SubResource("BoxMesh_aib85")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Objetos/StaticBody3D" unique_id=603381178]
+transform = Transform3D(3.0518906, 0, 0, 0, 7.9827776, 0, 0, 0, 5.6146517, -18.86921, 1.6123486, 27.968931)
+shape = SubResource("BoxShape3D_4l30f")
+
+[node name="Luces" type="Node" parent="Objetos" unique_id=1762856903]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Objetos/Luces" unique_id=1229893141]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.388947, 4.2116976, 26.193184)
+shadow_enabled = true
+omni_range = 7.282504
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Objetos/Luces" unique_id=597349915]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.39981, 4.2116976, 17.5078)
+shadow_enabled = true
+omni_range = 7.282504
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="Objetos/Luces" unique_id=1190361035]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.557152, 4.2116976, 18.11801)
+shadow_enabled = true
+omni_range = 7.282504
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="Objetos/Luces" unique_id=1184829006]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.851015, 4.2116976, 25.949196)
+shadow_enabled = true
+omni_range = 7.282504
+
+[node name="OmniLight3D5" type="OmniLight3D" parent="Objetos/Luces" unique_id=741071637]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.041424, 4.2116976, 21.573069)
+shadow_enabled = true
+omni_range = 7.282504
+
+[node name="bombilla" parent="Objetos/Luces" unique_id=282773560 instance=ExtResource("8_kjdtq")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -23.849936, 4.1762767, 25.961386)
+
+[node name="bombilla2" parent="Objetos/Luces" unique_id=2143527304 instance=ExtResource("8_kjdtq")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -17.384853, 4.1762767, 26.229633)
+
+[node name="bombilla3" parent="Objetos/Luces" unique_id=1240012134 instance=ExtResource("8_kjdtq")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -21.045803, 4.1762767, 21.563025)
+
+[node name="bombilla4" parent="Objetos/Luces" unique_id=1737064852 instance=ExtResource("8_kjdtq")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -19.410063, 4.1762767, 17.486647)
+
+[node name="bombilla5" parent="Objetos/Luces" unique_id=1650052246 instance=ExtResource("8_kjdtq")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -24.550968, 4.1762767, 18.13575)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1784367701]
+transform = Transform3D(-0.49581826, 0.1771416, -0.8501678, 0.020566493, 0.9810957, 0.19242755, 0.8681829, 0.07792409, -0.49008843, -33.135956, 4.010557, 20.803047)
+light_color = Color(0.52919996, 0.67195344, 0.98, 1)
+light_energy = 1.561
+light_specular = 0.0
+shadow_enabled = true
+shadow_blur = 2.754
+spot_range = 4096.0
+spot_attenuation = 0.39
+spot_angle = 12.009771
+spot_angle_attenuation = 1.0954708
+
+[node name="Control" parent="." unique_id=593959270 instance=ExtResource("2_4hew7")]
+offset_left = 2.0
+offset_top = -1.0
+offset_right = 2.0
+offset_bottom = -1.0
+
+[node name="casita_v3" parent="." unique_id=1345732476 instance=ExtResource("9_pcg50")]
+transform = Transform3D(-8.742278e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, -8.742278e-09, -23.365679, -0.27396524, 21.615131)
