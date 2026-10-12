@@ -7,6 +7,13 @@ data = PackedVector3Array(-0.0116, 0.2104, 0.21589999, -0.0116, -0.3126, 0.21589
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_aib85"]
 
+[sub_resource type="BoxMesh" id="BoxMesh_4l30f"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oaa7w"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aib85"]
+albedo_color = Color(1, 0.64, 0.64, 1)
+
 [node name="casita_v3" unique_id=1345732476 instance=ExtResource("1_oaa7w")]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=619464126]
@@ -18,3 +25,18 @@ shape = SubResource("ConcavePolygonShape3D_oaa7w")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." index="2" unique_id=528363018]
 transform = Transform3D(-41.41584, 0, 0, 0, -1.0000005, 0, 0, 0, 27.446272, -0.057881832, 23.276356, -11.280735)
 mesh = SubResource("PlaneMesh_aib85")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="." index="3" unique_id=1812951515]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0800781, 13.210784, -36.768448)
+operation = 2
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="CSGCombiner3D" index="0" unique_id=1038823439]
+transform = Transform3D(9.482664, 0, 0, 0, 25.905378, 0, 0, 0, 2, 0, -2.8090613, 0)
+mesh = SubResource("BoxMesh_4l30f")
+material = SubResource("StandardMaterial3D_oaa7w")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D" index="1" unique_id=1544337039]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32015562, -3.2114592, 0.8320732)
+operation = 2
+size = Vector3(4, 3, 2)
+material = SubResource("StandardMaterial3D_aib85")
