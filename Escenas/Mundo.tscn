@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://d155x60sgpdeh" path="res://Escenas/bombilla.tscn" id="8_kjdtq"]
 [ext_resource type="PackedScene" uid="uid://dul0shawb1nd5" path="res://Escenas/Generator.tscn" id="8_yg05w"]
 [ext_resource type="PackedScene" uid="uid://prkcv4afgenk" path="res://Escenas/casita_v_3.tscn" id="9_pcg50"]
+[ext_resource type="PackedScene" uid="uid://u0hm67t1wnp0" path="res://Escenas/caja_interruptores.tscn" id="9_yg05w"]
+[ext_resource type="PackedScene" uid="uid://b15vgk6auq6wo" path="res://Escenas/palanca_energia.tscn" id="10_5cwmu"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_aib85"]
 
@@ -138,6 +140,12 @@ transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -19.410063, 4.1762767, 
 
 [node name="bombilla5" parent="Objetos/Luces" unique_id=1650052246 instance=ExtResource("8_kjdtq")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -24.550968, 4.1762767, 18.13575)
+
+[node name="caja_interruptores" parent="Objetos" unique_id=1344368517 instance=ExtResource("9_yg05w")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -18.686094, 1.6009974, 13.660585)
+
+[node name="palanca_energia" parent="Objetos" unique_id=1140071935 instance=ExtResource("10_5cwmu")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -24.372362, 1.509299, 13.969302)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1784367701]
 transform = Transform3D(-0.49581826, 0.1771416, -0.8501678, 0.020566493, 0.9810957, 0.19242755, 0.8681829, 0.07792409, -0.49008843, -33.135956, 4.010557, 20.803047)

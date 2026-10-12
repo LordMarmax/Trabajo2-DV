@@ -33,7 +33,6 @@ transform = Transform3D(1.359, 0, 0, 0, -1.2995396e-07, -1.195, 0, 2.973, -5.223
 collision_mask = 4
 
 [node name="SpotLight3D" type="SpotLight3D" parent="PivoteCamera" unique_id=207461778]
-visible = false
 light_color = Color(0.9999985, 0.9986066, 0.46295452, 1)
 light_energy = 3.543
 spot_range = 16.38

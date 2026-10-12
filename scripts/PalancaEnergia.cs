@@ -24,6 +24,23 @@ public partial class PalancaEnergia : Node3D
             _anguloActual, RotationDegrees.Y, RotationDegrees.Z
         );
     }
+    public override void _Process(double delta)
+{
+    float movimiento = 0f;
+
+    if (Input.IsKeyPressed(Key.Up))
+        movimiento = -1f;
+
+    if (Input.IsKeyPressed(Key.Down))
+        movimiento = 1f;
+
+    if (movimiento != 0f)
+    {
+        Arrastrar(
+            movimiento * 200f * (float)delta
+        );
+    }
+}
 
     public void Arrastrar(float desplazamientoMouse)
     {
