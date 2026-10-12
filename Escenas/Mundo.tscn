@@ -95,7 +95,7 @@ transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -18.352667, 3.403369
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -21.961515, 0.1900742, 19.712307)
 
 [node name="Fusible4" parent="Objetos/Fusibles" unique_id=186890776 instance=ExtResource("7_pcg50")]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -16.13414, 1.6734179, 21.313711)
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -16.903606, 0.20411628, 20.69426)
 
 [node name="FusiblePortable2" parent="Objetos/Fusibles" unique_id=1932762055 instance=ExtResource("7_pcg50")]
 transform = Transform3D(0.25, 0, 0, 0, 0.023522241, 0.24889095, 0, -0.24889095, 0.023522241, -26.357763, 2.07834, 29.09956)
@@ -133,7 +133,7 @@ shadow_enabled = true
 omni_range = 7.282504
 
 [node name="OmniLight3D5" type="OmniLight3D" parent="Objetos/Luces" unique_id=741071637]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.041424, 4.2116976, 21.573069)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.994087, 4.2116976, 21.299957)
 shadow_enabled = true
 omni_range = 7.282504
 
@@ -144,7 +144,7 @@ transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -23.849936, 4.1762767, 
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -17.384853, 4.1762767, 26.229633)
 
 [node name="bombilla3" parent="Objetos/Luces" unique_id=1240012134 instance=ExtResource("8_kjdtq")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -21.045803, 4.1762767, 21.563025)
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -18.009687, 4.1762767, 21.299698)
 
 [node name="bombilla4" parent="Objetos/Luces" unique_id=1737064852 instance=ExtResource("8_kjdtq")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -19.410063, 4.1762767, 17.486647)

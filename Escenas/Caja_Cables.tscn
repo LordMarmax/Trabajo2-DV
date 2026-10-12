@@ -1,5 +1,8 @@
 [gd_scene format=4 uid="uid://cogh4eoxpil13"]
 
+[ext_resource type="Script" uid="uid://cuy68iu4iuapj" path="res://Escenas/PuzzleCables.cs" id="1_glu5v"]
+[ext_resource type="Script" uid="uid://bg52c54sd0mve" path="res://scripts/CableFlexible.cs" id="1_txlmp"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cwmvf"]
 resource_name = "Material.001"
 vertex_color_use_as_albedo = true
@@ -294,6 +297,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_rvdot")
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_pfr8e"]
+radius = 0.268763
+
 [sub_resource type="ArrayMesh" id="ArrayMesh_phobn"]
 _surfaces = [{
 "aabb": AABB(-0.007217165, -0.004443235, 0.004629081, 0.0010316442, 0.0027510524, 0.0013755262),
@@ -498,49 +504,145 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_fvvp4")
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_aqk1y"]
+radius = 0.026145369
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_aib85"]
+size = Vector3(8.0047, 5.975647, 1.0551147)
+
 [node name="Caja_cables" type="Node3D" unique_id=1464585560]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+script = ExtResource("1_glu5v")
 
 [node name="Cube" type="MeshInstance3D" parent="." unique_id=1221746112]
-transform = Transform3D(400, 0, 0, 0, -1.7881393e-05, 299.99997, 0, -149.99998, -3.5762787e-05, 0, 0, 0)
+transform = Transform3D(400, 0, 0, 0, -1.7881393e-05, 299.99997, 0, -149.99998, -3.5762787e-05, 0.006877333, 1.4901161e-07, 0.0006443262)
 mesh = SubResource("ArrayMesh_otdi6")
 
-[node name="Node" type="Node" parent="." unique_id=118644521]
+[node name="Verde" type="Node3D" parent="." unique_id=780325769 node_paths=PackedStringArray("Anclaje", "Cilindro", "Punta")]
+script = ExtResource("1_txlmp")
+Anclaje = NodePath("Anclaje")
+Cilindro = NodePath("cable_1")
+Punta = NodePath("Punta_1/cable_1_punta")
 
-[node name="cable_1" type="MeshInstance3D" parent="Node" unique_id=1934697106]
-transform = Transform3D(2.4596324e-07, -3.0745403e-07, 2.0632892, -2.0632892, 0, 1.2298162e-07, 6.149081e-08, -2.063289, -2.4596324e-07, -0.2259506, 0.15953484, 0.04601563)
+[node name="cable_1" type="MeshInstance3D" parent="Verde" unique_id=1934697106]
+transform = Transform3D(2.4596325e-06, -3.0745402e-06, 20.632893, -20.632893, 0, 1.2298162e-06, 6.149081e-07, -20.632889, -2.4596325e-06, -2.2614684, 1.5953484, 0.4602592)
 mesh = SubResource("ArrayMesh_pqc5e")
 
-[node name="cable_1_punta" type="MeshInstance3D" parent="Node" unique_id=1805620939]
-transform = Transform3D(2.4596324e-07, -3.0745403e-07, 2.0632892, -2.0632892, 0, 1.2298162e-07, 6.149081e-08, -2.063289, -2.4596324e-07, -0.2259506, 0.15953484, 0.04601563)
+[node name="Anclaje" type="Marker3D" parent="Verde" unique_id=1901526383]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -2.467033, 1.5996542, 0.46532154)
+
+[node name="Punta_1" type="StaticBody3D" parent="Verde" unique_id=691068103]
+
+[node name="cable_1_punta" type="MeshInstance3D" parent="Verde/Punta_1" unique_id=1805620939]
+transform = Transform3D(2.4596327e-06, -3.0745402e-06, 20.632895, -20.632895, 0, 1.2298163e-06, 6.149082e-07, -20.632889, -2.4596327e-06, -2.259506, 1.5953484, 0.46015632)
 mesh = SubResource("ArrayMesh_uttqx")
 
-[node name="Node2" type="Node" parent="." unique_id=1638178711]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Verde/Punta_1" unique_id=1353230935]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0553393, 1.5953484, 0.46015632)
+shape = SubResource("SphereShape3D_pfr8e")
 
-[node name="cable_2" type="MeshInstance3D" parent="Node2" unique_id=2003685958]
-transform = Transform3D(40, 0, 0, 0, -1.7881393e-06, 29.999998, 0, -14.999999, -3.5762787e-06, 0.04210311, -0.10459175, 0)
+[node name="Rojo" type="Node3D" parent="." unique_id=724208558 node_paths=PackedStringArray("Anclaje", "Cilindro", "Punta")]
+script = ExtResource("1_txlmp")
+Anclaje = NodePath("Anclaje")
+Cilindro = NodePath("cable_2")
+Punta = NodePath("Punta_1/cable_2punta")
+
+[node name="cable_2" type="MeshInstance3D" parent="Rojo" unique_id=2003685958]
+transform = Transform3D(400, 0, 0, 0, -1.7881393e-05, 299.99997, 0, -149.99998, -3.5762787e-05, 0.42103112, -1.0459175, 0)
 mesh = SubResource("ArrayMesh_skufo")
 
-[node name="cable_2punta" type="MeshInstance3D" parent="Node2" unique_id=370036972]
-transform = Transform3D(40, 0, 0, 0, -1.7881393e-06, 29.999998, 0, -14.999999, -3.5762787e-06, 0.04210311, -0.10459175, 0)
+[node name="Anclaje" type="Marker3D" parent="Rojo" unique_id=17148771]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -2.4688325, 0.5511599, 0.4646143)
+
+[node name="Punta_1" type="StaticBody3D" parent="Rojo" unique_id=122802389]
+
+[node name="cable_2punta" type="MeshInstance3D" parent="Rojo/Punta_1" unique_id=370036972]
+transform = Transform3D(400, 0, 0, 0, -1.7881393e-05, 299.99997, 0, -149.99998, -3.5762787e-05, 0.42103112, -1.0459175, 0)
 mesh = SubResource("ArrayMesh_ap317")
 
-[node name="Node3" type="Node" parent="." unique_id=1550330989]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rojo/Punta_1" unique_id=1919925009]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0553393, 0.5489638, 0.46015632)
+shape = SubResource("SphereShape3D_pfr8e")
 
-[node name="cable_3" type="MeshInstance3D" parent="Node3" unique_id=910327464]
-transform = Transform3D(40, 0, 0, 0, -1.7881393e-06, 29.999998, 0, -14.999999, -3.5762787e-06, 0.04210311, -0.21435511, 0)
+[node name="Amarillo" type="Node3D" parent="." unique_id=883584700 node_paths=PackedStringArray("Anclaje", "Cilindro", "Punta")]
+script = ExtResource("1_txlmp")
+Anclaje = NodePath("Anclaje")
+Cilindro = NodePath("cable_3")
+Punta = NodePath("StaticBody3D/cable_3punta")
+
+[node name="cable_3" type="MeshInstance3D" parent="Amarillo" unique_id=910327464]
+transform = Transform3D(400, 0, 0, 0, -1.7881393e-05, 299.99997, 0, -149.99998, -3.5762787e-05, 0.42103112, -2.143551, 0)
 mesh = SubResource("ArrayMesh_wvhke")
 
-[node name="cable_3punta" type="MeshInstance3D" parent="Node3" unique_id=1263796530]
-transform = Transform3D(40, 0, 0, 0, -1.7881393e-06, 29.999998, 0, -14.999999, -3.5762787e-06, 0.04210311, -0.21435511, 0)
+[node name="Anclaje" type="Marker3D" parent="Amarillo" unique_id=1505095816]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -2.4688325, -0.5420499, 0.46461427)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Amarillo" unique_id=554298974]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Amarillo/StaticBody3D" unique_id=87443494]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0553393, -0.54012394, 0.46015632)
+shape = SubResource("SphereShape3D_pfr8e")
+
+[node name="cable_3punta" type="MeshInstance3D" parent="Amarillo/StaticBody3D" unique_id=1263796530]
+transform = Transform3D(400, 0, 0, 0, -1.7881393e-05, 299.99997, 0, -149.99998, -3.5762787e-05, 0.42103112, -2.143551, 0)
 mesh = SubResource("ArrayMesh_n3rds")
 
-[node name="Node4" type="Node" parent="." unique_id=230954328]
+[node name="Azul" type="Node3D" parent="." unique_id=1385030263 node_paths=PackedStringArray("Anclaje", "Cilindro", "Punta")]
+script = ExtResource("1_txlmp")
+Anclaje = NodePath("Anclaje")
+Cilindro = NodePath("cable_4")
+Punta = NodePath("StaticBody3D/cable_4punta")
 
-[node name="cable_4" type="MeshInstance3D" parent="Node4" unique_id=1915862190]
-transform = Transform3D(40, 0, 0, 0, -1.7881393e-06, 29.999998, 0, -14.999999, -3.5762787e-06, 0.04210311, -0.31894687, 0)
+[node name="cable_4" type="MeshInstance3D" parent="Azul" unique_id=1915862190]
+transform = Transform3D(400, 0, 0, 0, -1.7881393e-05, 299.99997, 0, -149.99998, -3.5762787e-05, 0.42103112, -3.1894686, 0)
 mesh = SubResource("ArrayMesh_cieei")
 
-[node name="cable_4punta" type="MeshInstance3D" parent="Node4" unique_id=636777122]
-transform = Transform3D(40, 0, 0, 0, -1.7881393e-06, 29.999998, 0, -14.999999, -3.5762787e-06, 0.04210311, -0.31894687, 0)
+[node name="Anclaje" type="Marker3D" parent="Azul" unique_id=626565900]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -2.4688325, -1.6033745, 0.46461362)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Azul" unique_id=1961686274]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Azul/StaticBody3D" unique_id=1441490012]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0553393, -1.5997767, 0.46015632)
+shape = SubResource("SphereShape3D_pfr8e")
+
+[node name="cable_4punta" type="MeshInstance3D" parent="Azul/StaticBody3D" unique_id=636777122]
+transform = Transform3D(400, 0, 0, 0, -1.7881393e-05, 299.99997, 0, -149.99998, -3.5762787e-05, 0.42103112, -3.1894686, 0)
 mesh = SubResource("ArrayMesh_fa7ru")
+
+[node name="StaticBody3D" type="Node3D" parent="." unique_id=1761250301]
+transform = Transform3D(10.052465, 0, 0, 0, 10.052465, 0, 0, 0, 9.959108, 0, 0, 0.0073242486)
+
+[node name="Area3D" type="Area3D" parent="StaticBody3D" unique_id=2095178920]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D/Area3D" unique_id=1944255800]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24516797, 0.15950744, 0.045102708)
+shape = SubResource("SphereShape3D_aqk1y")
+
+[node name="Area3D2" type="Area3D" parent="StaticBody3D" unique_id=1802736072]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D/Area3D2" unique_id=1504015468]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24516797, 0.054614387, 0.045102708)
+shape = SubResource("SphereShape3D_aqk1y")
+
+[node name="Area3D3" type="Area3D" parent="StaticBody3D" unique_id=322457337]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D/Area3D3" unique_id=2052255881]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24516797, -0.054911666, 0.045102708)
+shape = SubResource("SphereShape3D_aqk1y")
+
+[node name="Area3D4" type="Area3D" parent="StaticBody3D" unique_id=1684462512]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D/Area3D4" unique_id=1277490582]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24516797, -0.1590227, 0.045102708)
+shape = SubResource("SphereShape3D_aqk1y")
+
+[node name="Interacción" type="StaticBody3D" parent="." unique_id=425348990]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interacción" unique_id=1165047350]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.009979308, 0.007415712, -1.0235094)
+shape = SubResource("BoxShape3D_aib85")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=580023688]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.565882)
+fov = 46.0426
