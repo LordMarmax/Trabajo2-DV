@@ -10,35 +10,61 @@ public partial class ArrastrePalanca : Node
 
     public bool EstaArrastrando => _palancaActual != null;
 
+
     public bool IntentarIniciarArrastre()
     {
+        GD.Print("=== INICIO DE DETECCIÓN ===");
+
         if (RayCast == null)
         {
-            GD.PushWarning("ArrastrePalanca: falta asignar el RayCast.");
+            GD.PrintErr("ERROR: RayCast no asignado.");
             return false;
         }
+
+        GD.Print("RayCast encontrado: ", RayCast.Name);
 
         RayCast.ForceRaycastUpdate();
 
         if (!RayCast.IsColliding())
+        {
+            GD.Print("RayCast no detecta ningún objeto.");
             return false;
+        }
 
         Node objeto = RayCast.GetCollider() as Node;
 
         if (objeto == null)
+        {
+            GD.Print("El collider no es un nodo.");
             return false;
+        }
 
-        // Busca el controlador en los padres de la manija.
+        GD.Print("Objeto detectado: ", objeto.Name);
+        GD.Print("Tipo: ", objeto.GetType().Name);
+        GD.Print("Ruta: ", objeto.GetPath());
+
         PalancaEnergia palanca = BuscarPalanca(objeto);
 
-        if (palanca == null || palanca.EstaBloqueada)
+        if (palanca == null)
+        {
+            GD.Print("No se encontró PalancaEnergia en los padres.");
             return false;
+        }
+
+        GD.Print("Palanca encontrada: ", palanca.Name);
+
+        if (palanca.EstaBloqueada)
+        {
+            GD.Print("La palanca está bloqueada.");
+            return false;
+        }
 
         _palancaActual = palanca;
 
         GD.Print("Arrastre de palanca iniciado.");
         return true;
     }
+
 
     public void Arrastrar(Vector2 movimientoMouse)
     {

@@ -10,6 +10,9 @@ public partial class PalancaEnergia : Node3D
     [Export] public float AnguloInicial = 0f;
     [Export] public float AnguloFinal = 65f;
 
+    [Export(PropertyHint.Range, "0.01,1.0,0.01")]
+    public float SensibilidadArrastre = 0.15f;
+
     private float _anguloActual;
     private bool _bloqueada = false;
 
@@ -25,29 +28,29 @@ public partial class PalancaEnergia : Node3D
         );
     }
     public override void _Process(double delta)
-{
-    float movimiento = 0f;
-
-    if (Input.IsKeyPressed(Key.Up))
-        movimiento = -1f;
-
-    if (Input.IsKeyPressed(Key.Down))
-        movimiento = 1f;
-
-    if (movimiento != 0f)
     {
-        Arrastrar(
-            movimiento * 200f * (float)delta
-        );
+        float movimiento = 0f;
+
+        if (Input.IsKeyPressed(Key.Up))
+            movimiento = -1f;
+
+        if (Input.IsKeyPressed(Key.Down))
+            movimiento = 1f;
+
+        if (movimiento != 0f)
+        {
+            Arrastrar(
+                movimiento * 200f * (float)delta
+            );
+        }
     }
-}
 
     public void Arrastrar(float desplazamientoVertical)
     {
         if (_bloqueada)
             return;
 
-        _anguloActual += desplazamientoVertical;
+        _anguloActual += desplazamientoVertical * SensibilidadArrastre;
 
         _anguloActual = Mathf.Clamp(
             _anguloActual,

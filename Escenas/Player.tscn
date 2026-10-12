@@ -32,7 +32,7 @@ transform = Transform3D(1, 0, 0, 0, 0.9999993, 0.0012080508, 0, -0.0012080508, 0
 
 [node name="RayCastAtaque" type="RayCast3D" parent="PivoteCamera" unique_id=471006944]
 transform = Transform3D(1.359, 0, 0, 0, -1.2995396e-07, -1.195, 0, 2.973, -5.2235112e-08, 0, 0, 0)
-collision_mask = 4
+collision_mask = 5
 
 [node name="SpotLight3D" type="SpotLight3D" parent="PivoteCamera" unique_id=207461778]
 light_color = Color(0.9999985, 0.9986066, 0.46295452, 1)
