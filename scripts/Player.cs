@@ -8,6 +8,8 @@ public partial class Player : CharacterBody3D
 	[Export] public float MouseSensitivity = 0.003f;
 	[Export] public float JumpVelocity = 4.5f;
 
+	[Export] public ArrastrePalanca Arrastre;
+
 	private RayCast3D rayCastAtaque;
 	public float Gravity = ProjectSettings.GetSetting("physics/3d/default_gravity").AsSingle();
 
@@ -89,20 +91,54 @@ public partial class Player : CharacterBody3D
 
 	}
 
+
+
 	public override void _Input(InputEvent @event)
 	{
-		if (Input.IsActionJustPressed("interact"))
+		// Iniciar o finalizar arrastre.
+		if (@event is InputEventMouseButton boton &&
+			boton.ButtonIndex == MouseButton.Left)
 		{
+			if (boton.Pressed)
+			{
+				if (Arrastre != null &&
+					Arrastre.IntentarIniciarArrastre())
+				{
+					return;
+				}
+			}
+			else
+			{
+				Arrastre?.FinalizarArrastre();
+			}
+		}
+
+		// Arrastrar la palanca.
+		if (@event is InputEventMouseMotion movimiento &&
+			Arrastre != null &&
+			Arrastre.EstaArrastrando)
+		{
+			Arrastre.Arrastrar(movimiento.Relative);
+		}
+
+		// Interacción convencional.
+		if (@event.IsActionPressed("interact") &&
+			!@event.IsEcho())
+		{
+			// No interactuar con otros objetos durante el arrastre.
+			if (Arrastre != null && Arrastre.EstaArrastrando)
+				return;
+
 			if (Grabber == null)
 			{
 				GD.PushError("ERROR: Grabber es NULL.");
 				return;
 			}
 
-			GD.Print("Grabber encontrado correctamente.");
 			Grabber.Interact();
 		}
 	}
+
 
 
 }
