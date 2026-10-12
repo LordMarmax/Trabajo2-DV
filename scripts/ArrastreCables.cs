@@ -6,6 +6,7 @@ public partial class ArrastreCables : Node3D
     [Export] public PuzzleCables Puzzle;
     [Export] public Camera3D Camara;
     [Export] public CableFlexible[] Cables;
+    [Export] public ConectorCable[] Conectores;
 
     // Capa de colisión de las puntas.
     [Export(PropertyHint.Layers3DPhysics)]
@@ -68,6 +69,9 @@ public partial class ArrastreCables : Node3D
 
         foreach (CableFlexible cable in Cables)
         {
+            if (cable == null || cable.EstaConectado)
+                continue;
+
             if (cable.Punta == cuerpo)
             {
                 cableActivo = cable;
@@ -133,14 +137,88 @@ public partial class ArrastreCables : Node3D
         );
     }
 
+
     private void FinalizarArrastre()
     {
         if (cableActivo == null)
             return;
 
-        GD.Print("Cable soltado: " +
-            cableActivo.Name);
-
+        CableFlexible cable = cableActivo;
         cableActivo = null;
+
+        // Posición exacta del punto de unión
+        // de la punta móvil.
+        Vector3 posicionPunta = cable.Union.GlobalPosition;
+
+        foreach (ConectorCable conector in Conectores)
+        {
+            if (conector == null)
+                continue;
+
+
+            bool dentro = conector.ContienePunto(posicionPunta);
+
+            float distancia = posicionPunta.DistanceTo(
+                conector.ObtenerPosicionConexion()
+            );
+
+            GD.Print(
+                $"Cable: {cable.Name} | " +
+                $"Conector: {conector.Name} | " +
+                $"Distancia: {distancia:F3} | " +
+                $"Dentro: {dentro} | " +
+                $"Color cable: {cable.ColorCable} | " +
+                $"Color conector: {conector.Color}"
+            );
+
+            if (!dentro)
+                continue;
+
+
+            // El cable está sobre un conector.
+            if (conector.Color == cable.ColorCable)
+            {
+                cable.Conectar(conector);
+
+                GD.Print(
+                    $"Conexión correcta: {cable.Name}"
+                );
+
+                ComprobarPuzzleCompleto();
+                return;
+            }
+
+            // Está sobre un conector incorrecto.
+            GD.Print(
+                $"Conexión incorrecta: {cable.Name}"
+            );
+
+            cable.Desconectar();
+            return;
+        }
+
+        // La punta no está dentro de ningún conector.
+        GD.Print(
+            $"Cable {cable.Name} fuera de las áreas. Regresando."
+        );
+
+        cable.Desconectar();
     }
+
+
+    private void ComprobarPuzzleCompleto()
+    {
+        if (Cables == null || Cables.Length == 0)
+            return;
+
+        foreach (CableFlexible cable in Cables)
+        {
+            if (cable == null || !cable.EstaConectado)
+                return;
+        }
+
+        GD.Print("¡Puzzle de cables completado!");
+    }
+
+
 }

@@ -180,6 +180,10 @@ public partial class Player : CharacterBody3D
             if (IntentarInteractuarPuzzle())
                 return;
 
+            // Comprobar si apuntamos a un interruptor.
+            if (IntentarInteractuarInterruptor())
+                return;
+
             // Si no es una caja, mantener
             // las interacciones existentes.
             if (Grabber == null)
@@ -223,5 +227,30 @@ public partial class Player : CharacterBody3D
         GD.Print("Jugador interactuando con caja de cables.");
 
         return true;
+    }
+    private bool IntentarInteractuarInterruptor()
+    {
+        rayCastAtaque.ForceRaycastUpdate();
+
+        if (!rayCastAtaque.IsColliding())
+            return false;
+
+        Node objeto = rayCastAtaque.GetCollider() as Node;
+
+        if (objeto == null)
+            return false;
+
+        // El collider pertenece al StaticBody3D
+        // que contiene InterruptorElectrico.
+        if (objeto is InterruptorElectrico interruptor)
+        {
+            interruptor.Interactuar();
+
+            GD.Print("Jugador pulsó un interruptor.");
+
+            return true;
+        }
+
+        return false;
     }
 }

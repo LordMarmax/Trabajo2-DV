@@ -462,6 +462,7 @@ Anclaje = NodePath("Anclaje")
 Cilindro = NodePath("cable_2")
 Punta = NodePath("Punta_2")
 Union = NodePath("Punta_2/Union")
+ColorCable = 1
 
 [node name="Anclaje" type="Marker3D" parent="Rojo" unique_id=17148771]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -2.4688325, 0.5511599, 0.4646143)
@@ -491,6 +492,7 @@ Anclaje = NodePath("Anclaje")
 Cilindro = NodePath("cable_3")
 Punta = NodePath("Punta_3")
 Union = NodePath("Punta_3/Union")
+ColorCable = 2
 
 [node name="Anclaje" type="Marker3D" parent="Amarillo" unique_id=1505095816]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -2.4688325, -0.5420499, 0.46461427)
@@ -520,6 +522,7 @@ Anclaje = NodePath("Anclaje")
 Cilindro = NodePath("cable_4")
 Punta = NodePath("Punta_4")
 Union = NodePath("Punta_4/Union")
+ColorCable = 3
 
 [node name="Anclaje" type="Marker3D" parent="Azul" unique_id=626565900]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -2.4688325, -1.6033745, 0.46461362)
@@ -543,31 +546,41 @@ mesh = SubResource("ArrayMesh_fa7ru")
 [node name="Union" type="Marker3D" parent="Azul/Punta_4" unique_id=910848537]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -2.0570793, -1.6053011, 0.46532154)
 
-[node name="StaticBody3D" type="Node3D" parent="." unique_id=1761250301]
+[node name="Conectores" type="Node3D" parent="." unique_id=1761250301]
 transform = Transform3D(10.052465, 0, 0, 0, 10.052465, 0, 0, 0, 9.959108, 0, 0, 0.0073242486)
 
-[node name="Area3D" type="Area3D" parent="StaticBody3D" unique_id=2095178920]
+[node name="Area3D" type="Area3D" parent="Conectores" unique_id=2095178920 node_paths=PackedStringArray("ZonaConexion")]
 script = ExtResource("3_jbypv")
+Color = 1
+ZonaConexion = NodePath("CollisionShape3D")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D/Area3D" unique_id=1944255800]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Conectores/Area3D" unique_id=1944255800]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24516797, 0.15950744, 0.045102708)
 shape = SubResource("SphereShape3D_aqk1y")
 
-[node name="Area3D2" type="Area3D" parent="StaticBody3D" unique_id=1802736072]
+[node name="Area3D2" type="Area3D" parent="Conectores" unique_id=1802736072 node_paths=PackedStringArray("ZonaConexion")]
+script = ExtResource("3_jbypv")
+Color = 2
+ZonaConexion = NodePath("CollisionShape3D")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D/Area3D2" unique_id=1504015468]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Conectores/Area3D2" unique_id=1504015468]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24562109, 0.054614387, 0.045102708)
 shape = SubResource("SphereShape3D_aqk1y")
 
-[node name="Area3D3" type="Area3D" parent="StaticBody3D" unique_id=322457337]
+[node name="Area3D3" type="Area3D" parent="Conectores" unique_id=322457337 node_paths=PackedStringArray("ZonaConexion")]
+script = ExtResource("3_jbypv")
+ZonaConexion = NodePath("CollisionShape3D")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D/Area3D3" unique_id=2052255881]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Conectores/Area3D3" unique_id=2052255881]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24607421, -0.054911666, 0.045102708)
 shape = SubResource("SphereShape3D_aqk1y")
 
-[node name="Area3D4" type="Area3D" parent="StaticBody3D" unique_id=1684462512]
+[node name="Area3D4" type="Area3D" parent="Conectores" unique_id=1684462512 node_paths=PackedStringArray("ZonaConexion")]
+script = ExtResource("3_jbypv")
+Color = 3
+ZonaConexion = NodePath("CollisionShape3D")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D/Area3D4" unique_id=1277490582]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Conectores/Area3D4" unique_id=1277490582]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24562109, -0.1590227, 0.045102708)
 shape = SubResource("SphereShape3D_aqk1y")
 
@@ -581,8 +594,9 @@ shape = SubResource("BoxShape3D_aib85")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.565882)
 fov = 46.0426
 
-[node name="Node3D" type="Node3D" parent="." unique_id=708078000 node_paths=PackedStringArray("Puzzle", "Camara", "Cables")]
+[node name="Node3D" type="Node3D" parent="." unique_id=708078000 node_paths=PackedStringArray("Puzzle", "Camara", "Cables", "Conectores")]
 script = ExtResource("3_al2d1")
 Puzzle = NodePath("..")
 Camara = NodePath("../Camera3D")
 Cables = [NodePath("../Verde"), NodePath("../Rojo"), NodePath("../Amarillo"), NodePath("../Azul")]
+Conectores = [NodePath("../Conectores/Area3D"), NodePath("../Conectores/Area3D2"), NodePath("../Conectores/Area3D3"), NodePath("../Conectores/Area3D4")]

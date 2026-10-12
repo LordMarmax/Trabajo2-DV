@@ -2,6 +2,7 @@
 
 [ext_resource type="Material" uid="uid://foheokg3he6j" path="res://Materiales/new_standard_material_3d.tres" id="1_o1lvq"]
 [ext_resource type="Texture2D" uid="uid://cxvnqk0nsjg74" path="res://Texturas/textura_rayo.png" id="2_1hl3b"]
+[ext_resource type="Script" uid="uid://b03l4jwqirfc1" path="res://scripts/InterruptorElectrico.cs" id="3_uq0wm"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cqvdh"]
 resource_name = "mat_base"
@@ -213,6 +214,44 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_dkvfr")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ba23t"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_3hnce"]
+_surfaces = [{
+"aabb": AABB(-0.01580366, -0.011613603, -0.001564154, 0.0316538, 0.022603014, 1e-05),
+"format": 34359742465,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAgADAAAA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("KNiBPO8MNDxNBM26KNiBPPtGPrxMBM26rXaBvPtGPrxMBM26rXaBvO8MNDxNBM26")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_17sau"]
+resource_name = "Plane"
+_surfaces = [{
+"aabb": AABB(-0.01580366, -0.011613603, -0.001564154, 0.0316538, 0.022603014, 1e-05),
+"attribute_data": PackedByteArray("AACAPwAAAAAAAIA/AACAPwAAAAAAAIA/AAAAAAAAAAA="),
+"format": 34359742487,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAgADAAAA"),
+"material": SubResource("StandardMaterial3D_ba23t"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("KNiBPO8MNDxNBM26KNiBPPtGPrxMBM26rXaBvPtGPrxMBM26rXaBvO8MNDxNBM26/3//f////7//f/9/////v/9//3////+//3//f////78=")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_3hnce")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yg05w"]
+albedo_texture = ExtResource("2_1hl3b")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pg8tl"]
+size = Vector3(0.345932, 0.6211548, 0.11999512)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7jcr2"]
 resource_name = "mat_interruptor"
 vertex_color_use_as_albedo = true
@@ -357,41 +396,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_bckjg")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ba23t"]
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_3hnce"]
-_surfaces = [{
-"aabb": AABB(-0.01580366, -0.011613603, -0.001564154, 0.0316538, 0.022603014, 1e-05),
-"format": 34359742465,
-"index_count": 6,
-"index_data": PackedByteArray("AAABAAIAAgADAAAA"),
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 4,
-"vertex_data": PackedByteArray("KNiBPO8MNDxNBM26KNiBPPtGPrxMBM26rXaBvPtGPrxMBM26rXaBvO8MNDxNBM26")
-}]
-blend_shape_mode = 0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_17sau"]
-resource_name = "Plane"
-_surfaces = [{
-"aabb": AABB(-0.01580366, -0.011613603, -0.001564154, 0.0316538, 0.022603014, 1e-05),
-"attribute_data": PackedByteArray("AACAPwAAAAAAAIA/AACAPwAAAAAAAIA/AAAAAAAAAAA="),
-"format": 34359742487,
-"index_count": 6,
-"index_data": PackedByteArray("AAABAAIAAgADAAAA"),
-"material": SubResource("StandardMaterial3D_ba23t"),
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 4,
-"vertex_data": PackedByteArray("KNiBPO8MNDxNBM26KNiBPPtGPrxMBM26rXaBvPtGPrxMBM26rXaBvO8MNDxNBM26/3//f////7//f/9/////v/9//3////+//3//f////78=")
-}]
-blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_3hnce")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yg05w"]
-albedo_texture = ExtResource("2_1hl3b")
-
 [node name="caja_interruptores" type="Node3D" unique_id=1344368517]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
 
@@ -419,23 +423,71 @@ transform = Transform3D(13.7101755, 3.044271e-15, -6.333349e-16, 3.0442703e-15, 
 mesh = SubResource("ArrayMesh_cl02j")
 surface_material_override/0 = ExtResource("1_o1lvq")
 
-[node name="interruptor_1" type="MeshInstance3D" parent="." unique_id=1432817398]
-transform = Transform3D(14.526172, 0, 0, 0, -3.0593162e-07, 29.955267, 0, -2.5663402, -3.5709463e-06, -0.94446015, 0.41780698, 0.49842557)
-mesh = SubResource("ArrayMesh_mmfnt")
-
-[node name="interruptor_2" type="MeshInstance3D" parent="." unique_id=1430394732]
-transform = Transform3D(14.526172, 0, 0, 0, -3.0593162e-07, 29.955267, 0, -2.5663402, -3.5709463e-06, -0.2993835, 0.41780698, 0.49842557)
-mesh = SubResource("ArrayMesh_dpgqm")
-
-[node name="interruptor_3" type="MeshInstance3D" parent="." unique_id=60083002]
-transform = Transform3D(14.526172, 0, 0, 0, -3.0593162e-07, 29.955267, 0, -2.5663402, -3.5709463e-06, 0.30719528, 0.41780698, 0.49842557)
-mesh = SubResource("ArrayMesh_f5ioo")
-
-[node name="interruptor_4" type="MeshInstance3D" parent="." unique_id=217365698]
-transform = Transform3D(14.526172, 0, 0, 0, -3.0593162e-07, 29.955267, 0, -2.5663402, -3.5709463e-06, 0.95227206, 0.41780698, 0.49842557)
-mesh = SubResource("ArrayMesh_asyfj")
-
 [node name="panelcito" type="MeshInstance3D" parent="." unique_id=1099008440]
 transform = Transform3D(34.09648, 0, 0, 0, 34.09648, -1.4904044e-06, 0, 1.4904044e-06, 34.09648, 0, -1.0140953, 0.4218637)
 mesh = SubResource("ArrayMesh_17sau")
 surface_material_override/0 = SubResource("StandardMaterial3D_yg05w")
+
+[node name="InterruptorInteractivo_1" type="StaticBody3D" parent="." unique_id=2020908569 node_paths=PackedStringArray("InterPivote3D", "Luz")]
+script = ExtResource("3_uq0wm")
+InterPivote3D = NodePath("InterPivote3D")
+Luz = NodePath("../Luz_1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InterruptorInteractivo_1" unique_id=851087765]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, -0.94232875, 0.4256895, 0.5610959)
+shape = SubResource("BoxShape3D_pg8tl")
+
+[node name="InterPivote3D" type="Node3D" parent="InterruptorInteractivo_1" unique_id=1285393099]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, -0.95600337, 0.42531258, 0.49432597)
+
+[node name="interruptor_1" type="MeshInstance3D" parent="InterruptorInteractivo_1/InterPivote3D" unique_id=1432817398]
+transform = Transform3D(14.526174, 0, 0, 0, -1.1217831e-07, 29.955276, 0, -2.5663407, -1.3093867e-06, 0.011543155, -0.0075056553, 0.0040996075)
+mesh = SubResource("ArrayMesh_mmfnt")
+
+[node name="InterruptorInteractivo_2" type="StaticBody3D" parent="." unique_id=1121011330 node_paths=PackedStringArray("InterPivote3D", "Luz")]
+script = ExtResource("3_uq0wm")
+InterPivote3D = NodePath("InterPivote3D")
+Luz = NodePath("../Luz_2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InterruptorInteractivo_2" unique_id=690496283]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, -0.29755297, 0.4256895, 0.5610959)
+shape = SubResource("BoxShape3D_pg8tl")
+
+[node name="InterPivote3D" type="Node3D" parent="InterruptorInteractivo_2" unique_id=483612874]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, -0.2986108, 0.42531258, 0.49432597)
+
+[node name="interruptor_2" type="MeshInstance3D" parent="InterruptorInteractivo_2/InterPivote3D" unique_id=1430394732]
+transform = Transform3D(14.526174, 0, 0, 0, -1.1217831e-07, 29.955273, 0, -2.5663407, -1.3093866e-06, -0.000772655, -0.0075056553, 0.0040996075)
+mesh = SubResource("ArrayMesh_dpgqm")
+
+[node name="InterruptorInteractivo_3" type="StaticBody3D" parent="." unique_id=381154081 node_paths=PackedStringArray("InterPivote3D", "Luz")]
+script = ExtResource("3_uq0wm")
+InterPivote3D = NodePath("InterPivote3D")
+Luz = NodePath("../Luz_3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InterruptorInteractivo_3" unique_id=686796838]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 0.3239971, 0.4256895, 0.5610959)
+shape = SubResource("BoxShape3D_pg8tl")
+
+[node name="InterPivote3D" type="Node3D" parent="InterruptorInteractivo_3" unique_id=452146527]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 0.3082131, 0.42531258, 0.49432597)
+
+[node name="interruptor_3" type="MeshInstance3D" parent="InterruptorInteractivo_3/InterPivote3D" unique_id=60083002]
+transform = Transform3D(14.526174, 0, 0, 0, -3.0593165e-07, 29.955273, 0, -2.5663407, -3.5709468e-06, -0.0010178685, -0.0075056553, 0.0040996075)
+mesh = SubResource("ArrayMesh_f5ioo")
+
+[node name="InterruptorInteractivo_4" type="StaticBody3D" parent="." unique_id=136952316 node_paths=PackedStringArray("InterPivote3D", "Luz")]
+script = ExtResource("3_uq0wm")
+InterPivote3D = NodePath("InterPivote3D")
+Luz = NodePath("../Luz_4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InterruptorInteractivo_4" unique_id=1254998036]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 0.9443614, 0.4256895, 0.5610959)
+shape = SubResource("BoxShape3D_pg8tl")
+
+[node name="InterPivote3D" type="Node3D" parent="InterruptorInteractivo_4" unique_id=684892674]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 0.9554921, 0.42531258, 0.49432597)
+
+[node name="interruptor_4" type="MeshInstance3D" parent="InterruptorInteractivo_4/InterPivote3D" unique_id=217365698]
+transform = Transform3D(14.526174, 0, 0, 0, -3.0593165e-07, 29.955273, 0, -2.5663407, -3.5709468e-06, -0.003220141, -0.0075056553, 0.0040996075)
+mesh = SubResource("ArrayMesh_asyfj")

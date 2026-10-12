@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://u0hm67t1wnp0" path="res://Escenas/caja_interruptores.tscn" id="9_yg05w"]
 [ext_resource type="PackedScene" uid="uid://b15vgk6auq6wo" path="res://Escenas/palanca_energia.tscn" id="10_5cwmu"]
 [ext_resource type="PackedScene" uid="uid://cogh4eoxpil13" path="res://Escenas/Caja_Cables.tscn" id="11_is13a"]
+[ext_resource type="Script" uid="uid://cxh2iw42nl510" path="res://scripts/CentralElectricaManager.cs" id="14_mbule"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_aib85"]
 
@@ -193,3 +194,6 @@ offset_bottom = -1.0
 
 [node name="casita_v3" parent="." unique_id=1345732476 instance=ExtResource("9_pcg50")]
 transform = Transform3D(-8.742278e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, -8.742278e-09, -23.365679, -0.27396524, 21.615131)
+
+[node name="CentralElectricaManager" type="Node" parent="." unique_id=1876839329]
+script = ExtResource("14_mbule")
