@@ -78,7 +78,6 @@ radius = 0.24951172
 
 [node name="FusiblePortable" type="RigidBody3D" unique_id=1932762055]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
-disable_mode = 2
 collision_layer = 4
 script = ExtResource("1_cbuhq")
 
