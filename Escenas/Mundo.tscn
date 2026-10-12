@@ -13,7 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://u0hm67t1wnp0" path="res://Escenas/caja_interruptores.tscn" id="9_yg05w"]
 [ext_resource type="PackedScene" uid="uid://b15vgk6auq6wo" path="res://Escenas/palanca_energia.tscn" id="10_5cwmu"]
 [ext_resource type="PackedScene" uid="uid://cogh4eoxpil13" path="res://Escenas/Caja_Cables.tscn" id="11_is13a"]
-[ext_resource type="Script" uid="uid://cxh2iw42nl510" path="res://scripts/CentralElectricaManager.cs" id="14_mbule"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_aib85"]
 
@@ -171,7 +170,7 @@ transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -18.352667, 3.403369
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -21.961515, 0.1900742, 19.712307)
 
 [node name="Fusible4" parent="Objetos/Fusibles" unique_id=186890776 instance=ExtResource("7_pcg50")]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -16.903606, 0.20411628, 20.69426)
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -16.903606, 0.20411628, 20.797592)
 
 [node name="FusiblePortable2" parent="Objetos/Fusibles" unique_id=1932762055 instance=ExtResource("7_pcg50")]
 transform = Transform3D(0.25, 0, 0, 0, 0.023522241, 0.24889095, 0, -0.24889095, 0.023522241, -26.357763, 2.07834, 29.09956)
