@@ -143,6 +143,7 @@ transform = Transform3D(-2.836729e-06, -1.4626884e-06, -44.525295, -0.92753166, 
 mesh = SubResource("ArrayMesh_4ifty")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Node3D" unique_id=943573506]
+collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/StaticBody3D" unique_id=872061008]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0.0054931343, 0.6931314, 0.037977457)

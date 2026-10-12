@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cvnvd0evchgd7" path="res://scripts/Player.cs" id="1_83e7o"]
 [ext_resource type="Script" uid="uid://dqitf004tjid6" path="res://scripts/ObjectGrabber.cs" id="2_wwpud"]
+[ext_resource type="Script" uid="uid://dpgp2mds0q4fb" path="res://scripts/ArrastrePalanca.cs" id="3_c1rio"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ktotb"]
 
@@ -10,11 +11,12 @@ albedo_color = Color(0, 0.39999986, 1, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wwpud"]
 
-[node name="CharacterBody3D" type="CharacterBody3D" unique_id=1124762868 node_paths=PackedStringArray("Grabber")]
+[node name="CharacterBody3D" type="CharacterBody3D" unique_id=1124762868 node_paths=PackedStringArray("Grabber", "Arrastre")]
 script = ExtResource("1_83e7o")
 Grabber = NodePath("ObjectGrabber")
 Speed = 4.0
 JumpVelocity = 4.0
+Arrastre = NodePath("ArrastrePalanca")
 
 [node name="Torso" type="MeshInstance3D" parent="." unique_id=1730315614]
 mesh = SubResource("CapsuleMesh_ktotb")
@@ -45,3 +47,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.001739502, -1.4400069)
 script = ExtResource("2_wwpud")
 InteractionRay = NodePath("../PivoteCamera/RayCastAtaque")
 HoldPoint = NodePath("../PivoteCamera/HoldPoint")
+
+[node name="ArrastrePalanca" type="Node" parent="." unique_id=1462138802 node_paths=PackedStringArray("RayCast")]
+script = ExtResource("3_c1rio")
+RayCast = NodePath("../PivoteCamera/RayCastAtaque")
