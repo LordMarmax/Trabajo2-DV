@@ -4,55 +4,147 @@ public partial class CableFlexible : Node3D
 {
 	[Export] public Marker3D Anclaje;
 	[Export] public MeshInstance3D Cilindro;
-	[Export] public Node3D Punta;
+	[Export] public StaticBody3D Punta;
+	[Export] public Marker3D Union;
 
-	[Export] public float LongitudOriginal = 1.0f;
+	private Transform3D transformInicialCilindro;
+	private Transform3D transformInicialPunta;
 
-	private Vector3 escalaOriginal;
+	private Vector3 direccionInicial;
+	private float distanciaInicial;
+
+	private Basis orientacionInicial;
+	private Vector3 escalaInicial;
+
+	private Vector3 centroGeometricoLocal;
+	private float longitudGeometrica;
+
+	[Export] public ConectorCable.ColorCable ColorCable;
+
+	public bool EstaConectado { get; private set; } = false;
 
 	public override void _Ready()
 	{
-		escalaOriginal = Cilindro.Scale;
+		// Guardar las transformaciones originales.
+		transformInicialCilindro = Cilindro.GlobalTransform;
+		transformInicialPunta = Punta.GlobalTransform;
+
+		Basis basisInicial = Cilindro.GlobalBasis;
+
+		escalaInicial = basisInicial.Scale;
+		orientacionInicial = basisInicial.Orthonormalized();
+
+		Vector3 inicio = Anclaje.GlobalPosition;
+		Vector3 fin = Union.GlobalPosition;
+
+		direccionInicial = (fin - inicio).Normalized();
+		distanciaInicial = inicio.DistanceTo(fin);
+
+		// El eje longitudinal del cilindro es Z.
+		Aabb dimensiones = Cilindro.Mesh.GetAabb();
+
+		centroGeometricoLocal = dimensiones.GetCenter();
+
+		longitudGeometrica =
+			dimensiones.Size.Z * Mathf.Abs(escalaInicial.Z);
+
+		GD.Print(
+			$"Cable {Name}: longitud inicial = {distanciaInicial}, " +
+			$"longitud geométrica = {longitudGeometrica}"
+		);
 	}
 
-	public void MoverPunta(Vector3 destinoGlobal)
+	public void MoverPunta(Vector3 destinoUnion)
 	{
 		Vector3 inicio = Anclaje.GlobalPosition;
-		Vector3 direccion = destinoGlobal - inicio;
+		Vector3 direccion = destinoUnion - inicio;
 
-		float longitud = direccion.Length();
+		float distancia = direccion.Length();
 
-		if (longitud < 0.001f)
+		if (distancia < 0.001f ||
+			longitudGeometrica < 0.001f)
 			return;
 
-		// La punta sigue el destino.
-		Punta.GlobalPosition = destinoGlobal;
-
-		// El cilindro se coloca entre ambos extremos.
-		Cilindro.GlobalPosition =
-			(inicio + destinoGlobal) / 2.0f;
-
-		// Orientamos el eje Y del cilindro hacia la punta.
-		Vector3 ejeY = direccion.Normalized();
-
-		Vector3 referencia = Mathf.Abs(ejeY.Dot(Vector3.Up)) > 0.99f
-			? Vector3.Forward
-			: Vector3.Up;
-
-		Vector3 ejeX = referencia.Cross(ejeY).Normalized();
-		Vector3 ejeZ = ejeX.Cross(ejeY).Normalized();
-
-		Cilindro.GlobalBasis = new Basis(
-			ejeX,
-			ejeY,
-			ejeZ
-		).Orthonormalized();
-
-		// Solo se estira el cilindro en su eje longitudinal.
-		Cilindro.Scale = new Vector3(
-			escalaOriginal.X,
-			escalaOriginal.Y * longitud / LongitudOriginal,
-			escalaOriginal.Z
+		// Calcular el giro respecto a la dirección inicial.
+		Quaternion giro = new Quaternion(
+			direccionInicial,
+			direccion.Normalized()
 		);
+
+		Basis basisGiro = new Basis(giro);
+
+		// ----------------------------------
+		// ROTACIÓN Y MOVIMIENTO DE LA PUNTA
+		// ----------------------------------
+
+		// Conservar su escala y orientación originales.
+		Basis nuevaBasisPunta =
+			basisGiro * transformInicialPunta.Basis;
+
+		Punta.GlobalBasis = nuevaBasisPunta;
+
+		// Mover la punta DESPUÉS de rotarla.
+		// Union debe coincidir exactamente con destinoUnion.
+		Punta.GlobalPosition +=
+			destinoUnion - Union.GlobalPosition;
+
+		// ----------------------------------
+		// ROTACIÓN Y ESCALA DEL CILINDRO
+		// ----------------------------------
+
+		Basis nuevaOrientacion =
+			basisGiro * orientacionInicial;
+
+		Vector3 nuevaEscala = escalaInicial;
+
+		// Estirar únicamente sobre el eje Z local.
+		nuevaEscala.Z *= distancia / longitudGeometrica;
+
+		Basis nuevaBasis =
+			nuevaOrientacion.ScaledLocal(nuevaEscala);
+
+		// Centro entre el anclaje y la unión.
+		Vector3 centroDeseado =
+			(inicio + destinoUnion) * 0.5f;
+
+		// Compensar el centro geométrico de la malla.
+		Vector3 posicionOrigen =
+			centroDeseado -
+			nuevaBasis * centroGeometricoLocal;
+
+		Cilindro.GlobalTransform = new Transform3D(
+			nuevaBasis,
+			posicionOrigen
+		);
+	}
+
+	public void RestaurarPunta()
+	{
+		Punta.GlobalTransform = transformInicialPunta;
+		Cilindro.GlobalTransform = transformInicialCilindro;
+	}
+
+	public void Conectar(ConectorCable conector)
+	{
+		if (EstaConectado)
+			return;
+
+		Vector3 destino =
+			conector.ObtenerPosicionConexion();
+
+		// Mover y orientar el cable hasta el conector.
+		MoverPunta(destino);
+
+		// Bloquear el cable.
+		EstaConectado = true;
+
+		GD.Print(
+			$"Cable {ColorCable} conectado correctamente."
+		);
+	}
+	public void Desconectar()
+	{
+		EstaConectado = false;
+		RestaurarPunta();
 	}
 }

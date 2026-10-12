@@ -1,145 +1,227 @@
+
 using Godot;
 using System;
 
 public partial class Player : CharacterBody3D
 {
-	[Export] public ObjectGrabber Grabber;
-	[Export] public float Speed = 5.0f;
-	[Export] public float MouseSensitivity = 0.003f;
-	[Export] public float JumpVelocity = 4.5f;
+    [Export] public ObjectGrabber Grabber;
+    [Export] public float Speed = 5.0f;
+    [Export] public float MouseSensitivity = 0.003f;
+    [Export] public float JumpVelocity = 4.5f;
 
-	[Export] public ArrastrePalanca Arrastre;
+    [Export] public ArrastrePalanca Arrastre;
 
-	private RayCast3D rayCastAtaque;
-	public float Gravity = ProjectSettings.GetSetting("physics/3d/default_gravity").AsSingle();
+    private RayCast3D rayCastAtaque;
 
-	private Node3D _pivote;
-	private Camera3D _camera;
-	public override void _Ready()
-	{
-		// Capturar el ratón en el centro de la pantalla
-		Input.MouseMode = Input.MouseModeEnum.Captured;
+    public float Gravity = ProjectSettings
+        .GetSetting("physics/3d/default_gravity")
+        .AsSingle();
 
-		// Buscamos los nodos correspondientes
-		_pivote = GetNode<Node3D>("PivoteCamera");
-		_camera = GetNode<Camera3D>("PivoteCamera/Camera3D");
-		rayCastAtaque = GetNode<RayCast3D>("PivoteCamera/RayCastAtaque");
-		_camera.MakeCurrent();
-	}
-	public override void _PhysicsProcess(double delta)
-	{
-		Vector3 velocity = Velocity;
+    private Node3D _pivote;
+    private Camera3D _camera;
 
-		// --- GRAVEDAD ---
-		if (!IsOnFloor())
-		{
-			velocity.Y -= Gravity * (float)delta;
-		}
+    // Minijuego de cables
+    private PuzzleCables puzzleActual;
 
-		// 2. --- LÓGICA DE SALTO (NUEVA) ---
-		// Si presionas la barra espaciadora ("ui_accept") y estás tocando el suelo, saltas
-		if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
-		{
-			velocity.Y = JumpVelocity;
-		}
+    private bool EstaEnPuzzle =>
+        puzzleActual != null &&
+        GodotObject.IsInstanceValid(puzzleActual) &&
+        puzzleActual.EstaAbierto;
 
+    public override void _Ready()
+    {
+        Input.MouseMode = Input.MouseModeEnum.Captured;
 
-		// --- MOVIMIENTO DE CÁMARA Y CUERPO POR RATÓN ---
-		if (Input.MouseMode == Input.MouseModeEnum.Captured)
-		{
-			Vector2 mouseSpeed = Input.GetLastMouseVelocity();
+        _pivote = GetNode<Node3D>("PivoteCamera");
+        _camera = GetNode<Camera3D>("PivoteCamera/Camera3D");
 
-			// 1. El mouse horizontal rota a TODO EL JUGADOR (Eje Y)
-			Vector3 jugadorRot = Rotation;
-			jugadorRot.Y -= mouseSpeed.X * MouseSensitivity * (float)delta;
-			Rotation = jugadorRot;
+        rayCastAtaque = GetNode<RayCast3D>(
+            "PivoteCamera/RayCastAtaque"
+        );
 
-			// 2. El mouse vertical rota SOLO AL PIVOTE (Eje X)
-			Vector3 pivoteRot = _pivote.Rotation;
-			pivoteRot.X -= mouseSpeed.Y * MouseSensitivity * (float)delta;
-			// Limitamos la mirada para no dar la vuelta completa verticalmente
-			//pivoteRot.X = Mathf.Clamp(pivoteRot.X, Mathf.DegToRad(-80), Mathf.DegToRad(80));
-			pivoteRot.X = Mathf.Clamp(pivoteRot.X, Mathf.DegToRad(-60), Mathf.DegToRad(80));
-			_pivote.Rotation = pivoteRot;
-		}
+        _camera.MakeCurrent();
+    }
 
-		// --- MOVIMIENTO INTELIGENTE EN BASE A HACIA DÓNEC MIRAS ---
-		Vector2 inputDir = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
+    public override void _PhysicsProcess(double delta)
+    {
+        // Bloquear movimiento durante el minijuego.
+        if (EstaEnPuzzle)
+        {
+            Velocity = Vector3.Zero;
+            return;
+        }
 
-		// 1. Calculamos la dirección cruda usando la orientación del cuerpo
-		Vector3 direction = (Transform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized();
+        Vector3 velocity = Velocity;
 
-		// 2. ¡EL TRUCO!: Forzamos que la dirección vertical sea estrictamente 0
-		// Esto evita que el personaje vuele o flote si miras hacia el techo/cielo
-		direction.Y = 0;
-		direction = direction.Normalized(); // Volvemos a normalizar el vector limpio
+        // GRAVEDAD
+        if (!IsOnFloor())
+        {
+            velocity.Y -= Gravity * (float)delta;
+        }
 
-		if (direction != Vector3.Zero)
-		{
-			velocity.X = direction.X * Speed;
-			velocity.Z = direction.Z * Speed;
-		}
-		else
-		{
-			velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
-			velocity.Z = Mathf.MoveToward(Velocity.Z, 0, Speed);
-		}
+        // SALTO
+        if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
+        {
+            velocity.Y = JumpVelocity;
+        }
 
+        // MOVIMIENTO DE CÁMARA
+        if (Input.MouseMode == Input.MouseModeEnum.Captured)
+        {
+            Vector2 mouseSpeed = Input.GetLastMouseVelocity();
 
-		Velocity = velocity;
-		MoveAndSlide();
+            // Rotación horizontal del jugador.
+            Vector3 jugadorRot = Rotation;
 
-	}
+            jugadorRot.Y -= mouseSpeed.X *
+                MouseSensitivity * (float)delta;
 
+            Rotation = jugadorRot;
 
+            // Rotación vertical de la cámara.
+            Vector3 pivoteRot = _pivote.Rotation;
 
-	public override void _Input(InputEvent @event)
-	{
-		// Iniciar o finalizar arrastre.
-		if (@event is InputEventMouseButton boton &&
-			boton.ButtonIndex == MouseButton.Left)
-		{
-			GD.Print("Se detecta click");
-			if (boton.Pressed)
-			{
-				if (Arrastre != null &&
-					Arrastre.IntentarIniciarArrastre())
-				{
-					return;
-				}
-			}
-			else
-			{
-				Arrastre?.FinalizarArrastre();
-			}
-		}
+            pivoteRot.X -= mouseSpeed.Y *
+                MouseSensitivity * (float)delta;
 
-		// Arrastrar la palanca.
-		if (@event is InputEventMouseMotion movimiento &&
-			Arrastre != null &&
-			Arrastre.EstaArrastrando)
-		{
-			Arrastre.Arrastrar(movimiento.Relative);
-		}
+            pivoteRot.X = Mathf.Clamp(
+                pivoteRot.X,
+                Mathf.DegToRad(-60),
+                Mathf.DegToRad(80)
+            );
 
-		// Interacción convencional.
-		if (@event.IsActionPressed("interact") &&
-			!@event.IsEcho())
-		{
-			// No interactuar con otros objetos durante el arrastre.
-			if (Arrastre != null && Arrastre.EstaArrastrando)
-				return;
+            _pivote.Rotation = pivoteRot;
+        }
 
-			if (Grabber == null)
-			{
-				GD.PushError("ERROR: Grabber es NULL.");
-				return;
-			}
+        // MOVIMIENTO DEL JUGADOR
+        Vector2 inputDir = Input.GetVector(
+            "ui_left",
+            "ui_right",
+            "ui_up",
+            "ui_down"
+        );
 
-			Grabber.Interact();
-		}
-	}
+        Vector3 direction = (
+            Transform.Basis *
+            new Vector3(inputDir.X, 0, inputDir.Y)
+        ).Normalized();
 
+        direction.Y = 0;
+        direction = direction.Normalized();
 
+        if (direction != Vector3.Zero)
+        {
+            velocity.X = direction.X * Speed;
+            velocity.Z = direction.Z * Speed;
+        }
+        else
+        {
+            velocity.X = Mathf.MoveToward(
+                Velocity.X, 0, Speed
+            );
 
+            velocity.Z = Mathf.MoveToward(
+                Velocity.Z, 0, Speed
+            );
+        }
+
+        Velocity = velocity;
+        MoveAndSlide();
+    }
+
+    public override void _Input(InputEvent @event)
+    {
+        // Mientras el puzzle esté abierto,
+        // no procesamos controles normales.
+        if (EstaEnPuzzle)
+            return;
+
+        // ARRASTRE DE PALANCA
+        if (@event is InputEventMouseButton boton &&
+            boton.ButtonIndex == MouseButton.Left)
+        {
+            GD.Print("Se detecta click");
+
+            if (boton.Pressed)
+            {
+                if (Arrastre != null &&
+                    Arrastre.IntentarIniciarArrastre())
+                {
+                    return;
+                }
+            }
+            else
+            {
+                Arrastre?.FinalizarArrastre();
+            }
+        }
+
+        if (@event is InputEventMouseMotion movimiento &&
+            Arrastre != null &&
+            Arrastre.EstaArrastrando)
+        {
+            Arrastre.Arrastrar(movimiento.Relative);
+        }
+
+        // INTERACCIÓN CON E
+        if (@event.IsActionPressed("interact") &&
+            !@event.IsEcho())
+        {
+            // Evitar interacciones mientras se arrastra
+            // una palanca.
+            if (Arrastre != null &&
+                Arrastre.EstaArrastrando)
+            {
+                return;
+            }
+
+            // Primero comprobar si apuntamos
+            // a una caja de cables.
+            if (IntentarInteractuarPuzzle())
+                return;
+
+            // Si no es una caja, mantener
+            // las interacciones existentes.
+            if (Grabber == null)
+            {
+                GD.PushError("ERROR: Grabber es NULL.");
+                return;
+            }
+
+            Grabber.Interact();
+        }
+    }
+
+    // DETECTAR CAJA DE CABLES
+    private bool IntentarInteractuarPuzzle()
+    {
+        rayCastAtaque.ForceRaycastUpdate();
+
+        if (!rayCastAtaque.IsColliding())
+            return false;
+
+        Node objeto = rayCastAtaque.GetCollider() as Node;
+
+        if (objeto == null)
+            return false;
+
+        // Buscar PuzzleCables en el padre
+        // del collider de interacción.
+        PuzzleCables puzzle =
+            objeto.GetParent() as PuzzleCables;
+
+        if (puzzle == null)
+            return false;
+
+        puzzle.AbrirPuzzle();
+
+        if (!puzzle.EstaAbierto)
+            return false;
+
+        puzzleActual = puzzle;
+
+        GD.Print("Jugador interactuando con caja de cables.");
+
+        return true;
+    }
 }
