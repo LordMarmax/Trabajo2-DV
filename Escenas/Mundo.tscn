@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://prkcv4afgenk" path="res://Escenas/casita_v_3.tscn" id="9_pcg50"]
 [ext_resource type="PackedScene" uid="uid://u0hm67t1wnp0" path="res://Escenas/caja_interruptores.tscn" id="9_yg05w"]
 [ext_resource type="PackedScene" uid="uid://b15vgk6auq6wo" path="res://Escenas/palanca_energia.tscn" id="10_5cwmu"]
+[ext_resource type="PackedScene" uid="uid://cogh4eoxpil13" path="res://Escenas/Caja_Cables.tscn" id="11_is13a"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_aib85"]
 
@@ -52,6 +53,9 @@ height = 4.422119
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4l30f"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_aib85"]
+size = Vector3(13.17627, 1, 1)
+
 [node name="Node3D" type="Node3D" unique_id=758181822]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1483471837]
@@ -91,7 +95,7 @@ transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -18.352667, 3.403369
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -21.961515, 0.1900742, 19.712307)
 
 [node name="Fusible4" parent="Objetos/Fusibles" unique_id=186890776 instance=ExtResource("7_pcg50")]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -16.547312, 0.24810195, 20.893661)
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -16.89574, 0.3602203, 20.893661)
 
 [node name="FusiblePortable2" parent="Objetos/Fusibles" unique_id=1932762055 instance=ExtResource("7_pcg50")]
 transform = Transform3D(0.25, 0, 0, 0, 0.023522241, 0.24889095, 0, -0.24889095, 0.023522241, -26.357763, 2.07834, 29.09956)
@@ -158,6 +162,16 @@ transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -24.372362, 1.509299, 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.850513, 2.1900504, 22.302322)
 mesh = SubResource("CylinderMesh_aib85")
 surface_material_override/0 = SubResource("StandardMaterial3D_4l30f")
+
+[node name="Caja_cables" parent="Objetos" unique_id=1464585560 instance=ExtResource("11_is13a")]
+transform = Transform3D(-4.3711395e-09, 0, -0.10000002, 0, 0.1, 0, 0.10000002, 0, -4.3711395e-09, -16.08693, 1.7256112, 21.263615)
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="Objetos" unique_id=1218044022]
+transform = Transform3D(-4.3711395e-09, 0, -0.10000002, 0, 0.1, 0, 0.10000002, 0, -4.3711395e-09, -16.910557, 1.2800249, 21.28316)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Objetos/StaticBody3D2" unique_id=1940327599]
+transform = Transform3D(1.0000002, 0, -3.5527137e-15, 0, 1, 0, 3.5527137e-15, 0, 1.0000002, -0.39359277, -1.0456581, -0.0018947124)
+shape = SubResource("BoxShape3D_aib85")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1784367701]
 transform = Transform3D(-0.49581826, 0.1771416, -0.8501678, 0.020566493, 0.9810957, 0.19242755, 0.8681829, 0.07792409, -0.49008843, -33.135956, 4.010557, 20.803047)
