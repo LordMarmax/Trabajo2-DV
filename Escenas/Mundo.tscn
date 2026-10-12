@@ -47,14 +47,89 @@ size = Vector3(0.43089294, 0.4492874, 0.5542259)
 size = Vector3(0.37704468, 0.40363312, 0.5446625)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_aib85"]
-top_radius = 0.1640625
-bottom_radius = 0.1640625
+top_radius = 0.122558594
+bottom_radius = 0.122558594
 height = 4.422119
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4l30f"]
+albedo_color = Color(0.8, 0.8, 0.8, 1)
+metallic = 1.0
+metallic_specular = 1.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_aib85"]
 size = Vector3(13.17627, 1, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_aqk1y"]
+top_radius = 0.122
+bottom_radius = 0.122
+height = 4.509865
+
+[sub_resource type="SphereMesh" id="SphereMesh_aib85"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_4l30f"]
+top_radius = 0.122
+bottom_radius = 0.122
+height = 10.526123
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_pfr8e"]
+top_radius = 0.122
+bottom_radius = 0.122
+height = 16.087341
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_t1584"]
+top_radius = 0.12158203
+bottom_radius = 0.12158203
+height = 7.038147
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_djr45"]
+top_radius = 0.122
+bottom_radius = 0.122
+height = 1.0773926
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_nb5qh"]
+top_radius = 0.122
+bottom_radius = 0.122
+height = 0.39416504
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_fbxap"]
+top_radius = 0.122
+bottom_radius = 0.122
+height = 6.654175
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_4wcvt"]
+top_radius = 0.122
+bottom_radius = 0.122
+height = 1.4543457
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_lxkjs"]
+top_radius = 0.122
+bottom_radius = 0.122
+height = 4.6660156
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_m61c4"]
+top_radius = 0.122
+bottom_radius = 0.122
+height = 0.39857483
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_17wwi"]
+top_radius = 0.122
+bottom_radius = 0.122
+height = 3.6420898
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_d2ejq"]
+top_radius = 0.122
+bottom_radius = 0.122
+height = 4.178467
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_mbule"]
+top_radius = 0.122
+bottom_radius = 0.122
+height = 2.5935059
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_klycv"]
+top_radius = 0.122
+bottom_radius = 0.122
+height = 4.3253174
 
 [node name="Node3D" type="Node3D" unique_id=758181822]
 
@@ -173,6 +248,248 @@ transform = Transform3D(-4.3711395e-09, 0, -0.10000002, 0, 0.1, 0, 0.10000002, 0
 transform = Transform3D(1.0000002, 0, -3.5527137e-15, 0, 1, 0, 3.5527137e-15, 0, 1.0000002, -0.39359277, -1.0456581, -0.0018947124)
 shape = SubResource("BoxShape3D_aib85")
 
+[node name="Esquinas paredes" type="Node" parent="Objetos" unique_id=804106270]
+
+[node name="CSGMesh3D" type="MeshInstance3D" parent="Objetos/Esquinas paredes" unique_id=1060669804]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.982794, 2.1340783, 13.65343)
+mesh = SubResource("CylinderMesh_aqk1y")
+
+[node name="CSGMesh3D2" type="MeshInstance3D" parent="Objetos/Esquinas paredes" unique_id=217322154]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.281036, 2.2361786, 13.65343)
+mesh = SubResource("CylinderMesh_aqk1y")
+
+[node name="CSGMesh3D3" type="MeshInstance3D" parent="Objetos/Esquinas paredes" unique_id=1089344889]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.281485, 2.1340783, 20.206827)
+mesh = SubResource("CylinderMesh_aqk1y")
+
+[node name="CSGMesh3D4" type="MeshInstance3D" parent="Objetos/Esquinas paredes" unique_id=2130313278]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.981862, 2.1340783, 20.212572)
+mesh = SubResource("CylinderMesh_aqk1y")
+
+[node name="CSGMesh3D5" type="MeshInstance3D" parent="Objetos/Esquinas paredes" unique_id=1137212310]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.210047, 2.1340783, 20.616354)
+mesh = SubResource("CylinderMesh_aqk1y")
+
+[node name="CSGMesh3D6" type="MeshInstance3D" parent="Objetos/Esquinas paredes" unique_id=999569907]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.212091, 2.141135, 21.870272)
+mesh = SubResource("CylinderMesh_aqk1y")
+
+[node name="CSGMesh3D7" type="MeshInstance3D" parent="Objetos/Esquinas paredes" unique_id=1850998504]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.683065, 2.1340783, 13.655972)
+mesh = SubResource("CylinderMesh_aqk1y")
+
+[node name="CSGMesh3D8" type="MeshInstance3D" parent="Objetos/Esquinas paredes" unique_id=1193660957]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.439625, 2.1340783, 13.655972)
+mesh = SubResource("CylinderMesh_aqk1y")
+
+[node name="CSGMesh3D9" type="MeshInstance3D" parent="Objetos/Esquinas paredes" unique_id=272613796]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.683065, 2.1340783, 22.615467)
+mesh = SubResource("CylinderMesh_aqk1y")
+
+[node name="CSGMesh3D10" type="MeshInstance3D" parent="Objetos/Esquinas paredes" unique_id=283984999]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.439625, 2.1340783, 22.615467)
+mesh = SubResource("CylinderMesh_aqk1y")
+
+[node name="CSGMesh3D11" type="MeshInstance3D" parent="Objetos/Esquinas paredes" unique_id=1018612663]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.439625, 2.1340783, 23.017239)
+mesh = SubResource("CylinderMesh_aqk1y")
+
+[node name="CSGMesh3D12" type="MeshInstance3D" parent="Objetos/Esquinas paredes" unique_id=2126664996]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.439625, 2.1340783, 29.499144)
+mesh = SubResource("CylinderMesh_aqk1y")
+
+[node name="CSGMesh3D13" type="MeshInstance3D" parent="Objetos/Esquinas paredes" unique_id=1185486023]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.850578, 2.1340783, 29.499144)
+mesh = SubResource("CylinderMesh_aqk1y")
+
+[node name="CSGMesh3D14" type="MeshInstance3D" parent="Objetos/Esquinas paredes" unique_id=490927989]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.455503, 2.1340783, 29.499144)
+mesh = SubResource("CylinderMesh_aqk1y")
+
+[node name="CSGMesh3D15" type="MeshInstance3D" parent="Objetos/Esquinas paredes" unique_id=2012719386]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.980184, 2.1340783, 29.499144)
+mesh = SubResource("CylinderMesh_aqk1y")
+
+[node name="CSGMesh3D16" type="MeshInstance3D" parent="Objetos/Esquinas paredes" unique_id=1513605591]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.980184, 2.1340783, 22.287352)
+mesh = SubResource("CylinderMesh_aqk1y")
+
+[node name="CSGMesh3D17" type="MeshInstance3D" parent="Objetos/Esquinas paredes" unique_id=1249834196]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.455503, 2.1340783, 22.287352)
+mesh = SubResource("CylinderMesh_aqk1y")
+
+[node name="Esquinas suelo" type="Node" parent="Objetos" unique_id=800416312]
+
+[node name="Bolas" type="Node" parent="Objetos/Esquinas suelo" unique_id=1353717172]
+
+[node name="Bola" type="MeshInstance3D" parent="Objetos/Esquinas suelo/Bolas" unique_id=1065571750]
+transform = Transform3D(0.239, 0, 0, 0, 0.239, 0, 0, 0, 0.239, -22.67803, -0.00968015, 20.590569)
+mesh = SubResource("SphereMesh_aib85")
+
+[node name="Bola2" type="MeshInstance3D" parent="Objetos/Esquinas suelo/Bolas" unique_id=693997333]
+transform = Transform3D(0.239, 0, 0, 0, 0.239, 0, 0, 0, 0.239, -22.282368, -0.00968015, 22.998352)
+mesh = SubResource("SphereMesh_aib85")
+
+[node name="Bola3" type="MeshInstance3D" parent="Objetos/Esquinas suelo/Bolas" unique_id=508496207]
+transform = Transform3D(0.239, 0, 0, 0, 0.239, 0, 0, 0, 0.239, -19.85103, -0.00968015, 21.86823)
+mesh = SubResource("SphereMesh_aib85")
+
+[node name="Bola4" type="MeshInstance3D" parent="Objetos/Esquinas suelo/Bolas" unique_id=227458140]
+transform = Transform3D(0.239, 0, 0, 0, 0.239, 0, 0, 0, 0.239, -22.281952, -0.00968015, 22.59739)
+mesh = SubResource("SphereMesh_aib85")
+
+[node name="Bola5" type="MeshInstance3D" parent="Objetos/Esquinas suelo/Bolas" unique_id=242399031]
+transform = Transform3D(0.239, 0, 0, 0, 0.239, 0, 0, 0, 0.239, -19.856073, -0.00968015, 22.968208)
+mesh = SubResource("SphereMesh_aib85")
+
+[node name="Bola6" type="MeshInstance3D" parent="Objetos/Esquinas suelo/Bolas" unique_id=1826876223]
+transform = Transform3D(0.239, 0, 0, 0, 0.239, 0, 0, 0, 0.239, -19.856073, -0.00968015, 25.010822)
+mesh = SubResource("SphereMesh_aib85")
+
+[node name="Bola7" type="MeshInstance3D" parent="Objetos/Esquinas suelo/Bolas" unique_id=1027307711]
+transform = Transform3D(0.239, 0, 0, 0, 0.239, 0, 0, 0, 0.239, -19.445894, -0.00968015, 25.010822)
+mesh = SubResource("SphereMesh_aib85")
+
+[node name="Bola8" type="MeshInstance3D" parent="Objetos/Esquinas suelo/Bolas" unique_id=747091130]
+transform = Transform3D(0.239, 0, 0, 0, 0.239, 0, 0, 0, 0.239, -20.081614, -0.00968015, 20.586952)
+mesh = SubResource("SphereMesh_aib85")
+
+[node name="Bola9" type="MeshInstance3D" parent="Objetos/Esquinas suelo/Bolas" unique_id=135012460]
+transform = Transform3D(0.239, 0, 0, 0, 0.239, 0, 0, 0, 0.239, -20.081614, -0.00968015, 20.192278)
+mesh = SubResource("SphereMesh_aib85")
+
+[node name="Bola10" type="MeshInstance3D" parent="Objetos/Esquinas suelo/Bolas" unique_id=1564033423]
+transform = Transform3D(0.239, 0, 0, 0, 0.239, 0, 0, 0, 0.239, -18.081938, -0.00968015, 20.192278)
+mesh = SubResource("SphereMesh_aib85")
+
+[node name="Bola11" type="MeshInstance3D" parent="Objetos/Esquinas suelo/Bolas" unique_id=824344552]
+transform = Transform3D(0.239, 0, 0, 0, 0.239, 0, 0, 0, 0.239, -18.081938, -0.00968015, 20.596708)
+mesh = SubResource("SphereMesh_aib85")
+
+[node name="Bola12" type="MeshInstance3D" parent="Objetos/Esquinas suelo/Bolas" unique_id=1074867317]
+transform = Transform3D(0.239, 0, 0, 0, 0.239, 0, 0, 0, 0.239, -19.4536, -0.00968015, 22.968208)
+mesh = SubResource("SphereMesh_aib85")
+
+[node name="Cilindros" type="Node" parent="Objetos/Esquinas suelo" unique_id=1590884986]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Objetos/Esquinas suelo/Cilindros" unique_id=2085029316]
+transform = Transform3D(-4.371139e-08, -1, 0, -4.371139e-08, 1.9106855e-15, -1, 1, -4.371139e-08, -4.371139e-08, -21.224752, 4.103822e-15, 13.665205)
+mesh = SubResource("CylinderMesh_4l30f")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Objetos/Esquinas suelo/Cilindros" unique_id=1703632937]
+transform = Transform3D(-4.371139e-08, -1, 0, -4.371139e-08, 1.9106855e-15, -1, 1, -4.371139e-08, -4.371139e-08, -21.224752, -6.922801e-07, 29.502728)
+mesh = SubResource("CylinderMesh_4l30f")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Objetos/Esquinas suelo/Cilindros" unique_id=969116744]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -26.428825, -0.010986482, 21.554379)
+mesh = SubResource("CylinderMesh_pfr8e")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Objetos/Esquinas suelo/Cilindros" unique_id=1894713302]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -15.974288, -0.010986482, 21.554379)
+mesh = SubResource("CylinderMesh_pfr8e")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Objetos/Esquinas suelo/Cilindros" unique_id=1121111474]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -22.67645, -0.010986285, 17.07889)
+mesh = SubResource("CylinderMesh_t1584")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Objetos/Esquinas suelo/Cilindros" unique_id=795973674]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -19.855194, -0.010986519, 22.416622)
+mesh = SubResource("CylinderMesh_djr45")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Objetos/Esquinas suelo/Cilindros" unique_id=1446205119]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -19.461012, -0.010986519, 22.416622)
+mesh = SubResource("CylinderMesh_djr45")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="Objetos/Esquinas suelo/Cilindros" unique_id=1109539673]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -22.285646, -0.010986536, 22.803036)
+mesh = SubResource("CylinderMesh_nb5qh")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="Objetos/Esquinas suelo/Cilindros" unique_id=914442259]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -20.083967, -0.010986431, 20.394323)
+mesh = SubResource("CylinderMesh_nb5qh")
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="Objetos/Esquinas suelo/Cilindros" unique_id=2031412894]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -18.079355, -0.010986431, 20.394323)
+mesh = SubResource("CylinderMesh_nb5qh")
+
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="Objetos/Esquinas suelo/Cilindros" unique_id=1266982765]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -22.29158, -0.0109862825, 16.915903)
+mesh = SubResource("CylinderMesh_fbxap")
+
+[node name="MeshInstance3D12" type="MeshInstance3D" parent="Objetos/Esquinas suelo/Cilindros" unique_id=405718095]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -16.212126, -0.010986394, 21.214706)
+mesh = SubResource("CylinderMesh_4wcvt")
+
+[node name="MeshInstance3D13" type="MeshInstance3D" parent="Objetos/Esquinas suelo/Cilindros" unique_id=2079557979]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -19.4483, -0.010986907, 27.345743)
+mesh = SubResource("CylinderMesh_lxkjs")
+
+[node name="MeshInstance3D14" type="MeshInstance3D" parent="Objetos/Esquinas suelo/Cilindros" unique_id=889626768]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -19.851044, -0.010986907, 27.345743)
+mesh = SubResource("CylinderMesh_lxkjs")
+
+[node name="MeshInstance3D15" type="MeshInstance3D" parent="Objetos/Esquinas suelo/Cilindros" unique_id=260495110]
+transform = Transform3D(-4.371139e-08, -1, 0, -4.371139e-08, 1.9106855e-15, -1, 1, -4.371139e-08, -4.371139e-08, -19.654222, -0.010986544, 22.96528)
+mesh = SubResource("CylinderMesh_m61c4")
+
+[node name="MeshInstance3D16" type="MeshInstance3D" parent="Objetos/Esquinas suelo/Cilindros" unique_id=1784380901]
+transform = Transform3D(-4.371139e-08, -1, 0, -4.371139e-08, 1.9106855e-15, -1, 1, -4.371139e-08, -4.371139e-08, -19.654222, -0.010986634, 25.013409)
+mesh = SubResource("CylinderMesh_m61c4")
+
+[node name="MeshInstance3D17" type="MeshInstance3D" parent="Objetos/Esquinas suelo/Cilindros" unique_id=1976948087]
+transform = Transform3D(-4.371139e-08, -1, 0, -4.371139e-08, 1.9106855e-15, -1, 1, -4.371139e-08, -4.371139e-08, -18.017048, -0.010986494, 21.873116)
+mesh = SubResource("CylinderMesh_17wwi")
+
+[node name="MeshInstance3D18" type="MeshInstance3D" parent="Objetos/Esquinas suelo/Cilindros" unique_id=1477637699]
+transform = Transform3D(-4.371139e-08, -1, 0, -4.371139e-08, 1.9106855e-15, -1, 1, -4.371139e-08, -4.371139e-08, -24.379816, -0.010986488, 22.59991)
+mesh = SubResource("CylinderMesh_d2ejq")
+
+[node name="MeshInstance3D19" type="MeshInstance3D" parent="Objetos/Esquinas suelo/Cilindros" unique_id=97029129]
+transform = Transform3D(-4.371139e-08, -1, 0, -4.371139e-08, 1.9106855e-15, -1, 1, -4.371139e-08, -4.371139e-08, -21.373293, -0.010986066, 20.585129)
+mesh = SubResource("CylinderMesh_mbule")
+
+[node name="MeshInstance3D20" type="MeshInstance3D" parent="Objetos/Esquinas suelo/Cilindros" unique_id=1064893644]
+transform = Transform3D(-4.371139e-08, -1, 0, -4.371139e-08, 1.9106855e-15, -1, 1, -4.371139e-08, -4.371139e-08, -24.448187, -0.010986067, 22.994781)
+mesh = SubResource("CylinderMesh_klycv")
+
+[node name="MeshInstance3D21" type="MeshInstance3D" parent="Objetos/Esquinas suelo/Cilindros" unique_id=1075495381]
+transform = Transform3D(-4.371139e-08, -1, 0, -4.371139e-08, 1.9106855e-15, -1, 1, -4.371139e-08, -4.371139e-08, -17.515984, -0.010986045, 22.28245)
+mesh = SubResource("CylinderMesh_klycv")
+
+[node name="MeshInstance3D22" type="MeshInstance3D" parent="Objetos/Esquinas suelo/Cilindros" unique_id=302556554]
+transform = Transform3D(-4.371139e-08, -1, 0, -4.371139e-08, 1.9106855e-15, -1, 1, -4.371139e-08, -4.371139e-08, -16.787828, -0.010986066, 20.585129)
+mesh = SubResource("CylinderMesh_mbule")
+
+[node name="MeshInstance3D23" type="MeshInstance3D" parent="Objetos/Esquinas suelo/Cilindros" unique_id=233113382]
+transform = Transform3D(-4.371139e-08, -1, 0, -4.371139e-08, 1.9106855e-15, -1, 1, -4.371139e-08, -4.371139e-08, -16.787828, -0.01098605, 20.194557)
+mesh = SubResource("CylinderMesh_mbule")
+
+[node name="MeshInstance3D24" type="MeshInstance3D" parent="Objetos/Esquinas suelo/Cilindros" unique_id=865302854]
+transform = Transform3D(-4.371139e-08, -1, 0, -4.371139e-08, 1.9106855e-15, -1, 1, -4.371139e-08, -4.371139e-08, -21.373293, -0.010986049, 20.193993)
+mesh = SubResource("CylinderMesh_mbule")
+
+[node name="Esquinas techo" type="Node" parent="Objetos" unique_id=1687904129]
+
+[node name="Bolas" type="Node" parent="Objetos/Esquinas techo" unique_id=1902664265]
+
+[node name="Bola2" type="MeshInstance3D" parent="Objetos/Esquinas techo/Bolas" unique_id=2012665629]
+transform = Transform3D(0.239, 0, 0, 0, 0.239, 0, 0, 0, 0.239, -22.282368, 4.379324, 22.998352)
+mesh = SubResource("SphereMesh_aib85")
+
+[node name="Bola3" type="MeshInstance3D" parent="Objetos/Esquinas techo/Bolas" unique_id=1739454383]
+transform = Transform3D(0.239, 0, 0, 0, 0.239, 0, 0, 0, 0.239, -19.85103, 4.379324, 21.86823)
+mesh = SubResource("SphereMesh_aib85")
+
+[node name="Cilindros" type="Node" parent="Objetos/Esquinas techo" unique_id=1741055975]
+
+[node name="MeshInstance3D20" type="MeshInstance3D" parent="Objetos/Esquinas techo/Cilindros" unique_id=220871066]
+transform = Transform3D(-4.371139e-08, -1, 0, -4.371139e-08, 1.9106855e-15, -1, 1, -4.371139e-08, -4.371139e-08, -24.448187, 4.382018, 22.994781)
+mesh = SubResource("CylinderMesh_klycv")
+
+[node name="MeshInstance3D21" type="MeshInstance3D" parent="Objetos/Esquinas techo/Cilindros" unique_id=256373808]
+transform = Transform3D(-4.371139e-08, -1, 0, -4.371139e-08, 1.9106855e-15, -1, 1, -4.371139e-08, -4.371139e-08, -24.448187, 4.382018, 22.612066)
+mesh = SubResource("CylinderMesh_klycv")
+
 [node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1784367701]
 transform = Transform3D(-0.49581826, 0.1771416, -0.8501678, 0.020566493, 0.9810957, 0.19242755, 0.8681829, 0.07792409, -0.49008843, -33.135956, 4.010557, 20.803047)
 light_color = Color(0.52919996, 0.67195344, 0.98, 1)
@@ -192,4 +509,4 @@ offset_right = 2.0
 offset_bottom = -1.0
 
 [node name="casita_v3" parent="." unique_id=1345732476 instance=ExtResource("9_pcg50")]
-transform = Transform3D(-8.742278e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, -8.742278e-09, -23.365679, -0.27396524, 21.615131)
+transform = Transform3D(-8.742278e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, -8.742278e-09, -23.365679, -0.27396524, 21.598269)
