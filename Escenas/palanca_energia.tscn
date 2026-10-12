@@ -137,7 +137,7 @@ mesh = SubResource("ArrayMesh_jameg")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46578044, 0.054660797)
 script = ExtResource("1_daep7")
 AnguloFinal = 170.0
-SensibilidadArrastre = 0.68
+SensibilidadArrastre = 1.0
 
 [node name="palanca" type="MeshInstance3D" parent="Node3D" unique_id=489986687]
 transform = Transform3D(-2.836729e-06, -1.4626884e-06, -44.525295, -0.92753166, 11.861895, -4.9760893e-06, 11.8618965, 0.9275317, -1.0615657e-05, 0.00969325, 0.6894875, 0.03510341)
