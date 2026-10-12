@@ -62,7 +62,7 @@ size = Vector3(13.17627, 1, 1)
 [sub_resource type="CylinderMesh" id="CylinderMesh_aqk1y"]
 top_radius = 0.122
 bottom_radius = 0.122
-height = 0.7012577
+height = 4.509865
 
 [sub_resource type="SphereMesh" id="SphereMesh_aib85"]
 
@@ -298,7 +298,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.439625, 2.1340783, 13.655
 mesh = SubResource("CylinderMesh_aqk1y")
 
 [node name="CSGMesh3D9" type="MeshInstance3D" parent="Objetos/Esquinas paredes" unique_id=272613796]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.677546, 4.0383816, 22.614433)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.683065, 2.1340783, 22.615467)
 mesh = SubResource("CylinderMesh_aqk1y")
 
 [node name="CSGMesh3D10" type="MeshInstance3D" parent="Objetos/Esquinas paredes" unique_id=283984999]
@@ -493,10 +493,6 @@ mesh = SubResource("SphereMesh_aib85")
 
 [node name="Bola3" type="MeshInstance3D" parent="Objetos/Esquinas techo/Bolas" unique_id=1739454383]
 transform = Transform3D(0.239, 0, 0, 0, 0.239, 0, 0, 0, 0.239, -19.85103, 4.379324, 21.86823)
-mesh = SubResource("SphereMesh_aib85")
-
-[node name="Bola4" type="MeshInstance3D" parent="Objetos/Esquinas techo/Bolas" unique_id=1084667660]
-transform = Transform3D(0.239, 0, 0, 0, 0.239, 0, 0, 0, 0.239, -22.682505, 3.6863909, 22.610975)
 mesh = SubResource("SphereMesh_aib85")
 
 [node name="Cilindros" type="Node" parent="Objetos/Esquinas techo" unique_id=1741055975]
