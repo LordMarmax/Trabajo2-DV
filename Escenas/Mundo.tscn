@@ -62,7 +62,7 @@ size = Vector3(13.17627, 1, 1)
 [sub_resource type="CylinderMesh" id="CylinderMesh_aqk1y"]
 top_radius = 0.122
 bottom_radius = 0.122
-height = 4.509865
+height = 0.7012577
 
 [sub_resource type="SphereMesh" id="SphereMesh_aib85"]
 
@@ -79,7 +79,7 @@ height = 16.087341
 [sub_resource type="CylinderMesh" id="CylinderMesh_t1584"]
 top_radius = 0.12158203
 bottom_radius = 0.12158203
-height = 7.038147
+height = 7.091339
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_djr45"]
 top_radius = 0.122
@@ -129,7 +129,22 @@ height = 2.5935059
 [sub_resource type="CylinderMesh" id="CylinderMesh_klycv"]
 top_radius = 0.122
 bottom_radius = 0.122
-height = 4.3253174
+height = 4.323534
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_is13a"]
+top_radius = 0.122
+bottom_radius = 0.122
+height = 7.7956543
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_i8y4t"]
+top_radius = 0.122
+bottom_radius = 0.122
+height = 9.608551
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_kkahe"]
+top_radius = 0.122
+bottom_radius = 0.122
+height = 6.2714844
 
 [node name="Node3D" type="Node3D" unique_id=758181822]
 
@@ -170,7 +185,7 @@ transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -18.352667, 3.403369
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -21.961515, 0.1900742, 19.712307)
 
 [node name="Fusible4" parent="Objetos/Fusibles" unique_id=186890776 instance=ExtResource("7_pcg50")]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -16.903606, 0.20411628, 20.69426)
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -16.903606, 0.20411628, 20.797592)
 
 [node name="FusiblePortable2" parent="Objetos/Fusibles" unique_id=1932762055 instance=ExtResource("7_pcg50")]
 transform = Transform3D(0.25, 0, 0, 0, 0.023522241, 0.24889095, 0, -0.24889095, 0.023522241, -26.357763, 2.07834, 29.09956)
@@ -283,7 +298,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.439625, 2.1340783, 13.655
 mesh = SubResource("CylinderMesh_aqk1y")
 
 [node name="CSGMesh3D9" type="MeshInstance3D" parent="Objetos/Esquinas paredes" unique_id=272613796]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.683065, 2.1340783, 22.615467)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.677546, 4.0383816, 22.614433)
 mesh = SubResource("CylinderMesh_aqk1y")
 
 [node name="CSGMesh3D10" type="MeshInstance3D" parent="Objetos/Esquinas paredes" unique_id=283984999]
@@ -449,7 +464,7 @@ transform = Transform3D(-4.371139e-08, -1, 0, -4.371139e-08, 1.9106855e-15, -1, 
 mesh = SubResource("CylinderMesh_mbule")
 
 [node name="MeshInstance3D20" type="MeshInstance3D" parent="Objetos/Esquinas suelo/Cilindros" unique_id=1064893644]
-transform = Transform3D(-4.371139e-08, -1, 0, -4.371139e-08, 1.9106855e-15, -1, 1, -4.371139e-08, -4.371139e-08, -24.448187, -0.010986067, 22.994781)
+transform = Transform3D(-4.371139e-08, -1, 0, -4.371139e-08, 1.9106855e-15, -1, 1, -4.371139e-08, -4.371139e-08, -24.446903, -0.010986067, 22.994781)
 mesh = SubResource("CylinderMesh_klycv")
 
 [node name="MeshInstance3D21" type="MeshInstance3D" parent="Objetos/Esquinas suelo/Cilindros" unique_id=1075495381]
@@ -480,6 +495,10 @@ mesh = SubResource("SphereMesh_aib85")
 transform = Transform3D(0.239, 0, 0, 0, 0.239, 0, 0, 0, 0.239, -19.85103, 4.379324, 21.86823)
 mesh = SubResource("SphereMesh_aib85")
 
+[node name="Bola4" type="MeshInstance3D" parent="Objetos/Esquinas techo/Bolas" unique_id=1084667660]
+transform = Transform3D(0.239, 0, 0, 0, 0.239, 0, 0, 0, 0.239, -22.682505, 3.6863909, 22.610975)
+mesh = SubResource("SphereMesh_aib85")
+
 [node name="Cilindros" type="Node" parent="Objetos/Esquinas techo" unique_id=1741055975]
 
 [node name="MeshInstance3D20" type="MeshInstance3D" parent="Objetos/Esquinas techo/Cilindros" unique_id=220871066]
@@ -489,6 +508,58 @@ mesh = SubResource("CylinderMesh_klycv")
 [node name="MeshInstance3D21" type="MeshInstance3D" parent="Objetos/Esquinas techo/Cilindros" unique_id=256373808]
 transform = Transform3D(-4.371139e-08, -1, 0, -4.371139e-08, 1.9106855e-15, -1, 1, -4.371139e-08, -4.371139e-08, -24.448187, 4.382018, 22.612066)
 mesh = SubResource("CylinderMesh_klycv")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Objetos/Esquinas techo/Cilindros" unique_id=1805174681]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -26.428825, 4.385152, 21.554379)
+mesh = SubResource("CylinderMesh_pfr8e")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Objetos/Esquinas techo/Cilindros" unique_id=363839901]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -15.974288, 4.376313, 21.554379)
+mesh = SubResource("CylinderMesh_pfr8e")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Objetos/Esquinas techo/Cilindros" unique_id=1375817817]
+transform = Transform3D(-4.371139e-08, -1, 0, -4.371139e-08, 1.9106855e-15, -1, 1, -4.371139e-08, -4.371139e-08, -21.224752, 4.3554316, 29.502728)
+mesh = SubResource("CylinderMesh_4l30f")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Objetos/Esquinas techo/Cilindros" unique_id=1497921426]
+transform = Transform3D(-4.371139e-08, -1, 0, -4.371139e-08, 1.9106855e-15, -1, 1, -4.371139e-08, -4.371139e-08, -21.224752, 4.366535, 13.665205)
+mesh = SubResource("CylinderMesh_4l30f")
+
+[node name="MeshInstance3D22" type="MeshInstance3D" parent="Objetos/Esquinas techo/Cilindros" unique_id=1756365852]
+transform = Transform3D(-4.371139e-08, -1, 0, -4.371139e-08, 1.9106855e-15, -1, 1, -4.371139e-08, -4.371139e-08, -17.515984, 4.344183, 22.28245)
+mesh = SubResource("CylinderMesh_klycv")
+
+[node name="MeshInstance3D23" type="MeshInstance3D" parent="Objetos/Esquinas techo/Cilindros" unique_id=1151407120]
+transform = Transform3D(-4.371139e-08, -1, 0, -4.371139e-08, 1.9106855e-15, -1, 1, -4.371139e-08, -4.371139e-08, -17.658882, 4.3805957, 21.872103)
+mesh = SubResource("CylinderMesh_klycv")
+
+[node name="MeshInstance3D12" type="MeshInstance3D" parent="Objetos/Esquinas techo/Cilindros" unique_id=1602994383]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -16.212126, 4.3722944, 21.214706)
+mesh = SubResource("CylinderMesh_4wcvt")
+
+[node name="MeshInstance3D14" type="MeshInstance3D" parent="Objetos/Esquinas techo/Cilindros" unique_id=1866153216]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -19.84281, 4.376145, 25.771646)
+mesh = SubResource("CylinderMesh_is13a")
+
+[node name="MeshInstance3D15" type="MeshInstance3D" parent="Objetos/Esquinas techo/Cilindros" unique_id=148906180]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -19.481348, 4.376145, 25.771646)
+mesh = SubResource("CylinderMesh_is13a")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Objetos/Esquinas techo/Cilindros" unique_id=1512134654]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -22.67645, 4.3699827, 17.98398)
+mesh = SubResource("CylinderMesh_i8y4t")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Objetos/Esquinas techo/Cilindros" unique_id=1608368776]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -22.283302, 4.379771, 18.193224)
+mesh = SubResource("CylinderMesh_i8y4t")
+
+[node name="MeshInstance3D24" type="MeshInstance3D" parent="Objetos/Esquinas techo/Cilindros" unique_id=917790242]
+transform = Transform3D(-4.371139e-08, -1, 0, -4.371139e-08, 1.9106855e-15, -1, 1, -4.371139e-08, -4.371139e-08, -19.157015, 4.367795, 20.193993)
+mesh = SubResource("CylinderMesh_kkahe")
+
+[node name="MeshInstance3D25" type="MeshInstance3D" parent="Objetos/Esquinas techo/Cilindros" unique_id=24370237]
+transform = Transform3D(-4.371139e-08, -1, 0, -4.371139e-08, 1.9106855e-15, -1, 1, -4.371139e-08, -4.371139e-08, -19.157015, 4.379774, 20.6053)
+mesh = SubResource("CylinderMesh_kkahe")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1784367701]
 transform = Transform3D(-0.49581826, 0.1771416, -0.8501678, 0.020566493, 0.9810957, 0.19242755, 0.8681829, 0.07792409, -0.49008843, -33.135956, 4.010557, 20.803047)
