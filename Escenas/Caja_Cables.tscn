@@ -505,34 +505,42 @@ transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 transform = Transform3D(400, 0, 0, 0, -1.7881393e-05, 299.99997, 0, -149.99998, -3.5762787e-05, 0, 0, 0)
 mesh = SubResource("ArrayMesh_otdi6")
 
-[node name="cable_1" type="MeshInstance3D" parent="." unique_id=1934697106]
-transform = Transform3D(2.4596322e-06, -3.0745402e-06, 20.63289, -20.63289, 0, 1.2298161e-06, 6.1490806e-07, -20.632889, -2.4596322e-06, -2.259506, 1.5953484, 0.46015632)
+[node name="Node" type="Node" parent="." unique_id=118644521]
+
+[node name="cable_1" type="MeshInstance3D" parent="Node" unique_id=1934697106]
+transform = Transform3D(2.4596324e-07, -3.0745403e-07, 2.0632892, -2.0632892, 0, 1.2298162e-07, 6.149081e-08, -2.063289, -2.4596324e-07, -0.2259506, 0.15953484, 0.04601563)
 mesh = SubResource("ArrayMesh_pqc5e")
 
-[node name="cable_1_punta" type="MeshInstance3D" parent="." unique_id=1805620939]
-transform = Transform3D(2.4596322e-06, -3.0745402e-06, 20.63289, -20.63289, 0, 1.2298161e-06, 6.1490806e-07, -20.632889, -2.4596322e-06, -2.259506, 1.5953484, 0.46015632)
+[node name="cable_1_punta" type="MeshInstance3D" parent="Node" unique_id=1805620939]
+transform = Transform3D(2.4596324e-07, -3.0745403e-07, 2.0632892, -2.0632892, 0, 1.2298162e-07, 6.149081e-08, -2.063289, -2.4596324e-07, -0.2259506, 0.15953484, 0.04601563)
 mesh = SubResource("ArrayMesh_uttqx")
 
-[node name="cable_2" type="MeshInstance3D" parent="." unique_id=2003685958]
-transform = Transform3D(400, 0, 0, 0, -1.7881393e-05, 299.99997, 0, -149.99998, -3.5762787e-05, 0.42103112, -1.0459175, 0)
+[node name="Node2" type="Node" parent="." unique_id=1638178711]
+
+[node name="cable_2" type="MeshInstance3D" parent="Node2" unique_id=2003685958]
+transform = Transform3D(40, 0, 0, 0, -1.7881393e-06, 29.999998, 0, -14.999999, -3.5762787e-06, 0.04210311, -0.10459175, 0)
 mesh = SubResource("ArrayMesh_skufo")
 
-[node name="cable_2punta" type="MeshInstance3D" parent="." unique_id=370036972]
-transform = Transform3D(400, 0, 0, 0, -1.7881393e-05, 299.99997, 0, -149.99998, -3.5762787e-05, 0.42103112, -1.0459175, 0)
+[node name="cable_2punta" type="MeshInstance3D" parent="Node2" unique_id=370036972]
+transform = Transform3D(40, 0, 0, 0, -1.7881393e-06, 29.999998, 0, -14.999999, -3.5762787e-06, 0.04210311, -0.10459175, 0)
 mesh = SubResource("ArrayMesh_ap317")
 
-[node name="cable_3" type="MeshInstance3D" parent="." unique_id=910327464]
-transform = Transform3D(400, 0, 0, 0, -1.7881393e-05, 299.99997, 0, -149.99998, -3.5762787e-05, 0.42103112, -2.143551, 0)
+[node name="Node3" type="Node" parent="." unique_id=1550330989]
+
+[node name="cable_3" type="MeshInstance3D" parent="Node3" unique_id=910327464]
+transform = Transform3D(40, 0, 0, 0, -1.7881393e-06, 29.999998, 0, -14.999999, -3.5762787e-06, 0.04210311, -0.21435511, 0)
 mesh = SubResource("ArrayMesh_wvhke")
 
-[node name="cable_3punta" type="MeshInstance3D" parent="." unique_id=1263796530]
-transform = Transform3D(400, 0, 0, 0, -1.7881393e-05, 299.99997, 0, -149.99998, -3.5762787e-05, 0.42103112, -2.143551, 0)
+[node name="cable_3punta" type="MeshInstance3D" parent="Node3" unique_id=1263796530]
+transform = Transform3D(40, 0, 0, 0, -1.7881393e-06, 29.999998, 0, -14.999999, -3.5762787e-06, 0.04210311, -0.21435511, 0)
 mesh = SubResource("ArrayMesh_n3rds")
 
-[node name="cable_4" type="MeshInstance3D" parent="." unique_id=1915862190]
-transform = Transform3D(400, 0, 0, 0, -1.7881393e-05, 299.99997, 0, -149.99998, -3.5762787e-05, 0.42103112, -3.1894686, 0)
+[node name="Node4" type="Node" parent="." unique_id=230954328]
+
+[node name="cable_4" type="MeshInstance3D" parent="Node4" unique_id=1915862190]
+transform = Transform3D(40, 0, 0, 0, -1.7881393e-06, 29.999998, 0, -14.999999, -3.5762787e-06, 0.04210311, -0.31894687, 0)
 mesh = SubResource("ArrayMesh_cieei")
 
-[node name="cable_4punta" type="MeshInstance3D" parent="." unique_id=636777122]
-transform = Transform3D(400, 0, 0, 0, -1.7881393e-05, 299.99997, 0, -149.99998, -3.5762787e-05, 0.42103112, -3.1894686, 0)
+[node name="cable_4punta" type="MeshInstance3D" parent="Node4" unique_id=636777122]
+transform = Transform3D(40, 0, 0, 0, -1.7881393e-06, 29.999998, 0, -14.999999, -3.5762787e-06, 0.04210311, -0.31894687, 0)
 mesh = SubResource("ArrayMesh_fa7ru")
