@@ -3,6 +3,9 @@ using System;
 
 public partial class ArrastreCables : Node3D
 {
+    [Signal]
+    public delegate void EstadoCablesCambiadoEventHandler(bool completos);
+
     [Export] public PuzzleCables Puzzle;
     [Export] public Camera3D Camara;
     [Export] public CableFlexible[] Cables;
@@ -15,6 +18,11 @@ public partial class ArrastreCables : Node3D
     private CableFlexible cableActivo;
     private Plane planoArrastre;
     private Vector3 desplazamientoMouse;
+
+    public override void _Ready()
+    {
+        ComprobarPuzzleCompleto();
+    }
 
     public override void _Input(InputEvent @event)
     {
@@ -208,16 +216,40 @@ public partial class ArrastreCables : Node3D
 
     private void ComprobarPuzzleCompleto()
     {
+        bool completos = Cables != null && Cables.Length > 0;
+
+        if (completos)
+        {
+            foreach (CableFlexible cable in Cables)
+            {
+                if (cable == null || !cable.EstaConectado)
+                {
+                    completos = false;
+                    break;
+                }
+            }
+        }
+
+        if (completos)
+            GD.Print("¡Puzzle de cables completado!");
+
+        EmitSignal(
+            SignalName.EstadoCablesCambiado,
+            completos
+        );
+    }
+    public bool TodosConectados()
+    {
         if (Cables == null || Cables.Length == 0)
-            return;
+            return false;
 
         foreach (CableFlexible cable in Cables)
         {
             if (cable == null || !cable.EstaConectado)
-                return;
+                return false;
         }
 
-        GD.Print("¡Puzzle de cables completado!");
+        return true;
     }
 
 

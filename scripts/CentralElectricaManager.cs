@@ -3,81 +3,65 @@ using Godot;
 
 public partial class CentralElectricaManager : Node
 {
-    public enum EtapaCentral
-    {
-        Cables,
-        Fusibles,
-        Interruptores,
-        Palanca,
-        Completado
-    }
+    [Export] public ArrastreCables SistemaCables;
+
+    public bool CablesConectados { get; private set; }
 
     [Signal]
-    public delegate void EtapaCambiadaEventHandler(int nuevaEtapa);
+    public delegate void EstadoElectricoCambiadoEventHandler();
 
-    [Export]
-    public EtapaCentral EtapaActual =
-        EtapaCentral.Cables;
-
-    public bool CablesListos =>
-        EtapaActual >= EtapaCentral.Fusibles;
-
-    public bool FusiblesListos =>
-        EtapaActual >= EtapaCentral.Interruptores;
-
-    public bool InterruptoresListos =>
-        EtapaActual >= EtapaCentral.Palanca;
-
-    public bool CentralRestaurada =>
-        EtapaActual == EtapaCentral.Completado;
-
-    public void CompletarCables()
+    public override void _Ready()
     {
-        Avanzar(
-            EtapaCentral.Cables,
-            EtapaCentral.Fusibles
+        if (SistemaCables == null)
+        {
+            GD.PushWarning(
+                "Manager: Falta asignar SistemaCables."
+            );
+            return;
+        }
+
+        SistemaCables.EstadoCablesCambiado +=
+            OnEstadoCablesCambiado;
+
+        OnEstadoCablesCambiado(
+            SistemaCables.TodosConectados()
         );
     }
 
-    public void CompletarFusibles()
+    private void OnEstadoCablesCambiado(bool completos)
     {
-        Avanzar(
-            EtapaCentral.Fusibles,
-            EtapaCentral.Interruptores
-        );
-    }
-
-    public void CompletarInterruptores()
-    {
-        Avanzar(
-            EtapaCentral.Interruptores,
-            EtapaCentral.Palanca
-        );
-    }
-
-    public void ActivarPalanca()
-    {
-        Avanzar(
-            EtapaCentral.Palanca,
-            EtapaCentral.Completado
-        );
-    }
-
-    private void Avanzar(
-        EtapaCentral requerida,
-        EtapaCentral siguiente
-    )
-    {
-        if (EtapaActual != requerida)
+        if (CablesConectados == completos)
             return;
 
-        EtapaActual = siguiente;
+        CablesConectados = completos;
 
-        GD.Print($"Central: etapa {EtapaActual}");
+        GD.Print(
+            $"Manager: Cables conectados = {CablesConectados}"
+        );
+
+        ActualizarEstadoElectrico();
+    }
+
+    private void ActualizarEstadoElectrico()
+    {
+        // Próximamente:
+        // 1. Comprobar fusibles.
+        // 2. Actualizar indicadores.
+        // 3. Comprobar interruptores.
+        // 4. Habilitar alimentación final.
 
         EmitSignal(
-            SignalName.EtapaCambiada,
-            (int)EtapaActual
+            SignalName.EstadoElectricoCambiado
         );
+    }
+
+    public override void _ExitTree()
+    {
+        if (SistemaCables != null &&
+            GodotObject.IsInstanceValid(SistemaCables))
+        {
+            SistemaCables.EstadoCablesCambiado -=
+                OnEstadoCablesCambiado;
+        }
     }
 }
