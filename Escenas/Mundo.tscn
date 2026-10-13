@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://b15vgk6auq6wo" path="res://Escenas/palanca_energia.tscn" id="10_5cwmu"]
 [ext_resource type="PackedScene" uid="uid://cogh4eoxpil13" path="res://Escenas/Caja_Cables.tscn" id="11_is13a"]
 [ext_resource type="Script" uid="uid://cxh2iw42nl510" path="res://scripts/CentralElectricaManager.cs" id="14_mbule"]
+[ext_resource type="Script" uid="uid://dcw8cssceitm6" path="res://scripts/RunTimer.cs" id="15_klycv"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_aib85"]
 
@@ -586,5 +587,10 @@ CajaCables = NodePath("../Objetos/Caja_cables")
 CajaFusibles = NodePath("../Objetos/caja_fusible")
 SistemaLuces = NodePath("../Objetos/caja_interruptores")
 PalancaPrincipal = NodePath("../Objetos/palanca_energia/Node3D")
+
+[node name="RunTimer" type="Node" parent="." unique_id=695926835]
+script = ExtResource("15_klycv")
+
+[connection signal="Activada" from="Objetos/palanca_energia/Node3D" to="RunTimer" method="AlActivarPalanca"]
 
 [editable path="Objetos/palanca_energia"]
