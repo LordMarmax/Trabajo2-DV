@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://b13mvia31fsv0"]
 
+[ext_resource type="Script" uid="uid://b7mxdag6pkrys" path="res://scripts/CajaFusibles.cs" id="1_bbal5"]
 [ext_resource type="Script" uid="uid://kabx6xvkgnys" path="res://scripts/CompFusible.cs" id="1_gy1xo"]
 [ext_resource type="PackedScene" uid="uid://bxvstjhe2rl47" path="res://Escenas/Fus.tscn" id="2_gy1xo"]
 
@@ -105,6 +106,7 @@ height = 1.3825684
 radius = 0.24951172
 
 [node name="caja_fusible" type="Node3D" unique_id=1326158410]
+script = ExtResource("1_bbal5")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1656117066]
 

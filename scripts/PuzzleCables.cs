@@ -3,6 +3,7 @@ using Godot;
 public partial class PuzzleCables : Node3D
 {
     [Export] public Camera3D CamaraPuzzle;
+    [Export] public ArrastreCables ControladorCables;
 
     public bool EstaAbierto { get; private set; } = false;
 

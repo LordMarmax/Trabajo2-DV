@@ -419,10 +419,11 @@ radius = 0.026145369
 [sub_resource type="BoxShape3D" id="BoxShape3D_aib85"]
 size = Vector3(8.0047, 5.975647, 1.0551147)
 
-[node name="Caja_cables" type="Node3D" unique_id=1464585560 node_paths=PackedStringArray("CamaraPuzzle")]
+[node name="Caja_cables" type="Node3D" unique_id=1464585560 node_paths=PackedStringArray("CamaraPuzzle", "ControladorCables")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 script = ExtResource("1_glu5v")
 CamaraPuzzle = NodePath("Camera3D")
+ControladorCables = NodePath("Node3D")
 
 [node name="Cube" type="MeshInstance3D" parent="." unique_id=1221746112]
 transform = Transform3D(400, 0, 0, 0, -1.7881393e-05, 299.99997, 0, -149.99998, -3.5762787e-05, 0, 0, 0)

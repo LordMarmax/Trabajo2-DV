@@ -4,60 +4,58 @@ using Godot;
 public partial class InterruptorElectrico : StaticBody3D
 {
     [Export] public Node3D InterPivote3D;
-    [Export] public MeshInstance3D Luz;
+
+    [Export] public LucesInterruptores SistemaLuces;
+
+    // Índice de la luz correspondiente.
+    [Export] public int IndiceLuz = 0;
 
     [Export] public float AnguloActivado = 180f;
 
-    [Export] public Color ColorApagado = Colors.Red;
-    [Export] public Color ColorEncendido = Colors.Green;
-
     private bool encendido = false;
-
     private Vector3 rotacionInicial;
-    private StandardMaterial3D materialLuz;
 
     public override void _Ready()
     {
-        if (InterPivote3D == null || Luz == null)
+        if (InterPivote3D == null)
         {
             GD.PushError(
-                $"Interruptor {Name}: faltan referencias."
+                $"Interruptor {Name}: falta InterPivote3D."
             );
             return;
         }
 
-        // Guardar la rotación original del pivote.
         rotacionInicial = InterPivote3D.RotationDegrees;
+        ActualizarRotacion();
+    }
 
-        // Crear una copia independiente del material.
-        Material materialOriginal =
-            Luz.GetActiveMaterial(0);
-
-        if (materialOriginal is StandardMaterial3D material)
-        {
-            materialLuz =
-                (StandardMaterial3D)material.Duplicate();
-
-            Luz.SetSurfaceOverrideMaterial(0, materialLuz);
-        }
-        else
-        {
-            GD.PushWarning(
-                $"Interruptor {Name}: la luz necesita un StandardMaterial3D."
-            );
-        }
-
-        ActualizarEstado();
+    public void ConfigurarLuces(LucesInterruptores sistema)
+    {
+        SistemaLuces = sistema;
     }
 
     public void Interactuar()
     {
-        if (InterPivote3D == null || Luz == null)
+        if (InterPivote3D == null || SistemaLuces == null)
             return;
+
+        // No permitir activar sin su fusible.
+        if (!SistemaLuces.EstaPreparada(IndiceLuz))
+        {
+            GD.Print(
+                $"Interruptor {Name}: falta instalar su fusible."
+            );
+            return;
+        }
 
         encendido = !encendido;
 
-        ActualizarEstado();
+        ActualizarRotacion();
+
+        SistemaLuces.CambiarLuzVerde(
+            IndiceLuz,
+            encendido
+        );
 
         GD.Print(
             $"Interruptor {Name}: " +
@@ -65,28 +63,14 @@ public partial class InterruptorElectrico : StaticBody3D
         );
     }
 
-    private void ActualizarEstado()
+    private void ActualizarRotacion()
     {
-        // Rotar instantáneamente el pivote en Z.
         Vector3 rotacion = rotacionInicial;
 
         if (encendido)
             rotacion.Z += AnguloActivado;
 
         InterPivote3D.RotationDegrees = rotacion;
-
-        // Actualizar el color de la luz.
-        if (materialLuz != null)
-        {
-            Color color = encendido
-                ? ColorEncendido
-                : ColorApagado;
-
-            materialLuz.AlbedoColor = color;
-
-            materialLuz.EmissionEnabled = true;
-            materialLuz.Emission = color;
-        }
     }
 
     public bool EstaEncendido()

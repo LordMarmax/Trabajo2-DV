@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://u0hm67t1wnp0" path="res://Escenas/caja_interruptores.tscn" id="9_yg05w"]
 [ext_resource type="PackedScene" uid="uid://b15vgk6auq6wo" path="res://Escenas/palanca_energia.tscn" id="10_5cwmu"]
 [ext_resource type="PackedScene" uid="uid://cogh4eoxpil13" path="res://Escenas/Caja_Cables.tscn" id="11_is13a"]
+[ext_resource type="Script" uid="uid://cxh2iw42nl510" path="res://scripts/CentralElectricaManager.cs" id="14_mbule"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_aib85"]
 
@@ -167,8 +168,18 @@ environment = SubResource("Environment_aib85")
 
 [node name="Objetos" type="Node" parent="." unique_id=99485184]
 
+[node name="Caja_cables" parent="Objetos" unique_id=1464585560 instance=ExtResource("11_is13a")]
+transform = Transform3D(-4.3711395e-09, 0, -0.10000002, 0, 0.1, 0, 0.10000002, 0, -4.3711395e-09, -16.08693, 1.7256112, 21.263615)
+
 [node name="caja_fusible" parent="Objetos" unique_id=1326158410 instance=ExtResource("5_5hai3")]
 transform = Transform3D(-1.0927846e-08, 0, 0.24999999, 0, 0.25, 0, -0.24999999, 0, -1.0927846e-08, -18.245924, 1.7568343, 27.847355)
+
+[node name="caja_interruptores" parent="Objetos" unique_id=1344368517 node_paths=PackedStringArray("Interruptores") instance=ExtResource("9_yg05w")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -18.686094, 1.6009974, 13.660585)
+Interruptores = []
+
+[node name="palanca_energia" parent="Objetos" unique_id=1140071935 instance=ExtResource("10_5cwmu")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -24.372362, 1.509299, 13.969302)
 
 [node name="ventana" parent="Objetos" unique_id=1455591558 instance=ExtResource("7_kjdtq")]
 transform = Transform3D(-0.0037211902, 0, 2.5077672, 0, 1.1231133, 0, -1.0660527, 0, -0.008753675, -26.684206, 2.532208, 24.706938)
@@ -242,19 +253,10 @@ transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -19.410063, 4.1762767, 
 [node name="bombilla5" parent="Objetos/Luces" unique_id=1650052246 instance=ExtResource("8_kjdtq")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -24.550968, 4.1762767, 18.13575)
 
-[node name="caja_interruptores" parent="Objetos" unique_id=1344368517 instance=ExtResource("9_yg05w")]
-transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -18.686094, 1.6009974, 13.660585)
-
-[node name="palanca_energia" parent="Objetos" unique_id=1140071935 instance=ExtResource("10_5cwmu")]
-transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -24.372362, 1.509299, 13.969302)
-
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Objetos" unique_id=1245222983]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.850513, 2.1900504, 22.302322)
 mesh = SubResource("CylinderMesh_aib85")
 surface_material_override/0 = SubResource("StandardMaterial3D_4l30f")
-
-[node name="Caja_cables" parent="Objetos" unique_id=1464585560 instance=ExtResource("11_is13a")]
-transform = Transform3D(-4.3711395e-09, 0, -0.10000002, 0, 0.1, 0, 0.10000002, 0, -4.3711395e-09, -16.08693, 1.7256112, 21.263615)
 
 [node name="StaticBody3D2" type="StaticBody3D" parent="Objetos" unique_id=1218044022]
 transform = Transform3D(-4.3711395e-09, 0, -0.10000002, 0, 0.1, 0, 0.10000002, 0, -4.3711395e-09, -16.910557, 1.2800249, 21.28316)
@@ -577,3 +579,12 @@ offset_bottom = -1.0
 
 [node name="casita_v3" parent="." unique_id=1345732476 instance=ExtResource("9_pcg50")]
 transform = Transform3D(-8.742278e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, -8.742278e-09, -23.365679, -0.27396524, 21.615131)
+
+[node name="CentralElectricaManager" type="Node" parent="." unique_id=70899466 node_paths=PackedStringArray("CajaCables", "CajaFusibles", "SistemaLuces", "PalancaPrincipal")]
+script = ExtResource("14_mbule")
+CajaCables = NodePath("../Objetos/Caja_cables")
+CajaFusibles = NodePath("../Objetos/caja_fusible")
+SistemaLuces = NodePath("../Objetos/caja_interruptores")
+PalancaPrincipal = NodePath("../Objetos/palanca_energia/Node3D")
+
+[editable path="Objetos/palanca_energia"]

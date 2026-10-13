@@ -14,43 +14,49 @@ public partial class PalancaEnergia : Node3D
     public float SensibilidadArrastre = 0.15f;
 
     private float _anguloActual;
-    private bool _bloqueada = false;
+
+    private bool _bloqueada = true;
+    private bool _activada = false;
 
     public bool EstaBloqueada => _bloqueada;
+    public bool EstaActivada => _activada;
 
     public override void _Ready()
     {
         _anguloActual = AnguloInicial;
-        RotationDegrees = new Vector3(
-            _anguloActual,
-            RotationDegrees.Y,
-            RotationDegrees.Z
-        );
+
+        ActualizarRotacion();
     }
-    public override void _Process(double delta)
+
+    // El Manager habilita la palanca.
+    public void Desbloquear()
     {
-        float movimiento = 0f;
+        if (_activada)
+            return;
 
-        if (Input.IsKeyPressed(Key.Up))
-            movimiento = -1f;
+        _bloqueada = false;
 
-        if (Input.IsKeyPressed(Key.Down))
-            movimiento = 1f;
+        GD.Print("Palanca: Desbloqueada.");
+    }
 
-        if (movimiento != 0f)
-        {
-            Arrastrar(
-                movimiento * 200f * (float)delta
-            );
-        }
+    // El Manager puede bloquearla nuevamente.
+    public void Bloquear()
+    {
+        if (_activada)
+            return;
+
+        _bloqueada = true;
+
+        GD.Print("Palanca: Bloqueada.");
     }
 
     public void Arrastrar(float desplazamientoVertical)
     {
-        if (_bloqueada)
+        if (_bloqueada || _activada)
             return;
 
-        _anguloActual += desplazamientoVertical * SensibilidadArrastre;
+        _anguloActual +=
+            desplazamientoVertical * SensibilidadArrastre;
 
         _anguloActual = Mathf.Clamp(
             _anguloActual,
@@ -58,6 +64,17 @@ public partial class PalancaEnergia : Node3D
             Mathf.Max(AnguloInicial, AnguloFinal)
         );
 
+        ActualizarRotacion();
+
+        // Detectar si llegó al ángulo final.
+        if (Mathf.IsEqualApprox(_anguloActual, AnguloFinal))
+        {
+            BloquearYActivar();
+        }
+    }
+
+    private void ActualizarRotacion()
+    {
         RotationDegrees = new Vector3(
             _anguloActual,
             RotationDegrees.Y,
@@ -67,10 +84,14 @@ public partial class PalancaEnergia : Node3D
 
     public void BloquearYActivar()
     {
-        if (_bloqueada)
+        if (_activada || _bloqueada)
             return;
 
+        _activada = true;
         _bloqueada = true;
+
+        GD.Print("¡Palanca principal activada!");
+
         EmitSignal(SignalName.Activada);
     }
 }

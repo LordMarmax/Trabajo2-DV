@@ -1,8 +1,11 @@
 [gd_scene format=4 uid="uid://u0hm67t1wnp0"]
 
-[ext_resource type="Material" uid="uid://foheokg3he6j" path="res://Materiales/new_standard_material_3d.tres" id="1_o1lvq"]
+[ext_resource type="Script" uid="uid://bheo0q5ny4onm" path="res://scripts/LucesInterruptores.cs" id="1_dmj5i"]
 [ext_resource type="Texture2D" uid="uid://cxvnqk0nsjg74" path="res://Texturas/textura_rayo.png" id="2_1hl3b"]
+[ext_resource type="Material" uid="uid://beohkpjfotu1c" path="res://Materiales/Luces_Interruptores_materials/LuzApagada.tres" id="2_2nfku"]
+[ext_resource type="Material" uid="uid://ddr077m20407b" path="res://Materiales/Luces_Interruptores_materials/LuzRoja.tres" id="3_2nfku"]
 [ext_resource type="Script" uid="uid://b03l4jwqirfc1" path="res://scripts/InterruptorElectrico.cs" id="3_uq0wm"]
+[ext_resource type="Material" uid="uid://ixtrbu2rxuc7" path="res://Materiales/Luces_Interruptores_materials/LuzVerde.tres" id="4_awl1x"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cqvdh"]
 resource_name = "mat_base"
@@ -396,8 +399,14 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_bckjg")
 
-[node name="caja_interruptores" type="Node3D" unique_id=1344368517]
+[node name="caja_interruptores" type="Node3D" unique_id=1344368517 node_paths=PackedStringArray("Luces", "Interruptores")]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
+script = ExtResource("1_dmj5i")
+Luces = [NodePath("Luz_1"), NodePath("Luz_2"), NodePath("Luz_3"), NodePath("Luz_4")]
+MaterialApagado = ExtResource("2_2nfku")
+MaterialRojo = ExtResource("3_2nfku")
+MaterialVerde = ExtResource("4_awl1x")
+Interruptores = [NodePath("InterruptorInteractivo_1"), NodePath("InterruptorInteractivo_2"), NodePath("InterruptorInteractivo_3"), NodePath("InterruptorInteractivo_4")]
 
 [node name="Base" type="MeshInstance3D" parent="." unique_id=1184955335]
 transform = Transform3D(162.64749, 0, 0, 0, -5.3075273e-06, 202.77269, 0, -44.522762, -2.417239e-05, 0, 0, 0)
@@ -406,32 +415,32 @@ mesh = SubResource("ArrayMesh_2p4ok")
 [node name="Luz_1" type="MeshInstance3D" parent="." unique_id=438035648]
 transform = Transform3D(13.7101755, 3.044271e-15, -6.333349e-16, 3.0442703e-15, -13.7101755, -4.3068337e-07, -3.0442705e-15, 2.0701789e-06, -2.852287, -0.9517309, 1.4052043, 0.48004615)
 mesh = SubResource("ArrayMesh_te3di")
-surface_material_override/0 = ExtResource("1_o1lvq")
+surface_material_override/0 = ExtResource("2_2nfku")
 
 [node name="Luz_2" type="MeshInstance3D" parent="." unique_id=1676872689]
 transform = Transform3D(13.7101755, 3.044271e-15, -6.333349e-16, 3.0442703e-15, -13.7101755, -4.3068337e-07, -3.0442705e-15, 2.0701789e-06, -2.852287, -0.30383706, 1.4052043, 0.48004615)
 mesh = SubResource("ArrayMesh_biw86")
-surface_material_override/0 = ExtResource("1_o1lvq")
+surface_material_override/0 = ExtResource("2_2nfku")
 
 [node name="Luz_3" type="MeshInstance3D" parent="." unique_id=1825711361]
 transform = Transform3D(13.7101755, 3.044271e-15, -6.333349e-16, 3.0442703e-15, -13.7101755, -4.3068337e-07, -3.0442705e-15, 2.0701789e-06, -2.852287, 0.3060282, 1.4052043, 0.48004615)
 mesh = SubResource("ArrayMesh_qh3s5")
-surface_material_override/0 = ExtResource("1_o1lvq")
+surface_material_override/0 = ExtResource("2_2nfku")
 
 [node name="Luz_4" type="MeshInstance3D" parent="." unique_id=2035866385]
 transform = Transform3D(13.7101755, 3.044271e-15, -6.333349e-16, 3.0442703e-15, -13.7101755, -4.3068337e-07, -3.0442705e-15, 2.0701789e-06, -2.852287, 0.95392203, 1.4052043, 0.48004615)
 mesh = SubResource("ArrayMesh_cl02j")
-surface_material_override/0 = ExtResource("1_o1lvq")
+surface_material_override/0 = ExtResource("2_2nfku")
 
 [node name="panelcito" type="MeshInstance3D" parent="." unique_id=1099008440]
 transform = Transform3D(34.09648, 0, 0, 0, 34.09648, -1.4904044e-06, 0, 1.4904044e-06, 34.09648, 0, -1.0140953, 0.4218637)
 mesh = SubResource("ArrayMesh_17sau")
 surface_material_override/0 = SubResource("StandardMaterial3D_yg05w")
 
-[node name="InterruptorInteractivo_1" type="StaticBody3D" parent="." unique_id=2020908569 node_paths=PackedStringArray("InterPivote3D", "Luz")]
+[node name="InterruptorInteractivo_1" type="StaticBody3D" parent="." unique_id=2020908569 node_paths=PackedStringArray("InterPivote3D", "SistemaLuces")]
 script = ExtResource("3_uq0wm")
 InterPivote3D = NodePath("InterPivote3D")
-Luz = NodePath("../Luz_1")
+SistemaLuces = NodePath("..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InterruptorInteractivo_1" unique_id=851087765]
 transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, -0.94232875, 0.4256895, 0.5610959)
@@ -444,10 +453,11 @@ transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, -0
 transform = Transform3D(14.526174, 0, 0, 0, -1.1217831e-07, 29.955276, 0, -2.5663407, -1.3093867e-06, 0.011543155, -0.0075056553, 0.0040996075)
 mesh = SubResource("ArrayMesh_mmfnt")
 
-[node name="InterruptorInteractivo_2" type="StaticBody3D" parent="." unique_id=1121011330 node_paths=PackedStringArray("InterPivote3D", "Luz")]
+[node name="InterruptorInteractivo_2" type="StaticBody3D" parent="." unique_id=1121011330 node_paths=PackedStringArray("InterPivote3D", "SistemaLuces")]
 script = ExtResource("3_uq0wm")
 InterPivote3D = NodePath("InterPivote3D")
-Luz = NodePath("../Luz_2")
+SistemaLuces = NodePath("..")
+IndiceLuz = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InterruptorInteractivo_2" unique_id=690496283]
 transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, -0.29755297, 0.4256895, 0.5610959)
@@ -460,10 +470,11 @@ transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, -0
 transform = Transform3D(14.526174, 0, 0, 0, -1.1217831e-07, 29.955273, 0, -2.5663407, -1.3093866e-06, -0.000772655, -0.0075056553, 0.0040996075)
 mesh = SubResource("ArrayMesh_dpgqm")
 
-[node name="InterruptorInteractivo_3" type="StaticBody3D" parent="." unique_id=381154081 node_paths=PackedStringArray("InterPivote3D", "Luz")]
+[node name="InterruptorInteractivo_3" type="StaticBody3D" parent="." unique_id=381154081 node_paths=PackedStringArray("InterPivote3D", "SistemaLuces")]
 script = ExtResource("3_uq0wm")
 InterPivote3D = NodePath("InterPivote3D")
-Luz = NodePath("../Luz_3")
+SistemaLuces = NodePath("..")
+IndiceLuz = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InterruptorInteractivo_3" unique_id=686796838]
 transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 0.3239971, 0.4256895, 0.5610959)
@@ -476,10 +487,11 @@ transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 0.
 transform = Transform3D(14.526174, 0, 0, 0, -3.0593165e-07, 29.955273, 0, -2.5663407, -3.5709468e-06, -0.0010178685, -0.0075056553, 0.0040996075)
 mesh = SubResource("ArrayMesh_f5ioo")
 
-[node name="InterruptorInteractivo_4" type="StaticBody3D" parent="." unique_id=136952316 node_paths=PackedStringArray("InterPivote3D", "Luz")]
+[node name="InterruptorInteractivo_4" type="StaticBody3D" parent="." unique_id=136952316 node_paths=PackedStringArray("InterPivote3D", "SistemaLuces")]
 script = ExtResource("3_uq0wm")
 InterPivote3D = NodePath("InterPivote3D")
-Luz = NodePath("../Luz_4")
+SistemaLuces = NodePath("..")
+IndiceLuz = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InterruptorInteractivo_4" unique_id=1254998036]
 transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 0.9443614, 0.4256895, 0.5610959)
