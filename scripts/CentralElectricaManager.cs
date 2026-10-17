@@ -7,10 +7,13 @@ public partial class CentralElectricaManager : Node
     [Export] public CajaFusibles CajaFusibles;
     [Export] public LucesInterruptores SistemaLuces;
     [Export] public PalancaEnergia PalancaPrincipal;
+    [Export] public IluminacionCentral Iluminacion;
     private ArrastreCables SistemaCables;
 
     public bool CablesConectados { get; private set; }
     public bool InterruptoresActivados { get; private set; }
+
+    public bool CentralCompletada { get; private set; } = false;
 
     [Signal]
     public delegate void EstadoElectricoCambiadoEventHandler();
@@ -192,11 +195,24 @@ public partial class CentralElectricaManager : Node
 
     private void OnPalancaActivada()
     {
+        if (CentralCompletada)
+            return;
+
         PalancaActivada = true;
+        CentralCompletada = true;
 
         MostrarFeedback("¡Central eléctrica activada!");
 
         ActualizarEstadoElectrico();
+
+        if (Iluminacion != null)
+        {
+            Iluminacion.EncenderLuces();
+        }
+        else
+        {
+            GD.PushWarning("Manager: No se asignó IluminacionCentral");
+        }
     }
 
     public void MostrarFeedback(string mensaje)

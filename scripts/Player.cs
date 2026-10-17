@@ -58,15 +58,11 @@ public partial class Player : CharacterBody3D
         if (Temporizador != null)
         {
             Temporizador.BateriaAgotada += ApagarLinterna;
+            Temporizador.RunCompletada += DesvanecerLinterna;
         }
         else
         {
             GD.PushError("Player: RunTimer no asignado");
-        }
-        if (Temporizador != null)
-        {
-            Temporizador.BateriaAgotada += ApagarLinterna;
-            Temporizador.RunCompletada += DesvanecerLinterna;
         }
 
     }
@@ -169,7 +165,6 @@ public partial class Player : CharacterBody3D
         if (@event is InputEventMouseButton boton &&
             boton.ButtonIndex == MouseButton.Left)
         {
-            GD.Print("Se detecta click");
 
             if (boton.Pressed)
             {
@@ -211,6 +206,10 @@ public partial class Player : CharacterBody3D
 
             // Comprobar si apuntamos a un interruptor.
             if (IntentarInteractuarInterruptor())
+                return;
+
+            // Comprobar si apuntamos a la puerta de salida.
+            if (IntentarInteractuarPuerta())
                 return;
 
             // Si no es una caja, mantener
@@ -282,6 +281,44 @@ public partial class Player : CharacterBody3D
 
         return false;
     }
+
+    private bool IntentarInteractuarPuerta()
+    {
+        if (rayCastAtaque == null)
+            return false;
+
+        rayCastAtaque.ForceRaycastUpdate();
+
+        if (!rayCastAtaque.IsColliding())
+            return false;
+
+        Node objeto = rayCastAtaque.GetCollider() as Node;
+
+        if (objeto == null)
+            return false;
+
+        // Buscar la puerta tanto en el collider
+        // como en sus nodos padres.
+        Node actual = objeto;
+
+        while (actual != null)
+        {
+            if (actual is PuertaSalida puerta)
+            {
+                GD.Print("Jugador interactuando con puerta.");
+
+                puerta.Interactuar();
+
+                return true;
+            }
+
+            actual = actual.GetParent();
+        }
+
+        return false;
+    }
+
+
 
     private void ApagarLinterna()
     {

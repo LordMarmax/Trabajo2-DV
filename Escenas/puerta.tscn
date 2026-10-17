@@ -129,7 +129,10 @@ shadow_mesh = SubResource("ArrayMesh_xejh1")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4l30f"]
 albedo_color = Color(0.68, 0.68, 0.68, 1)
 
-[node name="Puerta" type="Node3D" unique_id=2118655376]
+[sub_resource type="BoxShape3D" id="BoxShape3D_pg8tl"]
+size = Vector3(5.9909973, 11.161896, 1)
+
+[node name="PuertaSalida" type="Node3D" unique_id=2118655376]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
 
 [node name="Marco" type="MeshInstance3D" parent="." unique_id=1769360318]
@@ -148,3 +151,9 @@ mesh = SubResource("ArrayMesh_fjjob")
 transform = Transform3D(0.51, 0, 0, 0, 0.51, 0, 0, 0, 0.51, 2.3392434, 5.2381945, 0.58783036)
 mesh = SubResource("SphereMesh_aib85")
 surface_material_override/0 = SubResource("StandardMaterial3D_4l30f")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=850686573]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1670822276]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 0.007553353, 5.461591, 0)
+shape = SubResource("BoxShape3D_pg8tl")

@@ -13,11 +13,14 @@
 [ext_resource type="PackedScene" uid="uid://u0hm67t1wnp0" path="res://Escenas/caja_interruptores.tscn" id="9_yg05w"]
 [ext_resource type="PackedScene" uid="uid://b15vgk6auq6wo" path="res://Escenas/palanca_energia.tscn" id="10_5cwmu"]
 [ext_resource type="PackedScene" uid="uid://cogh4eoxpil13" path="res://Escenas/Caja_Cables.tscn" id="11_is13a"]
+[ext_resource type="Script" uid="uid://jqh2bdxhin83" path="res://scripts/IluminacionCentral.cs" id="11_mx78n"]
 [ext_resource type="PackedScene" uid="uid://dn3b0vch1lrof" path="res://Escenas/puerta.tscn" id="12_i8y4t"]
 [ext_resource type="Script" uid="uid://cu2yndxgnr4x2" path="res://scripts/BateriaUI.cs" id="13_lkl22"]
+[ext_resource type="Script" uid="uid://ba2uxkvnm2qgh" path="res://scripts/PuertaSalida.cs" id="14_evvtr"]
 [ext_resource type="PackedScene" uid="uid://qbpjugnwm4lo" path="res://Escenas/bateria_progressbar.tscn" id="14_kkahe"]
 [ext_resource type="Script" uid="uid://cxh2iw42nl510" path="res://scripts/CentralElectricaManager.cs" id="14_mbule"]
 [ext_resource type="Script" uid="uid://dcw8cssceitm6" path="res://scripts/RunTimer.cs" id="15_klycv"]
+[ext_resource type="Script" uid="uid://c4oxddf0ykuyk" path="res://scripts/TransicionPantalla.cs" id="21_knamd"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_aib85"]
 
@@ -232,6 +235,7 @@ transform = Transform3D(3.0518906, 0, 0, 0, 7.9827776, 0, 0, 0, 5.6146517, -18.8
 shape = SubResource("BoxShape3D_4l30f")
 
 [node name="Luces" type="Node" parent="Objetos" unique_id=1762856903]
+script = ExtResource("11_mx78n")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Objetos/Luces" unique_id=1229893141]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.388947, 4.2116976, 26.193184)
@@ -265,23 +269,18 @@ omni_range = 7.282504
 
 [node name="bombilla" parent="Objetos/Luces" unique_id=282773560 instance=ExtResource("8_kjdtq")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -23.849936, 4.1762767, 25.961386)
-visible = false
 
 [node name="bombilla2" parent="Objetos/Luces" unique_id=2143527304 instance=ExtResource("8_kjdtq")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -17.384853, 4.1762767, 26.229633)
-visible = false
 
 [node name="bombilla3" parent="Objetos/Luces" unique_id=1240012134 instance=ExtResource("8_kjdtq")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -18.009687, 4.1762767, 21.299698)
-visible = false
 
 [node name="bombilla4" parent="Objetos/Luces" unique_id=1737064852 instance=ExtResource("8_kjdtq")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -19.410063, 4.1762767, 17.486647)
-visible = false
 
 [node name="bombilla5" parent="Objetos/Luces" unique_id=1650052246 instance=ExtResource("8_kjdtq")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -24.550968, 4.1762767, 18.13575)
-visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Objetos" unique_id=1245222983]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.850513, 2.1900504, 22.302322)
@@ -589,8 +588,11 @@ mesh = SubResource("CylinderMesh_kkahe")
 transform = Transform3D(-4.371139e-08, -1, 0, -4.371139e-08, 1.9106855e-15, -1, 1, -4.371139e-08, -4.371139e-08, -19.157015, 4.379774, 20.6053)
 mesh = SubResource("CylinderMesh_kkahe")
 
-[node name="Puerta" parent="Objetos" unique_id=2118655376 instance=ExtResource("12_i8y4t")]
+[node name="PuertaSalida" parent="Objetos" unique_id=2118655376 node_paths=PackedStringArray("Manager", "Transicion") instance=ExtResource("12_i8y4t")]
 transform = Transform3D(-0.3, 0, -4.5298744e-08, 0, 0.3, 0, 4.5298744e-08, 0, -0.3, -22.963047, 0, 29.422922)
+script = ExtResource("14_evvtr")
+Manager = NodePath("../../CentralElectricaManager")
+Transicion = NodePath("../../TransicionPantalla")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1784367701]
 transform = Transform3D(-0.49581826, 0.1771416, -0.8501678, 0.020566493, 0.9810957, 0.19242755, 0.8681829, 0.07792409, -0.49008843, -33.135956, 4.010557, 20.803047)
@@ -625,15 +627,30 @@ offset_bottom = -9.0
 [node name="casita_v3" parent="." unique_id=1345732476 instance=ExtResource("9_pcg50")]
 transform = Transform3D(-8.742278e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, -8.742278e-09, -23.365679, -0.27396524, 21.615131)
 
-[node name="CentralElectricaManager" type="Node" parent="." unique_id=70899466 node_paths=PackedStringArray("CajaCables", "CajaFusibles", "SistemaLuces", "PalancaPrincipal")]
+[node name="CentralElectricaManager" type="Node" parent="." unique_id=70899466 node_paths=PackedStringArray("CajaCables", "CajaFusibles", "SistemaLuces", "PalancaPrincipal", "Iluminacion")]
 script = ExtResource("14_mbule")
 CajaCables = NodePath("../Objetos/Caja_cables")
 CajaFusibles = NodePath("../Objetos/caja_fusible")
 SistemaLuces = NodePath("../Objetos/caja_interruptores")
 PalancaPrincipal = NodePath("../Objetos/palanca_energia/Node3D")
+Iluminacion = NodePath("../Objetos/Luces")
 
 [node name="RunTimer" type="Node" parent="." unique_id=695926835]
 script = ExtResource("15_klycv")
+
+[node name="TransicionPantalla" type="CanvasLayer" parent="." unique_id=2045836988 node_paths=PackedStringArray("FondoNegro")]
+layer = 10
+script = ExtResource("21_knamd")
+FondoNegro = NodePath("FondoNegro")
+
+[node name="FondoNegro" type="ColorRect" parent="TransicionPantalla" unique_id=877282070]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
 
 [connection signal="Activada" from="Objetos/palanca_energia/Node3D" to="RunTimer" method="AlActivarPalanca"]
 
