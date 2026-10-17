@@ -659,3 +659,4 @@ color = Color(0, 0, 0, 1)
 
 [editable path="Objetos/caja_interruptores"]
 [editable path="Objetos/palanca_energia"]
+[editable path="CanvasLayer/Control"]
