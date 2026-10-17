@@ -4,7 +4,7 @@ using Godot;
 public partial class InterruptorElectrico : StaticBody3D
 {
     [Export] public Node3D InterPivote3D;
-
+    [Export] public CentralElectricaManager Manager;
     [Export] public LucesInterruptores SistemaLuces;
 
     // Índice de la luz correspondiente.
@@ -39,12 +39,18 @@ public partial class InterruptorElectrico : StaticBody3D
         if (InterPivote3D == null || SistemaLuces == null)
             return;
 
+        if (Manager != null && !Manager.CablesConectados)
+        {
+            Manager.MostrarFeedback(
+                "Primero debes conectar los cables"
+            );
+        }
         // No permitir activar sin su fusible.
         if (!SistemaLuces.EstaPreparada(IndiceLuz))
         {
-            GD.Print(
-                $"Interruptor {Name}: falta instalar su fusible."
-            );
+            GD.Print($"Interruptor {Name}: falta instalar su fusible.");
+
+            Manager?.MostrarFeedback("Falta instalar el fusible de este interruptor.");
             return;
         }
 

@@ -14,6 +14,13 @@ public partial class CentralElectricaManager : Node
 
     [Signal]
     public delegate void EstadoElectricoCambiadoEventHandler();
+    [Signal]
+    public delegate void FeedbackSolicitadoEventHandler(string mensaje);
+
+    public bool PalancaActivada { get; private set; } = false;
+
+    public bool FusiblesCompletados =>
+        CajaFusibles != null && CajaFusibles.EstanTodosInstalados();
 
     public override void _Ready()
     {
@@ -102,11 +109,7 @@ public partial class CentralElectricaManager : Node
 
     private void ActualizarEstadoElectrico()
     {
-        // Próximamente:
-        // 1. Comprobar fusibles.
-        // 2. Actualizar indicadores.
-        // 3. Comprobar interruptores.
-        // 4. Habilitar alimentación final.
+
 
         EmitSignal(
             SignalName.EstadoElectricoCambiado
@@ -143,7 +146,6 @@ public partial class CentralElectricaManager : Node
         if (!CablesConectados)
             return;
 
-        GD.Print("Manager: Sistema de fusibles completado.");
 
         ActualizarEstadoElectrico();
     }
@@ -160,9 +162,7 @@ public partial class CentralElectricaManager : Node
     {
         InterruptoresActivados = todosActivados;
 
-        GD.Print(
-            $"Manager: Interruptores activados = {InterruptoresActivados}"
-        );
+        MostrarFeedback("¡Interruptores activados!");
 
         ActualizarEstadoElectrico();
 
@@ -192,10 +192,15 @@ public partial class CentralElectricaManager : Node
 
     private void OnPalancaActivada()
     {
-        GD.Print("¡CENTRAL ELÉCTRICA ACTIVADA!");
+        PalancaActivada = true;
 
-        // Aquí podremos ejecutar el evento final:
-        // Encender iluminación, activar máquinas,
-        // abrir una puerta o completar el nivel.
+        MostrarFeedback("¡Central eléctrica activada!");
+
+        ActualizarEstadoElectrico();
+    }
+
+    public void MostrarFeedback(string mensaje)
+    {
+        EmitSignal(SignalName.FeedbackSolicitado, mensaje);
     }
 }

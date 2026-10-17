@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public partial class CajaFusibles : Node3D
 {
+
     // Señal cuando se instalan todos los fusibles.
     [Signal]
     public delegate void TodosFusiblesInstaladosEventHandler();
@@ -109,7 +110,7 @@ public partial class CajaFusibles : Node3D
         if (!EstanTodosInstalados())
             return;
 
-        GD.Print("¡Todos los fusibles instalados!");
+        Manager.MostrarFeedback("¡Todos los fusibles instalados!");
 
         EmitSignal(
             SignalName.TodosFusiblesInstalados

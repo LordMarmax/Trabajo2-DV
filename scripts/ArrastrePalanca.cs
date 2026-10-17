@@ -56,6 +56,22 @@ public partial class ArrastrePalanca : Node
         if (palanca.EstaBloqueada)
         {
             GD.Print("La palanca está bloqueada.");
+
+            if (palanca.Manager != null)
+            {
+                if (!palanca.Manager.CablesConectados)
+                {
+                    palanca.Manager.MostrarFeedback("Primero debes conectar los cables.");
+                }
+                else if (!palanca.Manager.FusiblesCompletados)
+                {
+                    palanca.Manager.MostrarFeedback("Primero debes instalar los fusibles");
+                }
+                else if (!palanca.Manager.InterruptoresActivados)
+                {
+                    palanca.Manager.MostrarFeedback("Debes activar todos los interruptores.");
+                }
+            }
             return false;
         }
 

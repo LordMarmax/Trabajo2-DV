@@ -180,8 +180,23 @@ transform = Transform3D(-1.0927846e-08, 0, 0.24999999, 0, 0.25, 0, -0.24999999, 
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -18.686094, 1.6009974, 13.660585)
 Interruptores = []
 
+[node name="InterruptorInteractivo_1" parent="Objetos/caja_interruptores" index="6" unique_id=2020908569 node_paths=PackedStringArray("Manager")]
+Manager = NodePath("../../../CentralElectricaManager")
+
+[node name="InterruptorInteractivo_2" parent="Objetos/caja_interruptores" index="7" unique_id=1121011330 node_paths=PackedStringArray("Manager")]
+Manager = NodePath("../../../CentralElectricaManager")
+
+[node name="InterruptorInteractivo_3" parent="Objetos/caja_interruptores" index="8" unique_id=381154081 node_paths=PackedStringArray("Manager")]
+Manager = NodePath("../../../CentralElectricaManager")
+
+[node name="InterruptorInteractivo_4" parent="Objetos/caja_interruptores" index="9" unique_id=136952316 node_paths=PackedStringArray("Manager")]
+Manager = NodePath("../../../CentralElectricaManager")
+
 [node name="palanca_energia" parent="Objetos" unique_id=1140071935 instance=ExtResource("10_5cwmu")]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -24.372362, 1.509299, 13.969302)
+
+[node name="Node3D" parent="Objetos/palanca_energia" index="1" unique_id=920835180 node_paths=PackedStringArray("Manager")]
+Manager = NodePath("../../../CentralElectricaManager")
 
 [node name="ventana" parent="Objetos" unique_id=1455591558 instance=ExtResource("7_kjdtq")]
 transform = Transform3D(-0.0037211902, 0, 2.5077672, 0, 1.1231133, 0, -1.0660527, 0, -0.008753675, -26.684206, 2.532208, 24.706938)
@@ -586,11 +601,12 @@ spot_attenuation = 0.39
 spot_angle = 12.009771
 spot_angle_attenuation = 1.0954708
 
-[node name="Control" parent="." unique_id=593959270 instance=ExtResource("2_4hew7")]
+[node name="Control" parent="." unique_id=593959270 node_paths=PackedStringArray("Manager") instance=ExtResource("2_4hew7")]
 offset_left = 2.0
 offset_top = -1.0
 offset_right = 2.0
 offset_bottom = -1.0
+Manager = NodePath("../CentralElectricaManager")
 
 [node name="casita_v3" parent="." unique_id=1345732476 instance=ExtResource("9_pcg50")]
 transform = Transform3D(-8.742278e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, -8.742278e-09, -23.365679, -0.27396524, 21.615131)
@@ -607,4 +623,5 @@ script = ExtResource("15_klycv")
 
 [connection signal="Activada" from="Objetos/palanca_energia/Node3D" to="RunTimer" method="AlActivarPalanca"]
 
+[editable path="Objetos/caja_interruptores"]
 [editable path="Objetos/palanca_energia"]

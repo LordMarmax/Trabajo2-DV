@@ -37,9 +37,7 @@ public partial class CompFusible : Node3D
         // No permitir la instalación sin los cables.
         if (Manager == null || !Manager.CablesConectados)
         {
-            GD.Print(
-                "Fusible rechazado: los cables aún no están conectados."
-            );
+            Manager.MostrarFeedback("Falta conectar los cables");
             return;
         }
 

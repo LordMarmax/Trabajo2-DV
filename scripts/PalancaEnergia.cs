@@ -10,13 +10,17 @@ public partial class PalancaEnergia : Node3D
     [Export] public float AnguloInicial = 0f;
     [Export] public float AnguloFinal = 65f;
 
+    [Export] public CentralElectricaManager Manager;
+
     [Export(PropertyHint.Range, "0.01,1.0,0.01")]
     public float SensibilidadArrastre = 0.15f;
+
 
     private float _anguloActual;
 
     private bool _bloqueada = true;
     private bool _activada = false;
+
 
     public bool EstaBloqueada => _bloqueada;
     public bool EstaActivada => _activada;
@@ -52,6 +56,7 @@ public partial class PalancaEnergia : Node3D
 
     public void Arrastrar(float desplazamientoVertical)
     {
+
         if (_bloqueada || _activada)
             return;
 
@@ -89,8 +94,6 @@ public partial class PalancaEnergia : Node3D
 
         _activada = true;
         _bloqueada = true;
-
-        GD.Print("¡Palanca principal activada!");
 
         EmitSignal(SignalName.Activada);
     }
