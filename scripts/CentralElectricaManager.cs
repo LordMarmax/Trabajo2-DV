@@ -10,6 +10,13 @@ public partial class CentralElectricaManager : Node
     [Export] public IluminacionCentral Iluminacion;
     private ArrastreCables SistemaCables;
 
+    [Export] public RunTimer Temporizador;
+    [Export] public Player Jugador;
+    [Export] public TransicionPantalla Transicion;
+
+
+    private bool _gameOver = false;
+    private bool _juegoCompletado = false;
     public bool CablesConectados { get; private set; }
     public bool InterruptoresActivados { get; private set; }
 
@@ -93,6 +100,13 @@ public partial class CentralElectricaManager : Node
         if (PalancaPrincipal != null)
         {
             PalancaPrincipal.Activada += OnPalancaActivada;
+        }
+
+        if (Temporizador != null)
+        {
+            Temporizador.BateriaAgotada += GameOver;
+
+            GD.Print("Manager: Señal de derrota conectada.");
         }
     }
 
@@ -195,11 +209,12 @@ public partial class CentralElectricaManager : Node
 
     private void OnPalancaActivada()
     {
-        if (CentralCompletada)
+        if (CentralCompletada || _gameOver)
             return;
 
         PalancaActivada = true;
         CentralCompletada = true;
+        _juegoCompletado = true;
 
         MostrarFeedback("¡Central eléctrica activada!");
 
@@ -211,12 +226,37 @@ public partial class CentralElectricaManager : Node
         }
         else
         {
-            GD.PushWarning("Manager: No se asignó IluminacionCentral");
+            GD.PushWarning(
+                "Manager: No se asignó IluminacionCentral"
+            );
         }
     }
 
     public void MostrarFeedback(string mensaje)
     {
         EmitSignal(SignalName.FeedbackSolicitado, mensaje);
+    }
+
+    public void GameOver()
+    {
+        if (_gameOver || _juegoCompletado)
+            return;
+
+        _gameOver = true;
+
+        GD.Print("=== GAME OVER ===");
+
+        Jugador?.BloquearControles();
+
+        if (Transicion != null)
+        {
+            Transicion.DesvanecerANegro();
+        }
+        else
+        {
+            GD.PushWarning(
+                "Manager: Transicion no asignada."
+            );
+        }
     }
 }

@@ -39,6 +39,10 @@ public partial class Ui : Control
                 ? Input.MouseModeEnum.Captured
                 : Input.MouseModeEnum.Visible;
         }
+        if (Input.IsActionJustPressed("Reset"))
+        {
+            GetTree().ReloadCurrentScene();
+        }
     }
 
     private void ActualizarTareas()

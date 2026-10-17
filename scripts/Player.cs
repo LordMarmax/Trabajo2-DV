@@ -14,7 +14,7 @@ public partial class Player : CharacterBody3D
     [Export] public SpotLight3D Linterna;
     [Export] public RunTimer Temporizador;
     [Export] public float DuracionDesvanecimiento = 2.5f;
-
+    private bool _controlesBloqueados = false;
     private Tween _tweenLinterna;
     private RayCast3D rayCastAtaque;
 
@@ -69,6 +69,12 @@ public partial class Player : CharacterBody3D
 
     public override void _PhysicsProcess(double delta)
     {
+        if (_controlesBloqueados)
+        {
+            Velocity = Vector3.Zero;
+            return;
+        }
+
         // Bloquear movimiento durante el minijuego.
         if (EstaEnPuzzle)
         {
@@ -156,6 +162,8 @@ public partial class Player : CharacterBody3D
 
     public override void _Input(InputEvent @event)
     {
+        if (_controlesBloqueados)
+            return;
         // Mientras el puzzle esté abierto,
         // no procesamos controles normales.
         if (EstaEnPuzzle)
@@ -362,5 +370,14 @@ public partial class Player : CharacterBody3D
         );
     }
 
+    public void BloquearControles()
+    {
+        _controlesBloqueados = true;
 
+        Velocity = Vector3.Zero;
+
+        Arrastre?.FinalizarArrastre();
+
+        GD.Print("Player: Controles bloqueados.");
+    }
 }

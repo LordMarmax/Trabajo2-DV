@@ -627,13 +627,16 @@ offset_bottom = -9.0
 [node name="casita_v3" parent="." unique_id=1345732476 instance=ExtResource("9_pcg50")]
 transform = Transform3D(-8.742278e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, -8.742278e-09, -23.365679, -0.27396524, 21.615131)
 
-[node name="CentralElectricaManager" type="Node" parent="." unique_id=70899466 node_paths=PackedStringArray("CajaCables", "CajaFusibles", "SistemaLuces", "PalancaPrincipal", "Iluminacion")]
+[node name="CentralElectricaManager" type="Node" parent="." unique_id=70899466 node_paths=PackedStringArray("CajaCables", "CajaFusibles", "SistemaLuces", "PalancaPrincipal", "Iluminacion", "Temporizador", "Jugador", "Transicion")]
 script = ExtResource("14_mbule")
 CajaCables = NodePath("../Objetos/Caja_cables")
 CajaFusibles = NodePath("../Objetos/caja_fusible")
 SistemaLuces = NodePath("../Objetos/caja_interruptores")
 PalancaPrincipal = NodePath("../Objetos/palanca_energia/Node3D")
 Iluminacion = NodePath("../Objetos/Luces")
+Temporizador = NodePath("../RunTimer")
+Jugador = NodePath("../CharacterBody3D")
+Transicion = NodePath("../TransicionPantalla")
 
 [node name="RunTimer" type="Node" parent="." unique_id=695926835]
 script = ExtResource("15_klycv")

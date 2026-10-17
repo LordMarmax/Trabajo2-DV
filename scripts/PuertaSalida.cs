@@ -36,6 +36,6 @@ public partial class PuertaSalida : Node3D
 
 		GD.Print("Puerta: Salida habilitada.");
 		Manager.MostrarFeedback("Finalizando...");
-		Transicion.DesvanecerANegro();
+		Transicion.DesvanecerACeleste();
 	}
 }
