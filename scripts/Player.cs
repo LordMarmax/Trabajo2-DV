@@ -58,15 +58,11 @@ public partial class Player : CharacterBody3D
         if (Temporizador != null)
         {
             Temporizador.BateriaAgotada += ApagarLinterna;
+            Temporizador.RunCompletada += DesvanecerLinterna;
         }
         else
         {
             GD.PushError("Player: RunTimer no asignado");
-        }
-        if (Temporizador != null)
-        {
-            Temporizador.BateriaAgotada += ApagarLinterna;
-            Temporizador.RunCompletada += DesvanecerLinterna;
         }
 
     }
@@ -169,7 +165,6 @@ public partial class Player : CharacterBody3D
         if (@event is InputEventMouseButton boton &&
             boton.ButtonIndex == MouseButton.Left)
         {
-            GD.Print("Se detecta click");
 
             if (boton.Pressed)
             {
@@ -211,6 +206,10 @@ public partial class Player : CharacterBody3D
 
             // Comprobar si apuntamos a un interruptor.
             if (IntentarInteractuarInterruptor())
+                return;
+
+            // Comprobar si apuntamos a la puerta de salida.
+            if (IntentarInteractuarPuerta())
                 return;
 
             // Si no es una caja, mantener
@@ -283,49 +282,57 @@ public partial class Player : CharacterBody3D
         return false;
     }
 
-    // private void ApagarLinterna()
-    // {
-    //     if (Linterna == null)
-    //         return;
-
-    //     _tweenLinterna?.Kill();
-
-    //     Linterna.LightEnergy = 0.0f;
-    //     Linterna.Visible = false;
-
-    //     GD.Print("=== LINTERNA APAGADA ===");
-    //     GD.Print("La batería se ha agotado.");
-    // }
-
-    private void ApagarLinterna()
-{
-    GD.Print("=== DIAGNÓSTICO LINTERNA ===");
-
-    GD.Print("Jugador: ", GetPath());
-    GD.Print("ID jugador: ", GetInstanceId());
-
-    if (Linterna == null)
+    private bool IntentarInteractuarPuerta()
     {
-        GD.PrintErr("ERROR: Linterna no asignada.");
-        return;
+        if (rayCastAtaque == null)
+            return false;
+
+        rayCastAtaque.ForceRaycastUpdate();
+
+        if (!rayCastAtaque.IsColliding())
+            return false;
+
+        Node objeto = rayCastAtaque.GetCollider() as Node;
+
+        if (objeto == null)
+            return false;
+
+        // Buscar la puerta tanto en el collider
+        // como en sus nodos padres.
+        Node actual = objeto;
+
+        while (actual != null)
+        {
+            if (actual is PuertaSalida puerta)
+            {
+                GD.Print("Jugador interactuando con puerta.");
+
+                puerta.Interactuar();
+
+                return true;
+            }
+
+            actual = actual.GetParent();
+        }
+
+        return false;
     }
 
-    GD.Print("Linterna: ", Linterna.GetPath());
-    GD.Print("ID linterna: ", Linterna.GetInstanceId());
 
-    GD.Print("Visible ANTES: ", Linterna.Visible);
-    GD.Print("Energía ANTES: ", Linterna.LightEnergy);
 
-    _tweenLinterna?.Kill();
+    private void ApagarLinterna()
+    {
+        if (Linterna == null)
+            return;
 
-    Linterna.LightEnergy = 0.0f;
-    Linterna.Visible = false;
+        _tweenLinterna?.Kill();
 
-    GD.Print("Visible DESPUÉS: ", Linterna.Visible);
-    GD.Print("Energía DESPUÉS: ", Linterna.LightEnergy);
+        Linterna.LightEnergy = 0.0f;
+        Linterna.Visible = false;
 
-    GD.Print("=== FIN DIAGNÓSTICO ===");
-}
+        GD.Print("=== LINTERNA APAGADA ===");
+        GD.Print("La batería se ha agotado.");
+    }
     private void DesvanecerLinterna()
     {
         if (Linterna == null || !Linterna.Visible)
