@@ -216,43 +216,53 @@ shape = SubResource("BoxShape3D_4l30f")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Objetos/Luces" unique_id=1229893141]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.388947, 4.2116976, 26.193184)
+visible = false
 shadow_enabled = true
 omni_range = 7.282504
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="Objetos/Luces" unique_id=597349915]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.39981, 4.2116976, 17.5078)
+visible = false
 shadow_enabled = true
 omni_range = 7.282504
 
 [node name="OmniLight3D3" type="OmniLight3D" parent="Objetos/Luces" unique_id=1190361035]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.557152, 4.2116976, 18.11801)
+visible = false
 shadow_enabled = true
 omni_range = 7.282504
 
 [node name="OmniLight3D4" type="OmniLight3D" parent="Objetos/Luces" unique_id=1184829006]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.851015, 4.2116976, 25.949196)
+visible = false
 shadow_enabled = true
 omni_range = 7.282504
 
 [node name="OmniLight3D5" type="OmniLight3D" parent="Objetos/Luces" unique_id=741071637]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.994087, 4.2116976, 21.299957)
+visible = false
 shadow_enabled = true
 omni_range = 7.282504
 
 [node name="bombilla" parent="Objetos/Luces" unique_id=282773560 instance=ExtResource("8_kjdtq")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -23.849936, 4.1762767, 25.961386)
+visible = false
 
 [node name="bombilla2" parent="Objetos/Luces" unique_id=2143527304 instance=ExtResource("8_kjdtq")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -17.384853, 4.1762767, 26.229633)
+visible = false
 
 [node name="bombilla3" parent="Objetos/Luces" unique_id=1240012134 instance=ExtResource("8_kjdtq")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -18.009687, 4.1762767, 21.299698)
+visible = false
 
 [node name="bombilla4" parent="Objetos/Luces" unique_id=1737064852 instance=ExtResource("8_kjdtq")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -19.410063, 4.1762767, 17.486647)
+visible = false
 
 [node name="bombilla5" parent="Objetos/Luces" unique_id=1650052246 instance=ExtResource("8_kjdtq")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -24.550968, 4.1762767, 18.13575)
+visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Objetos" unique_id=1245222983]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.850513, 2.1900504, 22.302322)
