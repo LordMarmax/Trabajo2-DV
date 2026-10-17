@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://u0hm67t1wnp0" path="res://Escenas/caja_interruptores.tscn" id="9_yg05w"]
 [ext_resource type="PackedScene" uid="uid://b15vgk6auq6wo" path="res://Escenas/palanca_energia.tscn" id="10_5cwmu"]
 [ext_resource type="PackedScene" uid="uid://cogh4eoxpil13" path="res://Escenas/Caja_Cables.tscn" id="11_is13a"]
+[ext_resource type="PackedScene" uid="uid://dn3b0vch1lrof" path="res://Escenas/puerta.tscn" id="12_i8y4t"]
 [ext_resource type="Script" uid="uid://cxh2iw42nl510" path="res://scripts/CentralElectricaManager.cs" id="14_mbule"]
 [ext_resource type="Script" uid="uid://dcw8cssceitm6" path="res://scripts/RunTimer.cs" id="15_klycv"]
 
@@ -569,6 +570,9 @@ mesh = SubResource("CylinderMesh_kkahe")
 [node name="MeshInstance3D25" type="MeshInstance3D" parent="Objetos/Esquinas techo/Cilindros" unique_id=24370237]
 transform = Transform3D(-4.371139e-08, -1, 0, -4.371139e-08, 1.9106855e-15, -1, 1, -4.371139e-08, -4.371139e-08, -19.157015, 4.379774, 20.6053)
 mesh = SubResource("CylinderMesh_kkahe")
+
+[node name="Puerta" parent="Objetos" unique_id=2118655376 instance=ExtResource("12_i8y4t")]
+transform = Transform3D(-0.3, 0, -4.5298744e-08, 0, 0.3, 0, 4.5298744e-08, 0, -0.3, -22.963047, 0, 29.422922)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1784367701]
 transform = Transform3D(-0.49581826, 0.1771416, -0.8501678, 0.020566493, 0.9810957, 0.19242755, 0.8681829, 0.07792409, -0.49008843, -33.135956, 4.010557, 20.803047)

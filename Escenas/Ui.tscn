@@ -3,6 +3,10 @@
 [ext_resource type="Script" uid="uid://xqwssf3admvm" path="res://scripts/Ui.cs" id="1_mpwfm"]
 [ext_resource type="Texture2D" uid="uid://m83xp3wj78iq" path="res://Texturas/cruceta.png" id="2_434li"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_aib85"]
+font_size = 22
+font_color = Color(0.26571298, 0.855364, 0, 1)
+
 [node name="Control" type="Control" unique_id=593959270]
 layout_mode = 3
 anchors_preset = 15
@@ -20,3 +24,41 @@ script = ExtResource("1_mpwfm")
 position = Vector2(576, 324)
 scale = Vector2(1.0172838, 1.0104351)
 texture = ExtResource("2_434li")
+
+[node name="Label" type="Label" parent="." unique_id=582032542]
+layout_mode = 0
+offset_left = 961.0
+offset_right = 1146.0
+offset_bottom = 72.0
+text = "Tareas Resueltas:
+x de 4"
+label_settings = SubResource("LabelSettings_aib85")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="." unique_id=1570223680]
+layout_mode = 0
+offset_left = 545.0
+offset_top = 2.0
+offset_right = 624.0
+offset_bottom = 33.0
+text = "Falta ....."
+
+[node name="Label3" type="Label" parent="." unique_id=52031049]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 577.0
+offset_right = 190.0
+offset_bottom = 615.0
+text = "Batería:"
+label_settings = SubResource("LabelSettings_aib85")
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="." unique_id=1895446223]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 609.0
+offset_right = 189.0
+offset_bottom = 647.0
+text = "XX%"
+label_settings = SubResource("LabelSettings_aib85")
+horizontal_alignment = 1
