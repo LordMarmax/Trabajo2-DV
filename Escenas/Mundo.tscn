@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://b15vgk6auq6wo" path="res://Escenas/palanca_energia.tscn" id="10_5cwmu"]
 [ext_resource type="PackedScene" uid="uid://cogh4eoxpil13" path="res://Escenas/Caja_Cables.tscn" id="11_is13a"]
 [ext_resource type="PackedScene" uid="uid://dn3b0vch1lrof" path="res://Escenas/puerta.tscn" id="12_i8y4t"]
+[ext_resource type="Script" uid="uid://cu2yndxgnr4x2" path="res://scripts/BateriaUI.cs" id="13_lkl22"]
+[ext_resource type="PackedScene" uid="uid://qbpjugnwm4lo" path="res://Escenas/bateria_progressbar.tscn" id="14_kkahe"]
 [ext_resource type="Script" uid="uid://cxh2iw42nl510" path="res://scripts/CentralElectricaManager.cs" id="14_mbule"]
 [ext_resource type="Script" uid="uid://dcw8cssceitm6" path="res://scripts/RunTimer.cs" id="15_klycv"]
 
@@ -162,8 +164,9 @@ surface_material_override/0 = SubResource("StandardMaterial3D_wxw8o")
 transform = Transform3D(1.9876698, 0, 0, 0, 0.99999946, 0, 0, 0, 1.9672669, 0, 0, 0)
 shape = SubResource("HeightMapShape3D_g3dvk")
 
-[node name="CharacterBody3D" parent="." unique_id=1124762868 instance=ExtResource("1_g3dvk")]
+[node name="CharacterBody3D" parent="." unique_id=1124762868 node_paths=PackedStringArray("Temporizador") instance=ExtResource("1_g3dvk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.373644, 1.0468314, 26.56872)
+Temporizador = NodePath("../RunTimer")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=822756842]
 environment = SubResource("Environment_aib85")
@@ -601,12 +604,23 @@ spot_attenuation = 0.39
 spot_angle = 12.009771
 spot_angle_attenuation = 1.0954708
 
-[node name="Control" parent="." unique_id=593959270 node_paths=PackedStringArray("Manager") instance=ExtResource("2_4hew7")]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=565971120 node_paths=PackedStringArray("Temporizador", "BarraBateria")]
+script = ExtResource("13_lkl22")
+Temporizador = NodePath("../RunTimer")
+BarraBateria = NodePath("Bateria_progressbar")
+
+[node name="Control" parent="CanvasLayer" unique_id=593959270 node_paths=PackedStringArray("Manager") instance=ExtResource("2_4hew7")]
 offset_left = 2.0
 offset_top = -1.0
 offset_right = 2.0
 offset_bottom = -1.0
-Manager = NodePath("../CentralElectricaManager")
+Manager = NodePath("../../CentralElectricaManager")
+
+[node name="Bateria_progressbar" parent="CanvasLayer" unique_id=704348119 instance=ExtResource("14_kkahe")]
+offset_left = 4.0
+offset_top = 583.0
+offset_right = -880.0
+offset_bottom = -9.0
 
 [node name="casita_v3" parent="." unique_id=1345732476 instance=ExtResource("9_pcg50")]
 transform = Transform3D(-8.742278e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, -8.742278e-09, -23.365679, -0.27396524, 21.615131)

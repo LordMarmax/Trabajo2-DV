@@ -11,12 +11,13 @@ albedo_color = Color(0, 0.39999986, 1, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wwpud"]
 
-[node name="CharacterBody3D" type="CharacterBody3D" unique_id=1124762868 node_paths=PackedStringArray("Grabber", "Arrastre")]
+[node name="CharacterBody3D" type="CharacterBody3D" unique_id=1124762868 node_paths=PackedStringArray("Grabber", "Arrastre", "Linterna")]
 script = ExtResource("1_83e7o")
 Grabber = NodePath("ObjectGrabber")
 Speed = 4.0
 JumpVelocity = 4.0
 Arrastre = NodePath("ArrastrePalanca")
+Linterna = NodePath("PivoteCamera/SpotLight3D")
 
 [node name="Torso" type="MeshInstance3D" parent="." unique_id=1730315614]
 mesh = SubResource("CapsuleMesh_ktotb")

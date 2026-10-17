@@ -1,4 +1,4 @@
-
+//Player.cs
 using Godot;
 using System;
 
@@ -11,6 +11,11 @@ public partial class Player : CharacterBody3D
 
     [Export] public ArrastrePalanca Arrastre;
 
+    [Export] public SpotLight3D Linterna;
+    [Export] public RunTimer Temporizador;
+    [Export] public float DuracionDesvanecimiento = 2.5f;
+
+    private Tween _tweenLinterna;
     private RayCast3D rayCastAtaque;
 
     public float Gravity = ProjectSettings
@@ -40,6 +45,30 @@ public partial class Player : CharacterBody3D
         );
 
         _camera.MakeCurrent();
+
+        if (Linterna != null)
+        {
+            Linterna.Visible = true;
+        }
+        else
+        {
+            GD.PushError("Player: SpotLight3D no Asignado");
+        }
+
+        if (Temporizador != null)
+        {
+            Temporizador.BateriaAgotada += ApagarLinterna;
+        }
+        else
+        {
+            GD.PushError("Player: RunTimer no asignado");
+        }
+        if (Temporizador != null)
+        {
+            Temporizador.BateriaAgotada += ApagarLinterna;
+            Temporizador.RunCompletada += DesvanecerLinterna;
+        }
+
     }
 
     public override void _PhysicsProcess(double delta)
@@ -253,4 +282,48 @@ public partial class Player : CharacterBody3D
 
         return false;
     }
+
+    private void ApagarLinterna()
+    {
+        if (Linterna == null)
+            return;
+
+        _tweenLinterna?.Kill();
+
+        Linterna.LightEnergy = 0.0f;
+        Linterna.Visible = false;
+
+        GD.Print("=== LINTERNA APAGADA ===");
+        GD.Print("La batería se ha agotado.");
+    }
+    private void DesvanecerLinterna()
+    {
+        if (Linterna == null || !Linterna.Visible)
+            return;
+
+        GD.Print("=== DESVANECIENDO LINTERNA ===");
+
+        _tweenLinterna?.Kill();
+
+        _tweenLinterna = CreateTween();
+
+        _tweenLinterna.TweenProperty(
+            Linterna,
+            "light_energy",
+            0.0f,
+            DuracionDesvanecimiento
+        ).SetTrans(Tween.TransitionType.Sine)
+        .SetEase(Tween.EaseType.InOut);
+
+        _tweenLinterna.TweenCallback(
+            Callable.From(() =>
+            {
+                Linterna.Visible = false;
+
+                GD.Print("Linterna apagada suavemente.");
+            })
+        );
+    }
+
+
 }
