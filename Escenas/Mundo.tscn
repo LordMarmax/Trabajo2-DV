@@ -639,3 +639,4 @@ script = ExtResource("15_klycv")
 
 [editable path="Objetos/caja_interruptores"]
 [editable path="Objetos/palanca_energia"]
+[editable path="CanvasLayer/Control"]

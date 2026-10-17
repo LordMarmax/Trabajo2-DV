@@ -283,19 +283,49 @@ public partial class Player : CharacterBody3D
         return false;
     }
 
+    // private void ApagarLinterna()
+    // {
+    //     if (Linterna == null)
+    //         return;
+
+    //     _tweenLinterna?.Kill();
+
+    //     Linterna.LightEnergy = 0.0f;
+    //     Linterna.Visible = false;
+
+    //     GD.Print("=== LINTERNA APAGADA ===");
+    //     GD.Print("La batería se ha agotado.");
+    // }
+
     private void ApagarLinterna()
+{
+    GD.Print("=== DIAGNÓSTICO LINTERNA ===");
+
+    GD.Print("Jugador: ", GetPath());
+    GD.Print("ID jugador: ", GetInstanceId());
+
+    if (Linterna == null)
     {
-        if (Linterna == null)
-            return;
-
-        _tweenLinterna?.Kill();
-
-        Linterna.LightEnergy = 0.0f;
-        Linterna.Visible = false;
-
-        GD.Print("=== LINTERNA APAGADA ===");
-        GD.Print("La batería se ha agotado.");
+        GD.PrintErr("ERROR: Linterna no asignada.");
+        return;
     }
+
+    GD.Print("Linterna: ", Linterna.GetPath());
+    GD.Print("ID linterna: ", Linterna.GetInstanceId());
+
+    GD.Print("Visible ANTES: ", Linterna.Visible);
+    GD.Print("Energía ANTES: ", Linterna.LightEnergy);
+
+    _tweenLinterna?.Kill();
+
+    Linterna.LightEnergy = 0.0f;
+    Linterna.Visible = false;
+
+    GD.Print("Visible DESPUÉS: ", Linterna.Visible);
+    GD.Print("Energía DESPUÉS: ", Linterna.LightEnergy);
+
+    GD.Print("=== FIN DIAGNÓSTICO ===");
+}
     private void DesvanecerLinterna()
     {
         if (Linterna == null || !Linterna.Visible)
